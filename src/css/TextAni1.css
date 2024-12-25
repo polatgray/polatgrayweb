@@ -1,0 +1,20 @@
+.animated-text {
+    font-weight: bold;
+    background: linear-gradient(90deg, #f9d423, #ffb347, #f6e58d, #f9d423); /* Sarı tonları */
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-animation 4s infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
