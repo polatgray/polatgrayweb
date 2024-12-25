@@ -1,0 +1,11 @@
+.text-shadow-yellow{
+    text-shadow: 0px 1px 20px rgba(252,211,77,0.6);
+}
+
+.bg-ofmproduction{
+    background-image: url("../images/Wallpaper.jpg");
+}
+
+.bg-semiblack{
+    background-color: rgba(0, 0, 0, 0.792);
+}
