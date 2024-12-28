@@ -1,0 +1,35 @@
+.myLifeWallpaper{
+    background-image: url('../images/Wallpaper2.jpg');
+}
+
+.bg-black-special{
+    background-color: rgba(0, 0, 0, 0.63);
+}
+
+.swiper {
+    width: 1000px !important;
+    height: 400px !important;
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+  }
+
+  .border-amber-500-spec{
+    border-color: #F59E0B;
+}
+
+.text-shadow-yellow-mylife{
+    text-shadow: 0px 0px 30px rgba(252,211,77,0.6);
+}
+
+
+
+@media (min-width:1536px) {
+    .slick-slide > div {
+        padding: 0 10px; /* Sağ ve sol boşluk */
+    }
+    
+    .slick-list {
+        margin: 0 -10px; /* Boşlukları dengelemek için negatif margin */
+    }
+}
+

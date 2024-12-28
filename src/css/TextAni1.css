@@ -1,20 +1,31 @@
 .animated-text {
-    font-weight: bold;
-    background: linear-gradient(90deg, #f9d423, #ffb347, #f6e58d, #f9d423); /* Sarı tonları */
-    background-size: 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradient-animation 4s infinite;
+  font-weight: bold;
+  background: linear-gradient(90deg, #f9d423, #ffb347, #f6e58d, #f9d423); /* Sarı tonları */
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 4s infinite, mainLabel 1s ease  alternate;
 }
 
 @keyframes gradient-animation {
-    0% {
+  0% {
       background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
   }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+@keyframes mainLabel {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0px);
+  }
+}

@@ -24,10 +24,78 @@
 
   .downIcoAni{
     animation-name: DownIcoAni;
-    animation-duration: 2s;
+    animation-duration: 4s;
     animation-timing-function: ease;
     animation-direction: alternate-reverse;
     animation-iteration-count: infinite;
+  }
+
+  .helperLabel{
+    animation-name: helperLabel;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+    opacity: 0;
+  }
+
+  .defaultImg, .defaultImgLabel {
+    opacity: 0;
+    visibility: hidden; 
+    animation-timing-function: ease;
+    animation-fill-mode: forwards; 
+}
+
+.defaultImg {
+    animation-name: defaultImg;
+    animation-duration: 2s;
+    animation-delay: .3s;
+    animation-direction: normal;
+}
+
+.defaultImgLabel {
+    animation-name: defaultImgLabel;
+    animation-duration: 2s;
+    animation-delay: .6s;
+    animation-direction: normal;
+}
+
+@keyframes defaultImg {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+        visibility: visible; 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+        visibility: visible;
+    }
+}
+
+@keyframes defaultImgLabel {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+        visibility: visible; 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+        visibility: visible;
+    }
+}
+
+
+  @keyframes helperLabel {
+    from{
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+
+    to{
+      opacity: 1;
+      transform: translateY(0px);
+    }
   }
 
   @keyframes DownIcoAni{
