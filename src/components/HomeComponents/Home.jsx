@@ -27,7 +27,7 @@ const Home = () => {
                 <div className="bg-dark-solid-private h-full w-full">
                     <div className="flex flex-col h-full">
                         <div className="flex items-center flex-col mt-12 absolute top-0 w-full sm:pt-4 pt-16">
-                            <p className="inter-600  2xl:text-8xl  lg:text-6xl sm:text-5xl text-4xl mainLabel tracking-wide text-shadow-yellow animated-text">POLAT GRAY</p>
+                            <p className="inter-600  2xl:text-8xl  lg:text-6xl sm:text-5xl text-4xl mainLabel tracking-wide text-shadow-yellow animated-text s">POLAT GRAY</p>
                             <p className="opacity-90 inter-500 tracking-widest-more mt-5 md:text-lg text-xs text-white helperLabel">WELCOME TO PARADISE</p>
                         </div>
                        <div className="flex justify-center items-center flex-col h-full mt-5">
