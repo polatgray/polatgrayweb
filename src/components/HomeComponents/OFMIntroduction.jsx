@@ -81,7 +81,7 @@ const OFMIntroduction = () => {
   const [settings, setSettings] = useState({});
 
   return (
-    <div className="w-full bg-black  s select-none" id="ofmIntroduction">
+    <div className="w-full bg-black   select-none" id="ofmIntroduction">
       <div className="bg-ofmproduction bg-fixed flex items-center">
         <div className="bg-semiblack h-full w-full flex items-center justify-center py-12">
           <div className="flex  xl:flex-row flex-col xl:gap-0 gap-12 justify-between items-center w-[1600px] classCheck1">
