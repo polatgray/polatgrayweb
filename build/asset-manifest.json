@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e8020390.css",
+    "main.js": "/static/js/main.578ebfac.js",
+    "static/js/488.18beefd9.chunk.js": "/static/js/488.18beefd9.chunk.js",
+    "static/media/Untouchable Boss.jpg": "/static/media/Untouchable Boss.9812f7d52b74960f5d95.jpg",
+    "static/media/Wallpaper.jpg": "/static/media/Wallpaper.671e57937018d4d6747d.jpg",
+    "static/media/Playing In the Highest Royal Echelon (1).jpg": "/static/media/Playing In the Highest Royal Echelon (1).f19a456b735096b1b20f.jpg",
+    "static/media/Hottest Billionaire (2).jpg": "/static/media/Hottest Billionaire (2).4d0ea04218c46d7c3529.jpg",
+    "static/media/Playing In the Highest Royal Echelon.jpg": "/static/media/Playing In the Highest Royal Echelon.9fb2ef6ccbd001b51706.jpg",
+    "static/media/Hottest Billionaire.jpg": "/static/media/Hottest Billionaire.53abffe287c0ff7aa28a.jpg",
+    "static/media/Hottest Billionaire (1).jpg": "/static/media/Hottest Billionaire (1).81a927f35b680d5edb43.jpg",
+    "static/media/Playing In the Highest Royal Echelon (3).jpg": "/static/media/Playing In the Highest Royal Echelon (3).5e9209c1c37f225c75d8.jpg",
+    "static/media/Playing In the Highest Royal Echelon (2).jpg": "/static/media/Playing In the Highest Royal Echelon (2).617b283e1a9080e5976c.jpg",
+    "static/media/My 1 week expenses equal your 10 year expenses.jpg": "/static/media/My 1 week expenses equal your 10 year expenses.d399441b118d65148d7d.jpg",
+    "static/media/Money talks, I translate..jpg": "/static/media/Money talks, I translate..59618c283b16b3b3a334.jpg",
+    "static/media/Wallpaper2.jpg": "/static/media/Wallpaper2.82d7126949e0a555cc2e.jpg",
+    "static/media/video2.jpg": "/static/media/video2.f8a99a53457ad548e054.jpg",
+    "static/media/My 1 week expenses equal your 10 year expenses (1).jpg": "/static/media/My 1 week expenses equal your 10 year expenses (1).4477ae8a4e6f729edfc3.jpg",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "static/media/si--arrow-downward-fill.svg": "/static/media/si--arrow-downward-fill.edd900512fa2fa6ec15cf687cb5f4635.svg",
+    "main.e8020390.css.map": "/static/css/main.e8020390.css.map",
+    "main.578ebfac.js.map": "/static/js/main.578ebfac.js.map",
+    "488.18beefd9.chunk.js.map": "/static/js/488.18beefd9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e8020390.css",
+    "static/js/main.578ebfac.js"
+  ]
+}
