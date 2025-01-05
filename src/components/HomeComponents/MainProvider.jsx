@@ -9,12 +9,14 @@ const MainProvider = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        // Sayfanın yükleme durumu
+        // Sayfa yükleme durumunu kontrol et
         const checkLoad = () => {
             if (document.readyState === "complete") {
+                console.log("x")
                 setIsLoaded(true); // Sayfa tamamen yüklendiğinde
             } else {
-                setTimeout(checkLoad, 100); // Sayfa hala yükleniyorsa her 100ms'de kontrol et
+                console.log("y")
+                setTimeout(checkLoad, 200); // 200ms sonra tekrar kontrol et
             }
         };
 
@@ -24,8 +26,9 @@ const MainProvider = () => {
 
     return (
         <>
-            {!isLoaded && <Opening />}  {/* Sayfa yüklenene kadar Opening göster */}
-            {isLoaded && (
+            {!isLoaded ? (
+                <Opening /> // Sayfa yüklenene kadar Opening göster
+            ) : (
                 <>
                     <Home />
                     <OFMIntroduction />
