@@ -1,15 +1,12 @@
-import Home from "./HomeComponents/Home"
-import JoinNow from "./HomeComponents/JoinNow"
-import MyLife from "./HomeComponents/MyLife"
-import OFMIntroduction from "./HomeComponents/OFMIntroduction"
+import { Routes, Route } from "react-router-dom"
+import MainProvider from "./HomeComponents/MainProvider"
 
 const Main = () => {
     return(
         <>
-         <Home />
-         <OFMIntroduction />
-         <JoinNow />
-         <MyLife />
+            <Routes>
+                <Route path="/" element={<MainProvider />} />
+            </Routes>
         </>
     )
 }

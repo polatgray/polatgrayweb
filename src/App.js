@@ -1,10 +1,15 @@
 import Main from "./components/Main";
 import "../src/css/Main.css"
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
 
 function App() {
   return (
     <>
-      <Main />
+      <BrowserRouter >
+        <Main />
+      </BrowserRouter>
     </>
   );
 }
