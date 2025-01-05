@@ -1,40 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Home from "./Home";
-import JoinNow from "./JoinNow";
-import MyLife from "./MyLife";
-import OFMIntroduction from "./OFMIntroduction";
 import Opening from "./Opening";
+import "../../css/Opening.css";
+import { LoadingContext } from "../../Context/LoadingContext";
 
 const MainProvider = () => {
-    const [isLoaded, setIsLoaded] = useState(false);
+
+    const {loadingFinally} = useContext(LoadingContext);
 
     useEffect(() => {
-        // Sayfa yükleme durumunu kontrol et
-        const checkLoad = () => {
-            if (document.readyState === "complete") {
-                console.log("x")
-                setIsLoaded(true); // Sayfa tamamen yüklendiğinde
-            } else {
-                console.log("y")
-                setTimeout(checkLoad, 200); // 200ms sonra tekrar kontrol et
-            }
-        };
-
-        checkLoad(); // Sayfa durumu kontrol edilmeye başlar
-
-    }, []);
+        // Fotoğraflar yüklendikten sonra Opening'i kaldırmak için
+        if (loadingFinally) {
+            // Burada resimler yüklendiğinde Opening ekranı kapanır
+            console.log("All content loaded, removing opening screen.");
+        }
+    }, [loadingFinally]);
 
     return (
         <>
-            {!isLoaded ? (
-                <Opening /> // Sayfa yüklenene kadar Opening göster
-            ) : (
-                <>
+            {!loadingFinally ? (
+                <div>
+                    <Opening /> // Sayfa yüklenene kadar Opening göster
                     <Home />
-                    <OFMIntroduction />
-                    <JoinNow />
-                    <MyLife />
-                </>
+                </div>
+            ) : (
+                <Home />
             )}
         </>
     );
