@@ -18,34 +18,25 @@
     }
 }
 
-.spinner {
-    width: 270px;
-    height: 270px;
-    border: 8px solid rgba(255, 255, 255, 0);
-    border-top: 8px solid rgba(255, 217, 0, 0.293); /* Dönen kısmın rengi */
-    border-radius: 50%;
-    animation: fadeIn 0.1s ease forwards, spin 2s linear infinite;
-    animation-delay: 2s, 2s; /* İlk animasyonun ardından dönmeye başlar */
-    opacity: 0; /* Başlangıçta görünmez */
+.animated-text-opening-label{
+    animation-name: AniLabel;
+    animation-duration: 2s;
+    animation-delay: 1.2s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
 }
 
-/* Görünür hale getirme */
-@keyframes fadeIn {
-    0% {
+@keyframes AniLabel {
+    from{
+        transform: translateY(-10px);
         opacity: 0;
     }
-    100% {
-        opacity: 1;
-    }
-}
 
-/* Dönen animasyon */
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
+    to{
+        transform: translateY(0px);
+        opacity: 1;
     }
 }
 

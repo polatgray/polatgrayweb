@@ -2,24 +2,26 @@ import { useState, useEffect, useContext } from "react";
 import Home from "./Home";
 import Opening from "./Opening";
 import "../../css/Opening.css";
-import { LoadingContext } from "../../Context/LoadingContext";
 
 const MainProvider = () => {
 
-    const {loadingFinally} = useContext(LoadingContext);
+    const [aniEnd,setAniEnd] = useState(false)
+    const [opacityState,setOpacityState] = useState(false);
+
 
     useEffect(() => {
-        // Fotoğraflar yüklendikten sonra Opening'i kaldırmak için
-        if (loadingFinally) {
-            // Burada resimler yüklendiğinde Opening ekranı kapanır
-            console.log("All content loaded, removing opening screen.");
-        }
-    }, [loadingFinally]);
+        setTimeout(() => (
+            setOpacityState(true),
+            setTimeout(() => (
+                setAniEnd(true)
+            ), 300)
+        ), 3200);
+    }, []);
 
     return (
         <>
-            {!loadingFinally ? (
-                <div>
+            {!aniEnd ? (
+                <div  className={`transition-all duration-300 ${opacityState ? "opacity-0" : "opacity-100"}`}>
                     <Opening /> // Sayfa yüklenene kadar Opening göster
                     <Home />
                 </div>
