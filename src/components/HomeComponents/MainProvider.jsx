@@ -1,5 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import Home from "./Home";
+import OFMIntroduction from "./OFMIntroduction"
+import JoinNow from "./JoinNow"
+import MyLife from "./MyLife"
 import Opening from "./Opening";
 import "../../css/Opening.css";
 
@@ -22,11 +25,15 @@ const MainProvider = () => {
         <>
             {!aniEnd ? (
                 <div  className={`transition-all duration-300 ${opacityState ? "opacity-0" : "opacity-100"}`}>
-                    <Opening /> // Sayfa yüklenene kadar Opening göster
-                    <Home />
+                    <Opening />
                 </div>
             ) : (
-                <Home />
+                <div>
+                    <Home />
+                    <OFMIntroduction />
+                    <JoinNow />
+                    <MyLife />
+                </div>
             )}
         </>
     );
