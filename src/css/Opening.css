@@ -57,7 +57,7 @@
   align-items: center;
 
   .box {
-    width: 250px;
+    width: 100px;
     position: relative;
     display: flex;
     justify-content: center;
