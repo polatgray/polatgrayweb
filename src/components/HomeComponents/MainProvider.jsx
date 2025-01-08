@@ -18,7 +18,7 @@ const MainProvider = () => {
             setTimeout(() => (
                 setAniEnd(true)
             ), 300)
-        ), 280000);
+        ), 2800);
     }, []);
 
     return (
