@@ -47,9 +47,14 @@ const JoinNow = () => {
         <p className="inter-400 text-white w-[300px] sm:w-[400px] text-center my-5">Being an OFM (OnlyFans Manager) is an amazing way to earn big money quickly! You get to work with creative content creators, help them grow, and earn commissions—it's both easy and highly profitable!</p>
       </FadeInItem>
       <FadeInItem>
-        <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105">
-          Join Now
-        </button>
+        <div className="flex flex-col items-center gap-3">
+          <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105">
+            Join Now
+          </button>
+          <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105">
+            Learn about OFM
+          </button>
+        </div>
       </FadeInItem>
     </div>
   );

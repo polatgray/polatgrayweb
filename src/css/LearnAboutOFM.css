@@ -1,0 +1,55 @@
+.animate-open-text{
+    animation: gradient-animation2 4s infinite, mainLabel 1s ease  alternate;
+}
+
+@keyframes gradient-animation2 {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+  }
+
+  .bg-transparent-black-special{
+    background-color: rgba(0, 0, 0, 0.802);
+    animation-name: ani1;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes ani1{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+  }
+
+  .ani2{
+    animation-name: ani2;
+    animation-duration: 2s;
+    animation-delay: .6s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes ani2{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+    }
+
+  .box-shadow-black-1{
+    box-shadow: 17px 0px 12px 0px rgba(0,0,0,0.802);
+  }
