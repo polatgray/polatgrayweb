@@ -53,3 +53,7 @@
   .box-shadow-black-1{
     box-shadow: 17px 0px 12px 0px rgba(0,0,0,0.802);
   }
+
+  .border-amber-500-spec{
+    border-color: #F59E0B;
+}

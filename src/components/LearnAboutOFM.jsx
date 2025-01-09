@@ -18,12 +18,19 @@ import Img16 from "../images/IMG_5317.jpeg"
 import Img17 from "../images/IMG_5336.jpeg"
 import "../css/LearnAboutOFM.css"
 import OFMAbout from "./AboutOFMComponents/OFMAbout";
+import { useNavigate } from "react-router-dom";
 
 
 
 const LearnAboutOFM = () => {
+
+    const navigate = useNavigate();
+
     return(
         <>
+            <div className="absolute top-0 start-0 z-20 ms-12 mt-4">
+                <button className="inter-400 px-4 py-2 rounded-lg border-amber-500-spec border text-amber-500 hover:text-white hover:bg-amber-500 transition-all duration-300 outline-0" onClick={() => {navigate("/"); window.scrollTo(0,0)}}>Return Home</button>
+            </div>
             <div className="flex flex-col mt-5 z-10 relative  w-full ">
                 <div className="flex pt-12">
                     <div className="flex flex-col items-start sm:ps-12 sm:px-0 px-5 h-[400px] z-10 relative bg-transparent-black-special box-shadow-black-1 2xl:w-auto w-full 2xl:pt-16 ">

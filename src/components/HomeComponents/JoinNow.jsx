@@ -55,7 +55,7 @@ const JoinNow = () => {
           <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105">
             Join Now
           </button>
-          <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105" onClick={() => navigate("/learnAboutOFM")}>
+          <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105" onClick={() => {navigate("/learnAboutOFM"); window.scrollTo(0,0)}}>
             Learn about OFM
           </button>
         </div>
