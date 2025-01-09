@@ -17,6 +17,7 @@ import Img15 from "../images/IMG_5316.jpeg"
 import Img16 from "../images/IMG_5317.jpeg"
 import Img17 from "../images/IMG_5336.jpeg"
 import "../css/LearnAboutOFM.css"
+import OFMAbout from "./AboutOFMComponents/OFMAbout";
 
 
 
@@ -25,33 +26,32 @@ const LearnAboutOFM = () => {
         <>
             <div className="flex flex-col mt-5 z-10 relative  w-full ">
                 <div className="flex pt-12">
-                    <div className="flex flex-col items-start ps-12 h-[400px] z-10 relative bg-transparent-black-special box-shadow-black-1">
-                        <p className="text-5xl animate-open-text text-white inter-600"><span className="animated-text">O</span>nly<span className="animated-text">F</span>ans<span className="animated-text">M</span>anager</p>
-                        <p className="w-[1200px] text-white inter-500 mt-5 ">What’s up? Have all business models died? Dropshipping, eCommerce, Crypto... Yeah, these wouldn’t have made you filthy rich, but one could’ve made you wealthy for life. With so many trends coming and going, it’s easy to get discouraged. But OFM offers a fresh perspective—a business model that might not make you a millionaire, but could give you long-term stability and freedom. Why not give it a try? It could be the change you need to transform your future.</p>
-                        
+                    <div className="flex flex-col items-start sm:ps-12 sm:px-0 px-5 h-[400px] z-10 relative bg-transparent-black-special box-shadow-black-1 2xl:w-auto w-full 2xl:pt-16 ">
+                        <p className="text-5xl animate-open-text text-white inter-600 sm:pe-0 pe-12">Owner of the Biggest  <span className="animated-text">Onlyfans Agency</span></p>
+                        <p className="2xl:w-[1200px] xl:w-[800px] lg:w-[600px] w-[320px] text-white inter-500 mt-5 ">What’s up? Have all business models died? Dropshipping, eCommerce, Crypto... Yeah, these wouldn’t have made you filthy rich, but one could’ve made you wealthy for life. With so many trends coming and going, it’s easy to get discouraged. But OFM offers a fresh perspective—a business model that might not make you a millionaire, but could give you long-term stability and freedom. Why not give it a try? It could be the change you need to transform your future.</p>
                     </div>
-                    <div className="absolute z-0 ani2">
-                        <Marquee >
-                            <img src={Img12} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img1} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img7} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img5} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img16} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img10} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img13} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img4} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img9} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img2} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img15} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img3} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img17} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img8} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img6} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-                            <img src={Img14} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="" />
-
+                    <div className="absolute z-0 ani2 w-full">
+                        <Marquee loop={0}>
+                            <img src={Img12} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img1} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img7} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img5} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img16} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img10} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img13} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img4} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img9} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img2} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img15} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img3} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img17} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img8} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img6} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img14} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
                         </Marquee>
                     </div>
                 </div>
+                <OFMAbout />
             </div>
         </>
     )

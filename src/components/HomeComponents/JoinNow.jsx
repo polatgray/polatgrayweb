@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../../css/JoinNow.css";
+import { useNavigate } from "react-router-dom";
 
 // Fade-in bileşeni
 const FadeInItem = ({ children }) => {
@@ -32,6 +33,9 @@ const FadeInItem = ({ children }) => {
 };
 
 const JoinNow = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col items-center bg-black py-16 select-none">
       {/* Animasyonlu öğeler */}
@@ -51,7 +55,7 @@ const JoinNow = () => {
           <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105">
             Join Now
           </button>
-          <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105">
+          <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105" onClick={() => navigate("/learnAboutOFM")}>
             Learn about OFM
           </button>
         </div>
