@@ -57,3 +57,46 @@
   .border-amber-500-spec{
     border-color: #F59E0B;
 }
+
+@media (max-width:1536px) {
+  .bg-transparent-black-special{
+    background-color: rgba(0, 0, 0, 0.702);
+    animation-name: ani1;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+  }
+}
+
+@media(max-width:664px){
+  .mt-320vw-spec{
+    margin-top: 100px;
+  }
+}
+
+@media(max-width:445px){
+  .mt-320vw-spec{
+    margin-top: 240px;
+  }
+}
+
+@media(max-width:350px){
+  .mt-320vw-spec{
+    margin-top: 320px;
+  }
+}
+
+
+@media(max-width:321px){
+  .mt-320vw-spec{
+    margin-top: 320px;
+  }
+}
+
+@media(max-width:308px){
+  .mt-320vw-spec{
+    margin-top: 360px;
+  }
+}
+

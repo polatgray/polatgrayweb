@@ -1,0 +1,23 @@
+.swiper {
+    width: 1000px !important;
+    height: 400px !important;
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+  }
+
+
+  .sliderClass2 .slick-slider .slick-list {
+    width: 300px !important;
+    height: 600px !important;
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+}
+
+@media (min-width:1500px) {
+    .sliderClass2 .slick-slider .slick-list {
+        width: 1000px !important;
+        height: 600px !important;
+        margin-left: 1px !important;
+        margin-right: 1px !important;
+    }
+}

@@ -19,6 +19,9 @@ import Img17 from "../images/IMG_5336.jpeg"
 import "../css/LearnAboutOFM.css"
 import OFMAbout from "./AboutOFMComponents/OFMAbout";
 import { useNavigate } from "react-router-dom";
+import OFMJoinNow from "./AboutOFMComponents/OFMJoinNow";
+import OFMSomeSales from "./AboutOFMComponents/OFMSomeSales";
+import Footer from "./HomeComponents/Footer";
 
 
 
@@ -28,16 +31,19 @@ const LearnAboutOFM = () => {
 
     return(
         <>
-            <div className="absolute top-0 start-0 z-20 ms-12 mt-4">
+            <div className="fixed end-0 bottom-0">
+
+            </div>
+            <div className="absolute top-0 start-0 z-20 md:ms-12 ms-4 mt-4">
                 <button className="inter-400 px-4 py-2 rounded-lg border-amber-500-spec border text-amber-500 hover:text-white hover:bg-amber-500 transition-all duration-300 outline-0" onClick={() => {navigate("/"); window.scrollTo(0,0)}}>Return Home</button>
             </div>
-            <div className="flex flex-col mt-5 z-10 relative  w-full ">
-                <div className="flex pt-12">
-                    <div className="flex flex-col items-start sm:ps-12 sm:px-0 px-5 h-[400px] z-10 relative bg-transparent-black-special box-shadow-black-1 2xl:w-auto w-full 2xl:pt-16 ">
-                        <p className="text-5xl animate-open-text text-white inter-600 sm:pe-0 pe-12">Owner of the Biggest  <span className="animated-text">Onlyfans Agency</span></p>
-                        <p className="2xl:w-[1200px] xl:w-[800px] lg:w-[600px] w-[320px] text-white inter-500 mt-5 ">What’s up? Have all business models died? Dropshipping, eCommerce, Crypto... Yeah, these wouldn’t have made you filthy rich, but one could’ve made you wealthy for life. With so many trends coming and going, it’s easy to get discouraged. But OFM offers a fresh perspective—a business model that might not make you a millionaire, but could give you long-term stability and freedom. Why not give it a try? It could be the change you need to transform your future.</p>
+            <div className="flex flex-col mt-5 z-10 relative  w-full select-none">
+                <div className="flex pt-12 ">
+                    <div className="flex flex-col xl:items-start items-center lg:ps-12 sm:px-0  h-[400px] z-10 relative bg-transparent-black-special  2xl:w-auto w-full pt-16 2xl:backdrop-blur-sm">
+                        <p className="text-5xl animate-open-text text-white inter-600  xl:text-start text-center px-5">Owner of the Biggest  <span className="animated-text">Onlyfans Agency</span></p>
+                        <p className="2xl:w-[1200px] xl:w-[900px] lg:w-[600px] md:w-[500px] text-white inter-500 mt-5 md:px-0 px-12">What’s up? Have all business models died? Dropshipping, eCommerce, Crypto... Yeah, these wouldn’t have made you filthy rich, but one could’ve made you wealthy for life. With so many trends coming and going, it’s easy to get discouraged. But OFM offers a fresh perspective—a business model that might not make you a millionaire, but could give you long-term stability and freedom. Why not give it a try? It could be the change you need to transform your future.</p>
                     </div>
-                    <div className="absolute z-0 ani2 w-full">
+                    <div className="absolute z-0 ani2 w-full backdrop-blur-lg">
                         <Marquee loop={0}>
                             <img src={Img12} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
                             <img src={Img1} className="w-[300px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
@@ -59,6 +65,11 @@ const LearnAboutOFM = () => {
                     </div>
                 </div>
                 <OFMAbout />
+                <div className="flex justify-center">
+                    <OFMJoinNow />
+                </div>
+                <OFMSomeSales />
+                <Footer />
             </div>
         </>
     )

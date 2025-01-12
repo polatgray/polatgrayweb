@@ -4,6 +4,7 @@ import OFMIntroduction from "./OFMIntroduction"
 import JoinNow from "./JoinNow"
 import MyLife from "./MyLife"
 import Opening from "./Opening";
+import Footer from "./Footer";
 import "../../css/Opening.css";
 
 const MainProvider = () => {
@@ -33,6 +34,7 @@ const MainProvider = () => {
                     <OFMIntroduction />
                     <JoinNow />
                     <MyLife />
+                    <Footer />
                 </div>
             )}
         </>

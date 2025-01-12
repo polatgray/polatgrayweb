@@ -10,6 +10,9 @@ import Photo7 from "../../images/Playing In the Highest Royal Echelon (2).jpg";
 import Photo8 from "../../images/Playing In the Highest Royal Echelon (3).jpg";
 import Photo9 from "../../images/Playing In the Highest Royal Echelon.jpg";
 import Photo10 from "../../images/Untouchable Boss.jpg";
+import Photo11 from "../../images/wgirl1.jpeg"
+import Photo12 from "../../images/toplu1.jpeg"
+import Photo12R from "../../images/toplu1R.jpeg"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -47,8 +50,8 @@ const FadeInText = ({ children }) => {
 
 const MyLife = () => {
   const images = [
-    Photo1, Photo2, Photo3, Photo4, Photo5,
-    Photo6, Photo7, Photo8, Photo9, Photo10
+    Photo11,Photo12,Photo12R,Photo1, Photo2, Photo3, Photo4, Photo5,
+    Photo6, Photo7, Photo8, Photo9, Photo10,
   ];
 
    useEffect(() => {
@@ -109,7 +112,7 @@ const MyLife = () => {
                 <div key={index}>
                   <img
                     src={image}
-                    className="w-[300px] select-none h-[400px] object-cover box-shadow-yellow-spec rounded-lg shadow-lg mx-12 mx-auto"
+                    className={`w-[300px] select-none h-[400px] object-cover box-shadow-yellow-spec rounded-lg shadow-lg mx-12 mx-auto ${image == Photo12 ? "object-left" : image == Photo12R ? "object-right" : ""}`}
                     alt={`Slide ${index + 1}`}
                     loading="lazy"
                   />
