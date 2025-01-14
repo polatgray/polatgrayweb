@@ -1,16 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../css/MyLife.css";
-import Photo1 from "../../images/Hottest Billionaire (1).jpg";
-import Photo2 from "../../images/Hottest Billionaire (2).jpg";
-import Photo3 from "../../images/Money talks, I translate..jpg";
-import Photo4 from "../../images/My 1 week expenses equal your 10 year expenses (1).jpg";
-import Photo5 from "../../images/My 1 week expenses equal your 10 year expenses.jpg";
-import Photo6 from "../../images/Playing In the Highest Royal Echelon (1).jpg";
-import Photo7 from "../../images/Playing In the Highest Royal Echelon (2).jpg";
-import Photo8 from "../../images/Playing In the Highest Royal Echelon (3).jpg";
-import Photo9 from "../../images/Playing In the Highest Royal Echelon.jpg";
-import Photo10 from "../../images/Untouchable Boss.jpg";
-import Photo11 from "../../images/wgirl1.jpeg"
+import saatlerImg from "../../images/Saatler.jpeg"
+import Araba1 from "../../images/WAraba.jpeg"
+import Araba2 from "../../images/WAraba2.jpeg"
+import Girl from "../../images/WGirl.jpeg"
 import Photo12 from "../../images/toplu1.jpeg"
 import Photo12R from "../../images/toplu1R.jpeg"
 import Slider from "react-slick";
@@ -50,8 +43,7 @@ const FadeInText = ({ children }) => {
 
 const MyLife = () => {
   const images = [
-    Photo11,Photo12,Photo12R,Photo1, Photo2, Photo3, Photo4, Photo5,
-    Photo6, Photo7, Photo8, Photo9, Photo10,
+    Girl,Araba2,saatlerImg,Araba1
   ];
 
    useEffect(() => {
@@ -98,7 +90,7 @@ const MyLife = () => {
 
 
   return (
-    <div className="flex items-center myLifeWallpaper bg-fixed">
+    <div className="flex items-center  bg-fixed">
       <div className="bg-black-special py-12 flex md:flex-row flex-col justify-center items-center w-full">
         <FadeInText>
           <div className="flex flex-col md:m-0 mb-12 md:items-start items-center">
