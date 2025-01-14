@@ -7,7 +7,7 @@ const HomeV2 = () => {
             <div className="flex lg:flex-row flex-col">
                 <div className="lg:w-1/3 w-full max-h-screen bg-right lg:h-screen h-[250px] bg-cover inner-left-shadow-spec arabaPhoto1">
                 </div>
-                <div className="flex flex-col lg:w-2/3 w-full lg:relative absolute lg:mt-0 mt-24">
+                <div className="flex flex-col lg:w-2/3 w-full lg:relative absolute lg:mt-0 mt-28">
                     <div className="flex flex-col items-center w-full pt-12 lg:relative relative">
                         <p className="inter-600 2xl:text-8xl lg:text-6xl sm:text-5xl text-4xl mainLabel tracking-wide text-shadow-yellow animated-text ">
                             POLAT GRAY
