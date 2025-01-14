@@ -17,7 +17,7 @@ const HomeV2 = () => {
                         </p>
                     </div>
                     <div className="flex flex-col items-center lg:mt-36 mt-20">
-                        <p className="lg:w-[600px] w-[320px] inter-500 text-white">Other business models? Rotten tales of the past! In today’s world, true success comes from mastering the trends. OnlyFans management is the golden ticket to breaking free from mediocrity and printing money with a visionary mindset. Visionaries like me see the opportunity while others just dream. If you want to walk this path, stop with the empty talk and join the league of those who know how to win. Because I’m not just surviving—I’m rewriting the game.</p>
+                        <p className="lg:w-[600px] w-[320px] inter-500 text-white">Other business models? Rotten tales of the past! In today’s world, true success comes from mastering the trends. OnlyFans management is the golden ticket to breaking free from mediocrity and printing money with a visionary mindset. Visionaries like me see the opportunity while others just dream. If you want to walk this path, stop with the empty talk and join the league of those who know how to win. </p>
                         <img
                             src={DownIco}
                             className="w-[45px] downIcoAni lg:mt-24 mt-12"
