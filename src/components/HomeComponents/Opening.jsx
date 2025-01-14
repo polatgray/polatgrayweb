@@ -13,7 +13,7 @@ const Opening = () => {
                         </div>
                     </div>
                 </div>
-                <p className="dm-serif-text-regular text-white sm:text-2xl text-2xl px-2 animated-text animated-text-opening-label text-center mt-5">World’s Best Charismatic Millionaire</p>
+                <p className="dm-serif-text-regular text-white sm:text-2xl text-2xl px-2  animated-text-opening-label text-center mt-5">World’s Best Charismatic Millionaire</p>
             </div>
         </div>
     );

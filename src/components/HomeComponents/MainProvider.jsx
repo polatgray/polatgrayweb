@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from "react";
-import HomeV2 from "../DemoComponents/HomeV2";
+import Home from "./Home";
 import OFMIntroduction from "./OFMIntroduction"
 import JoinNow from "./JoinNow"
 import MyLife from "./MyLife"
 import Opening from "./Opening";
 import Footer from "./Footer";
 import "../../css/Opening.css";
+import HomeV2 from "../DemoComponents/HomeV2";
 
 const MainProvider = () => {
 
@@ -33,6 +34,7 @@ const MainProvider = () => {
                     <HomeV2 />
                     <OFMIntroduction />
                     <JoinNow />
+                    <MyLife />
                     <Footer />
                 </div>
             )}
