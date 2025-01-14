@@ -4,6 +4,7 @@ import Mail from "../../images/mail.svg"
 import CustomerServiceLogo from "../../images/csLogo.svg"
 import Work from "../../images/work.svg"
 import Add from "../../images/material-symbols--add-rounded.svg"
+import Money from "../../images/Money.svg"
 
 const Footer = () => {
     return(
@@ -58,6 +59,12 @@ const Footer = () => {
                             <a href="#" className="flex items-center gap-2 cursor-pointer" target="_blank">
                                 <img src={Add} className="w-[35px]" alt="Instagram Logo" />
                                 <p className="text-amber-500 inter-500 text-xl">Join OFM</p>
+                            </a>
+                    </div>
+                    <div className="flex flex-col mb-5">
+                            <a href="#" className="flex items-center gap-2 cursor-pointer" target="_blank">
+                                <img src={Money} className="w-[35px]" alt="Instagram Logo" />
+                                <p className="text-amber-500 inter-500 text-xl">Some OFM Sales</p>
                             </a>
                     </div>
                 </div>

@@ -1,0 +1,13 @@
+.inner-left-shadow-spec{
+    box-shadow: inset -36px 0px 36px 24px rgba(0,0,0,0.75);
+}
+
+.arabaPhoto1{
+    background-image: url("../images/selectedRR.jpeg");
+}
+
+@media (max-width:1024px) {
+    .inner-left-shadow-spec{
+        box-shadow: inset -36px -120px 36px 0px rgba(0,0,0,0.75);
+    }
+}
