@@ -3,7 +3,7 @@
 }
 
 .arabaPhoto1{
-    background-image: url("../images/selectedRR.jpeg");
+    background-image: url("../images/mainPhoto.jpeg");
 }
 
 @media (max-width:1024px) {
