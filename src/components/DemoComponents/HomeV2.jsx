@@ -12,7 +12,7 @@ const HomeV2 = () => {
                         <p className="inter-600 2xl:text-8xl lg:text-6xl sm:text-5xl text-4xl mainLabel tracking-wide text-shadow-yellow animated-text ">
                             POLAT GRAY
                         </p>
-                        <p className="opacity-90 inter-500  mt-5 md:text-lg tracking-wide lg:text-xs text-sm text-white helperLabel">
+                        <p className="opacity-90 inter-500  mt-5 md:text-lg tracking-wide text-sm text-white helperLabel">
                             Owner of the Biggest  <span className="animated-text">Onlyfans Agency</span> in the World
                         </p>
                     </div>
