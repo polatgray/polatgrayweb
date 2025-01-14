@@ -33,7 +33,6 @@ const MainProvider = () => {
                     <Home />
                     <OFMIntroduction />
                     <JoinNow />
-                    <MyLife />
                     <Footer />
                 </div>
             )}
