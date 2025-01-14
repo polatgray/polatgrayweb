@@ -4,7 +4,7 @@ import DownIco from "../../images/si--arrow-downward-fill.svg";
 const HomeV2 = () => {
     return(
         <>
-        <div className="relative min-h-[940px]">
+        <div className="relative min-h-[980px]">
             <div className="flex lg:flex-row flex-col relative">
                 <div className="lg:w-1/3 w-full max-h-screen bg-right lg:h-screen h-[250px] bg-cover inner-left-shadow-spec arabaPhoto1">
                 </div>
