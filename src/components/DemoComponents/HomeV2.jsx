@@ -17,8 +17,8 @@ const HomeV2 = () => {
                                 Owner of the Biggest  <span className="animated-text">Onlyfans Agency</span> in the World
                             </p>
                         </div>
-                        <div className="flex flex-col items-center lg:mt-36 mt-16">
-                            <p className="lg:w-[600px] w-[320px] inter-500 text-white">Other business models? Relics of the past! True success today is about mastering trends. OnlyFans management is the golden ticket to breaking free and printing money with vision. Visionaries like me see opportunities while others dream. I cracked the code, made multi-millions, and now work with 2,000 supermodels and famous girls who turn dreams into my reality.</p>
+                        <div className="flex flex-col items-center lg:mt-36 mt-10">
+                            <p className="lg:w-[600px] w-[320px] inter-500 lg:text-lg text-sm text-white">Other business models? Rotten tales of the past! In today’s world, true success comes from mastering the trends. OnlyFans management is the golden ticket to breaking free from mediocrity and printing money with a visionary mindset. Visionaries like me see the opportunity while others just dream. If you want to walk this path, stop with the empty talk and join the league of those who know how to win. Because I crack the code and made multi multi millions of dollar. I have 2000 different girls working for me and this girls are not your regular town girls all of them are supermodels famous girls and this girls making me so much money that I’m able to turn all of my dreams into reality.</p>
                             <img
                                 src={DownIco}
                                 className="w-[45px] downIcoAni lg:mt-24 mt-12"

@@ -82,7 +82,7 @@ const OFMIntroduction = () => {
 
   return (
     <div className="w-full bg-black   select-none" id="ofmIntroduction">
-      <div className="bg-ofmproduction bg-fixed flex items-center">
+      <div className="bg-black bg-fixed flex items-center">
         <div className="bg-semiblack h-full w-full flex items-center justify-center py-12">
           <div className="flex  xl:flex-row flex-col xl:gap-0 gap-12 justify-between items-center w-[1600px] classCheck1">
               <div className="flex flex-col">
@@ -119,7 +119,7 @@ const OFMIntroduction = () => {
                         </span>
                       </span>
                     </FadeInText>
-                    <FadeInText>
+                    {/* <FadeInText>
                       <span className="md:ps-12 md:w-[700px] sm:w-[500px] w-[320px] mt-12 text-white block inter-600 xl:text-start text-center">
                         "Yes, while I was doing all this and reaching where I am today,
                         it certainly wasn’t easy.
@@ -132,7 +132,7 @@ const OFMIntroduction = () => {
                           you give it a try?"
                         </span>
                       </span>
-                    </FadeInText>
+                    </FadeInText> */}
                   </div>
               </div>
               <div className="xl:me-32">
