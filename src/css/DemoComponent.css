@@ -1,10 +1,27 @@
-.inner-left-shadow-spec{
-    box-shadow: inset -36px 0px 36px 24px rgba(0,0,0,0.75);
+.inner-left-shadow-spec {
+    position: relative;
 }
 
-.arabaPhoto1{
-    background-image: url("../images/mainPhoto.jpeg");
+.inner-left-shadow-spec::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 50%);
+    pointer-events: none; /* Alttaki içerikle etkileşimi engeller */
+    z-index: 2; /* İçeriğin üstünde olmasını sağlar */
 }
+
+
+.arabaPhoto1 {
+    background-image: url("../images/mainPhoto.jpeg"); /* İlk görsel */
+   
+}
+
+
+
 
 .spec-min-h{
     min-height: 670px;
@@ -17,7 +34,20 @@
 }
 
 @media (max-width:1024px) {
-    .inner-left-shadow-spec{
-        box-shadow: inset -36px -120px 36px 0px rgba(0,0,0,0.75);
+    .inner-left-shadow-spec::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0) 80%);
+        pointer-events: none; /* Alttaki içerikle etkileşimi engeller */
+        z-index: 2; /* İçeriğin üstünde olmasını sağlar */
     }
+}
+
+.px-spec-1{
+    padding-left: 35px;
+    padding-right: 35px;
 }

@@ -87,7 +87,7 @@ const OFMIntroduction = () => {
           <div className="flex  xl:flex-row flex-col xl:gap-0 gap-12 justify-between items-center w-[1600px] classCheck1">
               <div className="flex flex-col">
                 {/* İlk Kısım */}
-                  <div className="flex flex-col xl:items-start items-center">
+                  <div className="flex flex-col xl:items-start items-center mt-spec-1">
                     <FadeInText>
                       <span className="text-white inter-500 text-4xl  sm:text-6xl sm:ms-12">
                         Your dream?{" "} <br className="lg:hidden"/>
@@ -135,7 +135,7 @@ const OFMIntroduction = () => {
                     </FadeInText> */}
                   </div>
               </div>
-              <div className="xl:me-32">
+              {/* <div className="xl:me-32">
                 <Slider {...settings}>
                   <video className="w-[300px] rounded-lg" autoPlay muted loop loading="lazy">
                       <source src="/videos/video1.mp4"  type="video/mp4"/>
@@ -143,7 +143,7 @@ const OFMIntroduction = () => {
                   </video>
                   <img src={Profit1} className="w-[300px] rounded-lg" alt="" />
                 </Slider>
-              </div>   
+              </div>    */}
           </div>
         </div>
       </div>

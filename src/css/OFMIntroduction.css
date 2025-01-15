@@ -38,4 +38,13 @@
     margin: 0 -10px; 
 }
 
+.mt-spec-1{
+    margin-top: 0px;
+}
+
+@media (max-height:715px) {
+    .mt-spec-1{
+        margin-top: 75px;
+    }
+}
   

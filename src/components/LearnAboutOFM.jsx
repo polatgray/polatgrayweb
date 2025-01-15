@@ -39,9 +39,9 @@ const LearnAboutOFM = () => {
             </div>
             <div className="flex flex-col mt-5 z-10 relative  w-full select-none">
                 <div className="flex pt-12 ">
-                    <div className="flex flex-col xl:items-start items-center lg:ps-12 sm:px-0  h-[400px] z-10 relative bg-transparent-black-special  2xl:w-auto w-full pt-16 2xl:backdrop-blur-sm">
-                        <p className="text-5xl animate-open-text text-white inter-600  xl:text-start text-center px-5">Owner of the Biggest  <span className="animated-text">Onlyfans Agency</span></p>
-                        <p className="2xl:w-[1200px] xl:w-[900px] lg:w-[600px] md:w-[500px] text-white inter-500 mt-5 md:px-0 px-12">What’s up? Have all business models died? Dropshipping, eCommerce, Crypto... Yeah, these wouldn’t have made you filthy rich, but one could’ve made you wealthy for life. With so many trends coming and going, it’s easy to get discouraged. But OFM offers a fresh perspective—a business model that might not make you a millionaire, but could give you long-term stability and freedom. Why not give it a try? It could be the change you need to transform your future.</p>
+                    <div className="flex flex-col xl:items-start items-center xl:ps-12 sm:px-0  h-[400px] z-10 relative bg-transparent-black-special  2xl:w-auto w-full xl:pt-16 ">
+                        <p className="text-5xl animate-open-text text-white inter-600  xl:text-start text-center my-spec-1 px-5">Owner of the Biggest  <span className="animated-text">Onlyfans Agency</span></p>
+                        <p className="2xl:w-[1200px] xl:w-[900px] lg:w-[600px] md:w-[500px] text-white inter-500 lg:mt-5  md:px-0 px-12">What’s up? Have all business models died? Dropshipping, eCommerce, Crypto... Yeah, these wouldn’t have made you filthy rich, but one could’ve made you wealthy for life. With so many trends coming and going, it’s easy to get discouraged. But OFM offers a fresh perspective—a business model that might not make you a millionaire, but could give you long-term stability and freedom. Why not give it a try? It could be the change you need to transform your future.</p>
                     </div>
                     <div className="absolute z-0 ani2 w-full backdrop-blur-lg">
                         <Marquee loop={0}>

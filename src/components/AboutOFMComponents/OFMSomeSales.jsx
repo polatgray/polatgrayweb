@@ -51,7 +51,7 @@ const OFMSomeSales = () => {
 
     return(
         <>
-            <div className="flex flex-col mt-24 items-center sliderClass2">
+            {/* <div className="flex flex-col mt-24 items-center sliderClass2">
                 <p className="inter-500 text-white text-6xl mb-12 px-12 text-center">Some sales with <span className="animated-text">OFM</span> ;)</p>
                 <Slider {...settings}>
                     <video className="w-[300px] rounded-lg" autoPlay muted loop>
@@ -85,7 +85,7 @@ const OFMSomeSales = () => {
                     </video>
                     <img src={Profit1} className="w-[300px] rounded-lg" alt="" />
                 </Slider>
-            </div>
+            </div> */}
         </>
     )
 }

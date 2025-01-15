@@ -40,7 +40,7 @@ const JoinNow = () => {
     <div className="flex flex-col items-center bg-black py-16 select-none">
       {/* Animasyonlu öğeler */}
       <FadeInItem>
-        <p className="text-white text-4xl inter-600">Join now:</p>
+        <p className="text-white text-4xl inter-600">Join Now:</p>
       </FadeInItem>
       <FadeInItem>
         <p className="text-shadow-yellow-spec text-amber-500 poppins-bold inter-70 mt-5 text-6xl">
@@ -53,7 +53,7 @@ const JoinNow = () => {
       <FadeInItem>
         <div className="flex flex-col items-center gap-3">
           <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105">
-            Join Now
+            Join Millionaires Club
           </button>
           <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105" onClick={() => {navigate("/learnAboutOFM"); window.scrollTo(0,0)}}>
             Learn about OFM

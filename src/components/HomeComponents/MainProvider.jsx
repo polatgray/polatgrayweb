@@ -6,7 +6,7 @@ import MyLife from "./MyLife"
 import Opening from "./Opening";
 import Footer from "./Footer";
 import "../../css/Opening.css";
-import HomeV2 from "../DemoComponents/HomeV2";
+import HomeV3 from "../DemoComponents/HomeV3"
 
 const MainProvider = () => {
 
@@ -31,10 +31,9 @@ const MainProvider = () => {
                 </div>
             ) : (
                 <div>
-                    <HomeV2 />
+                    <HomeV3 />
                     <OFMIntroduction />
                     <JoinNow />
-                    <MyLife />
                     <Footer />
                 </div>
             )}

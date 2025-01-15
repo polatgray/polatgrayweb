@@ -9,11 +9,11 @@ import Money from "../../images/Money.svg"
 const Footer = () => {
     return(
         <>
-          <div className="flex border-t-1 justify-around border-amber-500 py-12 gap-24 w-full lg:flex-row flex-col lg:items-start items-center">
-                <p className="animated-text inter-500 text-7xl me-12">PG</p>
-                <div className="flex flex-col">
+          <div className="flex border-t-1 justify-around border-amber-500 lg:py-12 py-24 lg:gap-24 gap-12 w-full lg:flex-row flex-col lg:items-start items-center">
+                <p className="animated-text inter-500 text-7xl lg:me-12 text-center">PG</p>
+                <div className="flex flex-col lg:w-auto w-[220px]">
                     <p className="inter-500 text-amber-400 text-2xl mb-3">Social Media Links</p>
-                    <div className="flex flex-col mb-5">
+                    <div className="flex flex-col  mb-5">
                             <a href="https://www.instagram.com/polatgray/" className="flex items-center gap-2 cursor-pointer" target="_blank">
                                 <img src={IGLogo} className="w-[35px]" alt="Instagram Logo" />
                                 <p className="text-amber-500 inter-500 text-xl">Instagram</p>
@@ -32,7 +32,7 @@ const Footer = () => {
                             </a>
                     </div>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col lg:w-auto w-[220px]">
                     <p className="inter-500 text-amber-400 text-2xl mb-3">Contact</p>
                     <div className="flex flex-col mb-5">
                             <a href="mail:polatgraywebveodeme@gmail.com" className="flex items-center gap-2 cursor-pointer" target="_blank">
@@ -47,7 +47,7 @@ const Footer = () => {
                             </a>
                     </div>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col lg:w-auto w-[220px]">
                     <p className="inter-500 text-amber-400 text-2xl mb-3">About OFM</p>
                     <div className="flex flex-col mb-5">
                             <a href="/learnAboutOFM" className="flex items-center gap-2 cursor-pointer" >
@@ -58,7 +58,7 @@ const Footer = () => {
                     <div className="flex flex-col mb-5">
                             <a href="#" className="flex items-center gap-2 cursor-pointer" target="_blank">
                                 <img src={Add} className="w-[35px]" alt="Instagram Logo" />
-                                <p className="text-amber-500 inter-500 text-xl">Join OFM</p>
+                                <p className="text-amber-500 inter-500 text-xl">Join Club</p>
                             </a>
                     </div>
                     <div className="flex flex-col mb-5">

@@ -26,7 +26,7 @@ const HomeV2 = () => {
                             />
                             <div className="flex flex-col items-center">
                                 <p className="text-xl inter-500 text-white mb-2">What are you waiting?</p>
-                                <button className="inter-500 text-2xl px-12 py-3 bg-amber-500 rounded-lg mt-2 text-white">Join Now</button>
+                                <button className="inter-500 text-2xl px-12 py-3 bg-amber-500 rounded-lg mt-2 text-white"></button>
                             </div>
                         </div>
                     </div>
