@@ -6,6 +6,16 @@
     background-image: url("../images/mainPhoto.jpeg");
 }
 
+.spec-min-h{
+    min-height: 670px;
+}
+
+@media (min-width:335px) {
+    .spec-min-h{
+        min-height: 700px;
+    }
+}
+
 @media (max-width:1024px) {
     .inner-left-shadow-spec{
         box-shadow: inset -36px -120px 36px 0px rgba(0,0,0,0.75);

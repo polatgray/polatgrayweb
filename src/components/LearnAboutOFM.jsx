@@ -66,7 +66,7 @@ const LearnAboutOFM = () => {
                 </div>
                 <OFMAbout />
                 <div className="flex justify-center">
-                    <OFMJoinNow />
+                    {/* <OFMJoinNow /> */}
                 </div>
                 <OFMSomeSales />
                 <Footer />
