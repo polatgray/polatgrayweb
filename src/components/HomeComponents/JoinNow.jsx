@@ -48,7 +48,7 @@ const JoinNow = () => {
         </p>
       </FadeInItem>
       <FadeInItem>
-        <p className="inter-400 text-white w-[300px] sm:w-[400px] text-center my-5">Being an OFM (OnlyFans Manager) is an amazing way to earn big money quickly! You get to work with creative content creators, help them grow, and earn commissions—it's both easy and highly profitable!</p>
+        <p className="inter-400 text-white w-[300px] sm:w-[400px] text-center my-5">Being an OFM (OnlyFans Management) is an amazing way to earn big money quickly! You get to work with creative content creators, help them grow, and earn commissions—it's both easy and highly profitable!</p>
       </FadeInItem>
       <FadeInItem>
         <div className="flex flex-col items-center gap-3">
