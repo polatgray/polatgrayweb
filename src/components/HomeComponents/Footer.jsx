@@ -5,8 +5,12 @@ import CustomerServiceLogo from "../../images/csLogo.svg"
 import Work from "../../images/work.svg"
 import Add from "../../images/material-symbols--add-rounded.svg"
 import Money from "../../images/Money.svg"
+import { useNavigate } from "react-router-dom"
 
 const Footer = () => {
+
+    const navigate = useNavigate();
+
     return(
         <>
           <div className="flex border-t-1 justify-around border-amber-500 lg:py-12 py-24 lg:gap-24 gap-12 w-full lg:flex-row flex-col lg:items-start items-center">
@@ -58,7 +62,7 @@ const Footer = () => {
                     <div className="flex flex-col mb-5">
                             <a href="#" className="flex items-center gap-2 cursor-pointer" target="_blank">
                                 <img src={Add} className="w-[35px]" alt="Instagram Logo" />
-                                <p className="text-amber-500 inter-500 text-xl">Join Club</p>
+                                <p className="text-amber-500 inter-500 text-xl" onClick={() => navigate("/joinNow")}>Join Club</p>
                             </a>
                     </div>
                     <div className="flex flex-col mb-5">

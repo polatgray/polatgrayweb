@@ -52,7 +52,7 @@ const JoinNow = () => {
       </FadeInItem>
       <FadeInItem>
         <div className="flex flex-col items-center gap-3">
-          <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105">
+          <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105" onClick={() => navigate("/joinNow")}>  
             Join Millionaires Club
           </button>
           <button className="inter-500 border-amber-500-spec border rounded-lg  py-3 px-12 text-amber-500 transition-all duration-300 hover:text-white hover:bg-amber-500 hover:scale-105" onClick={() => {navigate("/learnAboutOFM"); window.scrollTo(0,0)}}>
