@@ -90,7 +90,7 @@ const OFMIntroduction = () => {
                   <div className="flex flex-col xl:items-start items-center mt-spec-1">
                     <FadeInText>
                       <span className="text-white inter-500 text-4xl  sm:text-6xl sm:ms-12">
-                        Your dream?{" "} <br className="lg:hidden"/>
+                        You dream?{" "} <br className="lg:hidden"/>
                         <span className="text-amber-500 text-shadow-yellow inter-600">
                           I live your dream
                         </span>

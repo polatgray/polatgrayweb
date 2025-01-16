@@ -28,6 +28,7 @@ import WBack2 from "../../images/WBack2.jpeg"
 import WBack3 from "../../images/WBack3.jpeg"
 import WBack4 from "../../images/Wback4.jpg"
 import WBack5 from "../../images/wback5.jpg"
+import WGirl2 from "../../images/wgirl2.png"
 import { useNavigate } from "react-router-dom";
 
 const HomeV3 = () => {
@@ -100,7 +101,7 @@ const FadeTransition = ({ images, duration = 3000 }) => {
                     <div className="absolute z-0 ani2 w-full backdrop-blur-lg h-[320px]">
                         <Marquee loop={0}>
                             <img src={Img12} className="w-[350px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
-                            <img src={Img1} className="w-[350px] h-[300px] object-contai rounded-xl mx-4 " style={{objectPosition: "50% 65%"}} loading="lazy" alt="Polat Gray Photos" />
+                            <img src={Img1} className="w-[350px] h-[300px] object-cover rounded-xl mx-4 " style={{objectPosition: "50% 65%"}} loading="lazy" alt="Polat Gray Photos" />
                             <img src={Img7} className="w-[350px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
                             <img src={Img5} className="w-[350px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
                             <img src={Img16} className="w-[350px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
@@ -115,7 +116,7 @@ const FadeTransition = ({ images, duration = 3000 }) => {
                             <img src={WBack1} className="w-[350px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
                             <img src={WBack2} className="w-[350px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
                             <img src={WBack3} className="w-[250px] h-[300px] object-cover spec-object-position rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />
-                            <img src={WBack5} className="w-[z350px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />                            
+                            <img src={WGirl2} className="w-[z350px] h-[300px] object-cover rounded-xl mx-4" loading="lazy" alt="Polat Gray Photos" />                            
                         </Marquee>
                     </div>
                 </div>
