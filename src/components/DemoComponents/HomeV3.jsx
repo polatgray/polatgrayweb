@@ -88,7 +88,7 @@ const FadeTransition = ({ images, duration = 3000 }) => {
                         <div className="flex flex-col mt-5 z-10 relative  w-full select-none">
                 <div className="flex">
                     <div className="flex flex-col xl:items-start items-center  lg:ps-12 sm:px-0  h-[330px] lg:h-[350px] z-10 relative bg-transparent-black-special  2xl:w-auto w-full ">
-                        <p className="lg:w-full md:w-[500px] text-white inter-500 lg:text-base text-sm md:px-0 px-12 lg:pe-24 mt-6">In 2025, all the business models are dead. Ecom, dropshipping, SMMA, and crypto doesn't work anymore. The only business model that can make you filthy rich is OnlyFans management. But in order to start, you need a good team and mentor to show you, otherwise you will learn by your mistakes instead of learning from others to move 100x faster.</p>
+                        <p className="lg:w-full md:w-[500px] text-white inter-500 lg:text-base text-sm md:px-0 px-12 lg:pe-24 mt-6">In 2025, all the business models are dead. Ecom, dropshipping, SMMA and crypto doesn't work anymore. The only business model that can make you filthy rich is OnlyFans management. But in order to start, you need a good team and mentor to show you, otherwise you will learn by your mistakes instead of learning from others to move 100x faster.</p>
                     </div>
                     <div className="absolute z-0 ani2 w-full backdrop-blur-lg h-[320px]">
                         <Marquee loop={0}>
