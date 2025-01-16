@@ -1,0 +1,47 @@
+.text-ani-3 {
+    opacity: 0; 
+    animation-name: textAni3;
+    animation-duration: 2s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards; 
+}
+
+@keyframes textAni3 {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+
+.specJoinNowButton {
+    opacity: 0; 
+    animation-name: joinBtn;
+    animation-duration: 2s;
+    animation-delay: .8s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards; 
+}
+
+@keyframes joinBtn {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+.ReactModal__Overlay{
+    background-color: rgba(10, 10, 10, 0.85) !important;
+}
+
+.ReactModal__Content{
+    background-color: rgba(17, 17, 17, 0.85) !important;
+    border: 1px solid rgba(34, 34, 34, 0.85) !important;
+}

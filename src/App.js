@@ -3,15 +3,18 @@ import "../src/css/Main.css"
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { LoadingProvider } from "./Context/LoadingContext";
+import { Toaster } from 'react-hot-toast';
+
 
 function App() {
   return (
     <>
-      <LoadingProvider>
-        <BrowserRouter >
-          <Main />
-        </BrowserRouter>
-      </LoadingProvider>
+        <Toaster />
+        <LoadingProvider>
+            <BrowserRouter >
+              <Main />
+            </BrowserRouter>
+          </LoadingProvider>
     </>
   );
 }
