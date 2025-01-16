@@ -110,7 +110,7 @@ const OFMIntroduction = () => {
                   </div>
 
                   {/* İkinci Kısım */}
-                  <div className="flex flex-col xl:mt-52 sm:mt-32 mt-24 xl:items-start items-center">
+                  {/* <div className="flex flex-col xl:mt-52 sm:mt-32 mt-24 xl:items-start items-center">
                     <FadeInText>
                       <span className="text-white inter-500 text-4xl sm:text-6xl sm:ms-12">
                         So,
@@ -119,21 +119,12 @@ const OFMIntroduction = () => {
                         </span>
                       </span>
                     </FadeInText>
-                    {/* <FadeInText>
+                    <FadeInText>
                       <span className="md:ps-12 md:w-[700px] sm:w-[500px] w-[320px] mt-12 text-white block inter-600 xl:text-start text-center">
-                        "Yes, while I was doing all this and reaching where I am today,
-                        it certainly wasn’t easy.
-                        <span className="text-amber-500"> I’m an OnlyFans manager, </span>
-                        I do my job in the best way possible, and I give it everything
-                        it deserves.
-                        <span className="text-amber-500">
-                          {" "}
-                          This job is both easy and incredibly profitable. So, why don’t
-                          you give it a try?"
-                        </span>
+                      "In 2025, all the traditional business models are dead. E-commerce, dropshipping, SMMA, and crypto no longer work. The only business model that can make you filthy rich is OnlyFans management. However, to start, you need a good team and a mentor to guide you. Without this, you'll end up learning through your own mistakes, while with proper guidance, you can learn from others and move 100x faster.
                       </span>
-                    </FadeInText> */}
-                  </div>
+                    </FadeInText>
+                  </div> */}
               </div>
               {/* <div className="xl:me-32">
                 <Slider {...settings}>

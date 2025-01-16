@@ -88,7 +88,7 @@ const FadeTransition = ({ images, duration = 3000 }) => {
                         <div className="flex flex-col mt-5 z-10 relative  w-full select-none">
                 <div className="flex">
                     <div className="flex flex-col xl:items-start items-center  lg:ps-12 sm:px-0  h-[330px] lg:h-[350px] z-10 relative bg-transparent-black-special  2xl:w-auto w-full ">
-                        <p className="lg:w-full md:w-[500px] text-white inter-500 lg:text-base text-sm md:px-0 px-12 lg:pe-24 mt-6">What’s up? Have all business models died? Dropshipping, eCommerce, Crypto... Yeah, these wouldn’t have made you filthy rich, but one could’ve made you wealthy for life. With so many trends coming and going, it’s easy to get discouraged. But OFM offers a fresh perspective—a business model that might not make you a millionaire, but could give you long-term stability and freedom. Why not give it a try? It could be the change you need to transform your future.</p>
+                        <p className="lg:w-full md:w-[500px] text-white inter-500 lg:text-base text-sm md:px-0 px-12 lg:pe-24 mt-6">In 2025, all the traditional business models are dead. E-commerce, dropshipping, SMMA, and crypto no longer work. The only business model that can make you filthy rich is OnlyFans management. However, to start, you need a good team and a mentor to guide you. Without this, you'll end up learning through your own mistakes, while with proper guidance, you can learn from others and move 100x faster.</p>
                     </div>
                     <div className="absolute z-0 ani2 w-full backdrop-blur-lg h-[320px]">
                         <Marquee loop={0}>
