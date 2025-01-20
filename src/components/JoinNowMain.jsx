@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { collection, doc, setDoc, getFirestore } from "firebase/firestore";
 import { db } from "./Firebase/Firebase";
 import Modal from 'react-modal';
@@ -7,11 +7,13 @@ import toast from 'react-hot-toast';
 import { useCookies } from "react-cookie";
 import Select from 'react-select'
 import "../css/JoinNowMain.css";
+import { LanguageContext } from "../Context/LanguageContext";
 
 const JoinNow = () => {
 
   const [cookies, setCookie, removeCookie] = useCookies(['email']);
 
+  const {language} = useContext(LanguageContext)
 
   const db = getFirestore();
   const [modalOpen, setModalOpen] = useState(false);
@@ -102,7 +104,7 @@ const JoinNow = () => {
           </div>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">First Name</p>
+              <p className="text-white inter-500">{language == "en" ? "First Name" : "Adınız"}</p>
               <input
                 type="text"
                 className="p-2 px-2 rounded-lg outline-0 border placeholder:inter-500 inter-500 bg-black border-amber-400 text-white"
@@ -112,7 +114,7 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">E-Mail Address</p>
+              <p className="text-white inter-500">{language == "en" ? "E-Mail Address" : "E-Posta adresi"}</p>
               <input
                 type="email"
                 className="p-2 px-2 rounded-lg outline-0 border placeholder:inter-500 inter-500 bg-black border-amber-400 text-white"
@@ -122,7 +124,7 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">Phone Number</p>
+              <p className="text-white inter-500">{language == "en" ? "Phone Number" : "Telefon Numarası"}</p>
               <input
                 type="text"
                 className="p-2 px-2 rounded-lg outline-0 border placeholder:inter-500 inter-500 bg-black border-amber-400 text-white"
@@ -132,7 +134,7 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">Instagram Username</p>
+              <p className="text-white inter-500">{language == "en" ? "Instagram Username" : "Instagram kullanıcı adı"}</p>
               <input
                 type="text"
                 className="p-2 px-2 rounded-lg outline-0 border placeholder:inter-500 inter-500 bg-black border-amber-400 text-white"
@@ -142,14 +144,14 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col">
-              <p className="text-white inter-500">How much money you have to invest in your future right now?</p>
+              <p className="text-white inter-500">{language == "en" ? "How much money you have to invest in your future right now?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
               <Select options={options}  onChange={handleChange} value={selectedOption} />   
             </div>
             <button
               className="bg-amber-500 hover:bg-amber-600 transition-all duration-300 cursor-pointer px-8 py-3 text-white inter-500 rounded-lg text-xl outline-0"
               onClick={() => sendEarlyAccess()} 
             >
-              Send
+              {language == "en" ? "Send" : "Gönder"}
             </button>
             
           </div>
@@ -157,16 +159,16 @@ const JoinNow = () => {
       </div>
       <div className="flex flex-col items-center justify-center h-full h-screen select-none">
         <p className="animated-text inter-500 sm:text-6xl text-4xl text-center px-12">
-          Currently in early access!
+          {language == "en" ? "Currently in early access!" : "Şu anda erken erişimde!"}
         </p>
         <p className="inter-500 text-white sm:w-[400px] w-[300px] text-white text-xl mt-12 text-center text-ani-3">
-          All our packages are currently being prepared, but stay in touch with us to make sure you don't miss the opportunity for abundance. Be the first to know when our packages are ready!
+          {language == "en" ? "All our packages are currently being prepared, but stay in touch with us to make sure you don't miss the opportunity for abundance. Be the first to know when our packages are ready!" : "Tüm paketlerimiz şu anda hazırlanıyor, ancak bolluk fırsatını kaçırmamanız için bizimle iletişimde kalın. Paketlerimiz hazır olduğunda ilk siz öğrenin!"}
         </p>
         <button
           className="bg-amber-500 hover:bg-amber-600 transition-all duration-300 cursor-pointer px-8 py-3 text-white inter-500 rounded-lg mt-12 text-xl specJoinNowButton outline-0"
           onClick={() => setModalOpen(!modalOpen)} 
         >
-          Claim Your Spot Now
+          {language == "en" ? "Claim Your Spot Now" : "Hemen Yerinizi Alın"}
         </button>
       </div>
     </>

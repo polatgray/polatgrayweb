@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect, useContext} from "react";
 import MainPhoto from "../../images/Hottest Billionaire.jpg";
 import Wgirl2 from "../../images/wgirl2.png";
 import Photo1 from "../../images/01091339-17E0-47E3-BD6E-E36C31EDC3FD.jpeg";
@@ -30,8 +30,11 @@ import WBack4 from "../../images/Wback4.jpg"
 import WBack5 from "../../images/wback5.jpg"
 import WGirl2 from "../../images/wgirl2.png"
 import { useNavigate } from "react-router-dom";
+import { LanguageContext } from "../../Context/LanguageContext";
 
 const HomeV3 = () => {
+
+  const {language} = useContext(LanguageContext);
 
   const navigate = useNavigate();
 
@@ -89,14 +92,35 @@ const FadeTransition = ({ images, duration = 3000 }) => {
                                 POLAT GRAY
                             </p>
                             <p className="opacity-90 inter-500  mt-5 md:text-lg tracking-wide text-sm text-white helperLabel text-center z-10">
-                                Owner of the Biggest  <span className="animated-text">Onlyfans Agency</span> in the World
+                            {language === "en" 
+                              ? (
+                                  <>
+                                    Owner of the Biggest <span className="animated-text">Onlyfans Agency</span> in the World
+                                  </>
+                                ) 
+                              : (
+                                  <>
+                                    Dünyanın En Büyük <span className="animated-text">Onlyfans Ajansı</span>'nın Sahibi
+                                  </>
+                                )}
+
                             </p>
                         </div>
                         <div className="flex flex-col items-center lg:mt-12">
                         <div className="flex flex-col mt-5 z-10 relative  w-full select-none">
                 <div className="flex">
                     <div className="flex flex-col xl:items-start items-center  lg:ps-12 sm:px-0  h-[330px] lg:h-[350px] z-10 relative bg-transparent-black-special  2xl:w-auto w-full ">
-                        <p className="lg:w-full md:w-[500px] text-white inter-500 spec-text-rem-1 md:px-0 px-2 lg:pe-24 mt-6 lg:text-start text-center ">In 2025, all the business models are dead. <br /> Ecom, dropshipping, SMMA, crypto  doesn't work anymore. The only business model that can make you filthy rich is OnlyFans management. But in order to start, you need a good team and mentor to show you, otherwise you will learn by your mistakes instead of learning from others to move 100x faster.</p>
+                        <p className="lg:w-full md:w-[500px] text-white inter-500 spec-text-rem-1 md:px-0 px-2 lg:pe-24 mt-6 lg:text-start text-center ">
+                          {language == "en" ? 
+                          <>
+                             In 2025, all the business models are dead. <br /> Ecom, dropshipping, SMMA, crypto  doesn't work anymore. The only business model that can make you filthy rich is OnlyFans management. But in order to start, you need a good team and mentor to show you, otherwise you will learn by your mistakes instead of learning from others to move 100x faster.
+                          </>
+                          :
+                            <>
+                              2025 yılında tüm iş modelleri öldü.<br /> E-ticaret, dropshipping, SMMA, kripto artık işe yaramıyor. Seni gerçekten zengin edebilecek tek iş modeli OnlyFans menajerliği. Ancak başlamak için iyi bir ekip ve sana yol gösterecek bir mentor gerekiyor, aksi takdirde başkalarından öğrenip 100 kat daha hızlı ilerlemek yerine, hatalarından ders alarak öğrenmek zorunda kalırsın.
+                            </>
+                          }
+                        </p>
                     </div>
                     <div className="absolute z-0 ani2 w-full backdrop-blur-lg h-[320px]">
                         <Marquee loop={0}>
@@ -122,13 +146,13 @@ const FadeTransition = ({ images, duration = 3000 }) => {
                 </div>
                 </div>
                             <div className="flex flex-col items-center pb-6">
-                              <p className="sm:text-3xl text-2xl inter-500 text-white mb-2">Click Here to Change Your Life</p>
+                              <p className="sm:text-3xl text-2xl inter-500 text-white mb-2">{language == "en" ? "Click Here to Change Your Life" : "Hayatını değiştirmek için tıkla"}</p>
                               <img
                                 src={DownIco}
                                 className="w-[45px] downIcoAni lg:mt-8 "
                                 alt="Down Icon"
                               />
-                                <button className="inter-500 text-2xl px-spec-1 py-3 bg-amber-500 rounded-lg mt-2 text-white" onClick={() => navigate("/joinNow")}>Join Millionaires Club</button>
+                                <button className="inter-500 text-2xl px-spec-1 py-3 bg-amber-500 rounded-lg mt-2 text-white" onClick={() => navigate("/joinNow")}>{language == "en" ? "Join Millionaires Club" : "Milyonerler klübüne katıl"}</button>
                             </div>
                         </div>
                     </div>

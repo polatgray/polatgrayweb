@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import "../../css/OFMIntroduction.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Profit1 from "../../images/video2.jpg"
+import { LanguageContext } from "../../Context/LanguageContext";
 
 const FadeInText = ({ children }) => {
   const ref = useRef(null);
@@ -37,6 +38,8 @@ const FadeInText = ({ children }) => {
 
 
 const OFMIntroduction = () => {
+
+  const {language} = useContext(LanguageContext)
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -90,21 +93,27 @@ const OFMIntroduction = () => {
                   <div className="flex flex-col xl:items-start items-center mt-spec-1">
                     <FadeInText>
                       <span className="text-white inter-500 text-4xl  sm:text-6xl sm:ms-12">
-                        You dream?{" "} <br className="lg:hidden"/>
+                        {language == "en" ? "You dream?" : "Hayalin mi?"}<br className="lg:hidden"/>
                         <span className="text-amber-500 text-shadow-yellow inter-600">
-                          I live your dream
+                          {language == "en" ? "I live your dream" : "Hayalini yaşıyorum"}
                         </span>
                       </span>
                     </FadeInText>
                     <FadeInText>
                       <span className="md:ps-12 md:w-[700px] sm:w-[500px] w-[320px] mt-12 block text-white inter-600 xl:text-start text-center">
-                        "Yes, I’m living the life you can only dream of. I travel the
-                        world, experience the finest cultures, and surround myself with
-                        extraordinary people. I spend my days in the company of sexy,
-                        amazing women, laughing with my close friends, and dining in
-                        the most luxurious restaurants imaginable. Every moment of my
-                        life is filled with pleasure. The best watches on my wrist, the
-                        most luxurious cars under me—this is my reality."
+                         {language == "en" ? <>
+                          Yes, I’m living the life you can only dream of. I travel the
+                          world, experience the finest cultures, and surround myself with
+                          extraordinary people. I spend my days in the company of sexy,
+                          amazing women, laughing with my close friends, and dining in
+                          the most luxurious restaurants imaginable. Every moment of my
+                          life is filled with pleasure. The best watches on my wrist, the
+                          most luxurious cars under me—this is my reality.
+                         </> :
+                          <>
+                            Evet, senin sadece hayal edebileceğin bir hayatı yaşıyorum. Dünyayı geziyorum, en seçkin kültürleri deneyimliyorum ve kendimi olağanüstü insanlarla çevreliyorum. Günlerimi seksi ve harika kadınların eşliğinde geçiriyorum, yakın arkadaşlarımla kahkahalar atıyor ve hayal edilebilecek en lüks restoranlarda yemek yiyorum. Hayatımın her anı zevkle dolu. Bileğimde en iyi saatler, altımda en lüks arabalar—bu benim gerçekliğim.
+                          </>
+                         }
                       </span>
                     </FadeInText>
                   </div>

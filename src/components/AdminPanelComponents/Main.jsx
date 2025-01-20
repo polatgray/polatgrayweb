@@ -19,8 +19,7 @@ const Main = () => {
     const [userPhone,setUserPhone] = useState("");
     const [userJoinedAt,setUserJoinedAt] = useState("");
     const [userConvertedDate,setConvertedDate] = useState("");
-    const [keepMoney,setKeepMoney] = useState("");
-    
+    const [keepMoney,setKeepMoney] = useState("");    
 
     useEffect(() => {
      fetchEarlyAccessUsers();
