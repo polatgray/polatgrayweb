@@ -28,10 +28,12 @@ const JoinNow = () => {
   };
 
   const options = [
-    { value: '1-5k', label: '1-5.000$' },
-    { value: '5k-50k', label: '5.000$ - 50.000$' },
-    { value: '50k-500k', label: '50.000$ - 500.000$' },
-    { value: '500k-1m', label: '500.000$ - 1.000.000$' }
+    { value: '1-5', label: '1.000-5.000' },
+    { value: '5-30', label: '5.000 - 30.000' },
+    { value: '30-100', label: '30.000 - 100.000' },
+    { value: '100-1m', label: '100.000 - 1.000.000' },
+    { value: 'over1m', label: "Over 1.000.000" }
+
   ]
   
 
@@ -140,7 +142,7 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col">
-              <p className="text-white inter-500">How much money can you spare for your future?</p>
+              <p className="text-white inter-500">How much money you have to invest in your future right now?</p>
               <Select options={options}  onChange={handleChange} value={selectedOption} />   
             </div>
             <button
