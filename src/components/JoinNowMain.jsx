@@ -28,11 +28,11 @@ const JoinNow = () => {
   };
 
   const options = [
-    { value: '1-5', label: '1.000-5.000' },
-    { value: '5-30', label: '5.000 - 30.000' },
-    { value: '30-100', label: '30.000 - 100.000' },
-    { value: '100-1m', label: '100.000 - 1.000.000' },
-    { value: 'over1m', label: "Over 1.000.000" }
+    { value: '1-5', label: '1K-5k' },
+    { value: '5-30', label: '5K - 30K' },
+    { value: '30-100', label: '30K - 100K' },
+    { value: '100-1m', label: '100K - 1 Million' },
+    { value: 'over1m', label: "Over 1 Million" }
 
   ]
   
