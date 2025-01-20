@@ -16,6 +16,7 @@ function App() {
               <Main />
             </BrowserRouter>
           </LoadingProvider>
+          <Analytics />
     </>
   );
 }
