@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth"; 
 import { getAnalytics } from "firebase/analytics"; 
+import {signInWithEmailAndPassword, signOut } from "firebase/auth";
+
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,6 +13,16 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+};
+
+export const login = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    return userCredential.user;
+  } catch (error) {
+    console.error("Giriş hatası:", error.message);
+    throw error;
+  }
 };
 
 const app = initializeApp(firebaseConfig);

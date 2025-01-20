@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import Close from "../images/closeWhite.svg";
 import toast from 'react-hot-toast';
 import { useCookies } from "react-cookie";
+import Select from 'react-select'
 import "../css/JoinNowMain.css";
 
 const JoinNow = () => {
@@ -19,6 +20,20 @@ const JoinNow = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [instagram, setInstagram] = useState("");
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleChange = (selected) => {
+    setSelectedOption(selected); 
+    console.log('Seçilen Değer:', selected);
+  };
+
+  const options = [
+    { value: '1-5k', label: '1-5.000$' },
+    { value: '5k-50k', label: '5.000$ - 50.000$' },
+    { value: '50k-500k', label: '50.000$ - 500.000$' },
+    { value: '500k-1m', label: '500.000$ - 1.000.000$' }
+  ]
+  
 
   const customStyles = {
     content: {
@@ -50,6 +65,7 @@ const JoinNow = () => {
                   email,
                   phone,
                   instagram,
+                  moneyKeep:selectedOption,
                   subscribedAt: new Date().getTime(),
                 });
           
@@ -123,12 +139,17 @@ const JoinNow = () => {
                 onChange={(e) => setInstagram(e.target.value)} 
               />
             </div>
+            <div className="flex flex-col">
+              <p className="text-white inter-500">How much money can you spare for your future?</p>
+              <Select options={options}  onChange={handleChange} value={selectedOption} />   
+            </div>
             <button
               className="bg-amber-500 hover:bg-amber-600 transition-all duration-300 cursor-pointer px-8 py-3 text-white inter-500 rounded-lg text-xl outline-0"
               onClick={() => sendEarlyAccess()} 
             >
               Send
             </button>
+            
           </div>
         </Modal>
       </div>
