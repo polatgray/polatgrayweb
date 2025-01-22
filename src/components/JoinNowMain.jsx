@@ -104,7 +104,7 @@ const JoinNow = () => {
           </div>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">{language == "en" ? "First Name" : "Adınız"}</p>
+              <p className="text-white inter-500">{language == "en" ? "First Name" : "Adın"}</p>
               <input
                 type="text"
                 className="p-2 px-2 rounded-lg outline-0 border placeholder:inter-500 inter-500 bg-black border-amber-400 text-white"
@@ -124,7 +124,7 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">{language == "en" ? "Phone Number" : "Telefon Numarası"}</p>
+              <p className="text-white inter-500">{language == "en" ? "Phone Number" : "Telefon Numaran"}</p>
               <input
                 type="text"
                 className="p-2 px-2 rounded-lg outline-0 border placeholder:inter-500 inter-500 bg-black border-amber-400 text-white"
@@ -134,7 +134,7 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">{language == "en" ? "Instagram Username" : "Instagram kullanıcı adı"}</p>
+              <p className="text-white inter-500">{language == "en" ? "Instagram Username" : "Instagram kullanıcı adın"}</p>
               <input
                 type="text"
                 className="p-2 px-2 rounded-lg outline-0 border placeholder:inter-500 inter-500 bg-black border-amber-400 text-white"
@@ -144,7 +144,7 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col">
-              <p className="text-white inter-500">{language == "en" ? "How much money you have to invest in your future right now?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
+              <p className="text-white inter-500 mb-3">{language == "en" ? "How much money you have to invest in your future right now?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
               <Select options={options}  onChange={handleChange} value={selectedOption} />   
             </div>
             <button
@@ -162,13 +162,13 @@ const JoinNow = () => {
           {language == "en" ? "Currently in early access!" : "Şu anda erken erişimde!"}
         </p>
         <p className="inter-500 text-white sm:w-[400px] w-[300px] text-white text-xl mt-12 text-center text-ani-3">
-          {language == "en" ? "All our packages are currently being prepared, but stay in touch with us to make sure you don't miss the opportunity for abundance. Be the first to know when our packages are ready!" : "Tüm paketlerimiz şu anda hazırlanıyor, ancak bolluk fırsatını kaçırmamanız için bizimle iletişimde kalın. Paketlerimiz hazır olduğunda ilk siz öğrenin!"}
+          {language == "en" ? "All our packages are currently being prepared, but stay in touch with us to make sure you don't miss the opportunity for abundance. Be the first to know when our packages are ready!" : "Tüm paketlerimiz şu anda hazırlanıyor, ancak bolluk fırsatını kaçırmamanız için bizimle iletişimde kalın. Paketlerimiz hazır olduğunda ilk sen öğren!"}
         </p>
         <button
           className="bg-amber-500 hover:bg-amber-600 transition-all duration-300 cursor-pointer px-8 py-3 text-white inter-500 rounded-lg mt-12 text-xl specJoinNowButton outline-0"
           onClick={() => setModalOpen(!modalOpen)} 
         >
-          {language == "en" ? "Claim Your Spot Now" : "Hemen Yerinizi Alın"}
+          {language == "en" ? "Claim Your Spot Now" : "Hemen Yerini Al"}
         </button>
       </div>
     </>

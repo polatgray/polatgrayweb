@@ -91,7 +91,7 @@ const Main = () => {
             </Modal>
             <div className="flex flex-col p-5 w-full items-center">
                 <p className="inter-600 text-white text-4xl text-2xl sm:text-start text-center">Erken erişim üyeleri</p>
-                <div className="flex flex-col gap-4 mt-5 items-center w-[600px] h-spec-admin overflow-auto">
+                <div className="flex flex-col gap-4 mt-5 items-center sm:w-[600px] w-[330px] h-spec-admin overflow-auto">
                     {loading ? 
                         <div className="loader"></div>
                     :
