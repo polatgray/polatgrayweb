@@ -30,7 +30,7 @@ const Main = () => {
             const date = new Date(userJoinedAt);
             const formattedDate = new Intl.DateTimeFormat('tr-TR', {
                 day: '2-digit',
-                month: 'long', // Eğer ayı yazıyla değil rakamla istersen: '2-digit'
+                month: 'long', 
                 year: 'numeric',
                 hour: '2-digit',
                 minute: '2-digit',
@@ -92,21 +92,39 @@ const Main = () => {
             <div className="flex flex-col p-5 w-full items-center">
                 <p className="inter-600 text-white text-4xl text-2xl sm:text-start text-center">Erken erişim üyeleri</p>
                 <div className="flex flex-col gap-4 mt-5 items-center sm:w-[600px] w-[330px] h-spec-admin overflow-auto">
-                    {loading ? 
+                {loading ? (
                         <div className="loader"></div>
-                    :
-                        users.map((user,key) => {
-                            return(
-                                <>
-                                    <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={key}>
-                                        <p className="my-3 inter-500 text-white sm:text-xl ">{user.name}</p>
-                                        <div>
-                                            <button className="bg-amber-500 py-1 rounded-lg text-white px-3 inter-500 outline-0" onClick={() => {setModalOpen(!modalOpen); setUsername(user.name); setUserId(user.id); setUserInstagram(user.instagram); setUserPhone(user.phone); setUserJoinedAt(user.subscribedAt); setKeepMoney(user.moneyKeep || "");}}>...</button>
-                                        </div>
+                    ) : users && users.length > 0 ? (
+                        users
+                            .sort((a, b) => (b.subscribedAt || 0) - (a.subscribedAt || 0))
+                            .map((user) => (
+                                <div 
+                                    className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" 
+                                    key={user.id}
+                                >
+                                    <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
+                                    <div>
+                                        <button 
+                                            className="bg-amber-500 py-1 rounded-lg text-white px-3 inter-500 outline-0" 
+                                            onClick={() => {
+                                                setModalOpen(!modalOpen); 
+                                                setUsername(user.name); 
+                                                setUserId(user.id); 
+                                                setUserInstagram(user.instagram); 
+                                                setUserPhone(user.phone); 
+                                                setUserJoinedAt(user.subscribedAt); 
+                                                setKeepMoney(user.moneyKeep || "");
+                                            }}
+                                        >
+                                            ...
+                                        </button>
                                     </div>
-                                </>
-                            )
-                        })}
+                                </div>
+                            ))
+                    ) : (
+                        <p className="text-white">Henüz kullanıcı bulunamadı.</p>
+                    )}
+
                 </div>
             </div>
         </>
