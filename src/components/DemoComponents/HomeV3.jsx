@@ -152,7 +152,7 @@ const FadeTransition = ({ images, duration = 3000 }) => {
                                 className="w-[45px] downIcoAni lg:mt-8 "
                                 alt="Down Icon"
                               />
-                                <button className="inter-500 text-2xl px-spec-1 py-3 bg-amber-500 rounded-lg mt-2 text-white" onClick={() => navigate("/joinNow")}>{language == "en" ? "Join Millionaires Club" : "Milyonerler klübüne katıl"}</button>
+                                <button className="inter-500 text-2xl px-spec-1 py-3 bg-amber-500 rounded-lg mt-2 text-white" onClick={() => navigate("/joinNow")}>{language == "en" ? "Join Millionaires Club" : "Milyonerler Club'ına katıl"}</button>
                             </div>
                         </div>
                     </div>
