@@ -5,7 +5,7 @@
       "use": "@vercel/node",
       "config": {
         "npm": {
-          "args": ["install", "--force"]
+          "args": ["install", "--legacy-peer-deps"]
         }
       }
     }
