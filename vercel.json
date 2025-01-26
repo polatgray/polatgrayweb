@@ -1,9 +1,13 @@
 {
-    "build": {
-      "env": {
-        "NPM_VERSION": "11.0.0",
-        "NPM_FLAGS": "--legacy-peer-deps"
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "npm": {
+          "args": ["install", "--force"]
+        }
       }
     }
-  }
-  
+  ]
+}
