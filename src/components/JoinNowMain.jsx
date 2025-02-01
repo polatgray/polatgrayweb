@@ -5,7 +5,6 @@ import Modal from 'react-modal';
 import Close from "../images/closeWhite.svg";
 import toast from 'react-hot-toast';
 import { useCookies } from "react-cookie";
-import Select from 'react-select';
 import "../css/JoinNowMain.css";
 import { LanguageContext } from "../Context/LanguageContext";
 
@@ -206,7 +205,20 @@ const JoinNow = () => {
             </div>
             <div className="flex flex-col gap-3">
               <p className="text-white inter-500">{language === "en" ? "How much money you have to invest in your future right now?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
-              <Select options={options} onChange={handleChange} value={selectedOption} />
+              <select
+              value={selectedOption ? selectedOption.value : ''}
+              onChange={(e) => {
+                const selected = options.find(option => option.value === e.target.value);
+                setSelectedOption(selected);
+              }}
+              className="p-2 rounded-lg outline-none border bg-black border-amber-400 text-white"
+            >
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
             </div>
             <button
               className="bg-amber-500 hover:bg-amber-600 transition-all duration-300 cursor-pointer px-8 py-3 text-white inter-500 rounded-lg"
