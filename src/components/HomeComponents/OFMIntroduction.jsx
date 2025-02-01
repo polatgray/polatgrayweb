@@ -93,25 +93,16 @@ const OFMIntroduction = () => {
                   <div className="flex flex-col xl:items-start items-center mt-spec-1">
                     <FadeInText>
                       <span className="text-white inter-500 text-4xl  sm:text-6xl sm:ms-12">
-                        {language == "en" ? "You dream?" : "Hayalin mi?"}<br className="lg:hidden"/>
-                        <span className="text-amber-500 text-shadow-yellow inter-600">
-                          {language == "en" ? "I live your dream" : " Hayalini yaşıyorum"}
-                        </span>
+                          {language == "en" ? <span>Who is <span className="animated-text">Polat Gray?</span></span> : <span className="animated-text">Polat Gray <span className="text-white bg-transparent">kimdir?</span></span>}
                       </span>
                     </FadeInText>
                     <FadeInText>
                       <span className="md:ps-12 md:w-[700px] sm:w-[500px] w-[320px] mt-12 block text-white inter-600 xl:text-start text-center">
                          {language == "en" ? <>
-                          Yes, I’m living the life you can only dream of. I travel the
-                          world, experience the finest cultures, and surround myself with
-                          extraordinary people. I spend my days in the company of sexy,
-                          amazing women, laughing with my close friends, and dining in
-                          the most luxurious restaurants imaginable. Every moment of my
-                          life is filled with pleasure. The best watches on my wrist, the
-                          most luxurious cars under me—this is my reality.
+                            Polat Gray is the owner of Lostboy, one of the largest OnlyFans agencies in the world, and the man who introduced OnlyFans management to the world in 2021. A true visionary, he recognized the growing impact of digital platforms and paved the way for content creators to manage their careers professionally. His name is synonymous with OnlyFans management, leaving a legacy that will be talked about for years to come.
                          </> :
                           <>
-                            Evet, senin sadece hayal edebileceğin bir hayatı yaşıyorum. Dünyayı geziyorum, en seçkin kültürleri deneyimliyorum ve kendimi olağanüstü insanlarla çevreliyorum. Günlerimi seksi ve harika kadınların eşliğinde geçiriyorum, yakın arkadaşlarımla kahkahalar atıyor ve hayal edilebilecek en lüks restoranlarda yemek yiyorum. Hayatımın her anı zevkle dolu. Bileğimde en iyi saatler, altımda en lüks arabalar—bu benim gerçekliğim.
+                            Polat Gray, OnlyFans dünyasının en büyük ajanslarından biri olan Lostboy'un sahibi ve aynı zamanda 2021 yılında OnlyFans yönetimi konseptini dünyaya tanıtan öncü isim. Hem dijital platformların büyüyen etkisini fark eden, hem de içerik üreticilerinin kariyerlerini profesyonel bir şekilde yönetme yolunu açan vizyoner bir lider. Onun adı, OnlyFans menajerliği ile eşleşiyor ve bu alandaki etkisi yıllar boyu konuşulacak bir miras bırakıyor.
                           </>
                          }
                       </span>
