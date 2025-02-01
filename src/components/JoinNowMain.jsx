@@ -219,7 +219,7 @@ const JoinNow = () => {
                 </option>
               ))}
             </select>
-            </div>s
+            </div>
             <button
               className="bg-amber-500 hover:bg-amber-600 transition-all duration-300 cursor-pointer px-8 py-3 text-white inter-500 rounded-lg"
               onClick={() => sendEarlyAccess()}
