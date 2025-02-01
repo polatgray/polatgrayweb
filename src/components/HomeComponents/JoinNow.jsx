@@ -51,7 +51,7 @@ const JoinNow = () => {
         </p>
       </FadeInItem>
       <FadeInItem>
-        <p className="inter-400 text-white w-[300px] sm:w-[400px] text-center my-5">{language == "en" ? "Being an OFM (OnlyFans Management) is an amazing way to earn big money quickly! You get to work with creative content creators, help them grow, and earn commissions—it's both easy and highly profitable!" : "Bir OFM (OnlyFans Menajeri) olmak, hızlı bir şekilde büyük paralar kazanmanın harika bir yoludur! Yaratıcı içerik üreticileriyle çalışır, onların büyümesine yardımcı olur ve komisyon kazanırsınız—hem kolay hem de son derece kârlıdır!"}</p>
+        <p className="inter-400 text-white w-[300px] sm:w-[400px] text-center my-5">{language == "en" ? "OFM is the best Business Model in 2025-2026. You get to work with creative content creators, help them grow, and earn commissions—it's both easy and highly profitable!" : "Bir OFM (OnlyFans Menajeri) olmak, hızlı bir şekilde büyük paralar kazanmanın harika bir yoludur! Yaratıcı içerik üreticileriyle çalışır, onların büyümesine yardımcı olur ve komisyon kazanırsınız—hem kolay hem de son derece kârlıdır!"}</p>
       </FadeInItem>
       <FadeInItem>
         <div className="flex flex-col items-center gap-3">
