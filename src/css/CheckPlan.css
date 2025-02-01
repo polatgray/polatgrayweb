@@ -1,0 +1,55 @@
+/* Ana container */
+.price-tag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Eski fiyat (üstü çizili) */
+  .old-price {
+    position: relative;
+    font-size: 1.5rem;
+    color: #ffffff8c;
+    margin-bottom: 10px; /* Arada boşluk */
+  }
+  
+  /* Eski fiyatın üstünü çapraz çizen çizgi */
+  .old-price::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ced903; /* Çizginin rengi */
+    transform: rotate(90deg); /* Sol aşağıdan sağ yukarıya doğru çizgi */
+    border-radius: .8rem;
+    transform-origin: bottom left;
+    animation: drawLine 1.5s forwards; /* Çizgi animasyonu */
+  }
+  
+  /* Yeni fiyat */
+  .new-price {
+    font-size: 2rem;
+    color: #e74c3c; /* İndirimli fiyat için dikkat çekici kırmızı */
+  }
+  
+  /* Çizgi animasyonu */
+  @keyframes drawLine {
+    0% {
+      width: 0;
+      transform: rotate(340deg);
+    }
+    100% {
+      width: 100%;
+      transform: rotate(340deg);
+    }
+  }
+  

@@ -6,6 +6,9 @@ import JoinNow from "../components/JoinNowMain"
 import MainDemo from "./DemoComponents/MainDemo"
 import AdminPanelMain from "./AdminPanelComponents/AdminPanelMain"
 import { LanguageContext } from "../Context/LanguageContext"
+import CheckPlan from "./DemoComponents/CheckPlan"
+import CheckOut from "./DemoComponents/CheckOut"
+import SuccessPayment from "./DemoComponents/SuccessPayment"
 
 const Main = () => {
 
@@ -38,6 +41,9 @@ const Main = () => {
                 <Route path="/joinNow" element={<JoinNow />} />
                 <Route path="/DemoComponents" element={<MainDemo />} />
                 <Route path="/PolatgrayAdminPanel" element={<AdminPanelMain />} />
+                <Route path="/CheckPlan" element={<CheckPlan />} />
+                <Route path="/CheckOut" element={<CheckOut />} />
+                <Route path="/SuccessPayment" element={<SuccessPayment />} />
             </Routes>
         </>
     )

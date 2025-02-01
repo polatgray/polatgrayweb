@@ -6,20 +6,23 @@ import { LoadingProvider } from "./Context/LoadingContext";
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from "@vercel/analytics/react"
 import {LanguageProvider} from "./Context/LanguageContext"
+import { PaymentProvider } from "./Context/PaymentContext";
 
 
 function App() {
   return (
     <>
         <Toaster />
-        <LanguageProvider>
-        <LoadingProvider>
-            <BrowserRouter >
-              <Main />
-            </BrowserRouter>
-          </LoadingProvider>
-        </LanguageProvider>
-          <Analytics />
+          <PaymentProvider>
+            <LanguageProvider>
+              <LoadingProvider>
+                  <BrowserRouter >
+                    <Main />
+                  </BrowserRouter>
+              </LoadingProvider>
+            </LanguageProvider>
+          </PaymentProvider>
+        <Analytics />
     </>
   );
 }
