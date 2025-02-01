@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { collection, doc, setDoc, getFirestore } from "firebase/firestore";
 import { db } from "./Firebase/Firebase";
 import Modal from 'react-modal';
@@ -62,7 +62,7 @@ const JoinNow = () => {
   ];
 
   const options = [
-    { value: '1-5', label: '1K-5k' },
+    { value: '1-5', label: '1K-5K' },
     { value: '5-30', label: '5K - 30K' },
     { value: '30-100', label: '30K - 100K' },
     { value: '100-1m', label: '100K - 1 Million' },
@@ -74,7 +74,7 @@ const JoinNow = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [instagram, setInstagram] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
   const [selectedCountry, setSelectedCountry] = useState(countries[0].code);
 
   const handleCountryChange = (e) => {
@@ -85,6 +85,8 @@ const JoinNow = () => {
     setSelectedOption(selected);
   };
 
+  
+
   const customStyles = {
     content: {
       top: '50%',
@@ -94,6 +96,12 @@ const JoinNow = () => {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
     },
+  };
+
+
+  const handleSelectChange = (e) => {
+    const selected = options.find(option => option.value === e.target.value);
+    setSelectedOption(selected);
   };
 
   const sendEarlyAccess = async () => {
@@ -107,6 +115,8 @@ const JoinNow = () => {
       return;
     }
 
+  
+
     try {
       toast.loading(language === "en" ? "Loading..." : "Yükleniyor...");
       const userId = crypto.randomUUID();
@@ -117,7 +127,7 @@ const JoinNow = () => {
         email,
         phone: `${selectedCountry} ${phone}`,
         instagram,
-        moneyKeep: selectedOption,
+        moneyKeep: selectedOption == null ? { value: '1-5', label: '1K-5k' } : selectedOption,
         subscribedAt: new Date().getTime(),
       });
 
@@ -206,11 +216,8 @@ const JoinNow = () => {
             <div className="flex flex-col gap-3">
               <p className="text-white inter-500">{language === "en" ? "How much money you have to invest in your future right now?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
               <select
-              value={selectedOption ? selectedOption.value : ''}
-              onChange={(e) => {
-                const selected = options.find(option => option.value === e.target.value);
-                setSelectedOption(selected);
-              }}
+              value={selectedOption.value}  // value'yu label değil, value'yu kullan
+              onChange={handleSelectChange}
               className="p-2 rounded-lg outline-none border bg-black border-amber-400 text-white"
             >
               {options.map((option) => (
