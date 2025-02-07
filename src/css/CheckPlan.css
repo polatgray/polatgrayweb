@@ -15,7 +15,7 @@
   /* Eski fiyat (üstü çizili) */
   .old-price {
     position: relative;
-    font-size: 1.5rem;
+    
     color: #ffffff8c;
     margin-bottom: 10px; /* Arada boşluk */
   }

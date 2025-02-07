@@ -98,8 +98,8 @@ const CheckOut = () => {
                         'x-api-key': process.env.REACT_APP_NOWPAYMENTSKEY
                     },
                     body: JSON.stringify({
-                        price_amount: paymentQuery == 1 ? "5" : "100",          
-                        price_currency: 'USD',       
+                        price_amount: paymentQuery == 1 ? "4999" : "100",          
+                        price_currency: 'TRY',       
                         pay_currency: 'BTC',     
                         is_fee_paid_by_user: true,         
                         order_id: orderId, 
@@ -174,14 +174,14 @@ const CheckOut = () => {
 
     return(
         <>
-            <div className="flex mt-12 justify-around">
-                <div className="flex flex-col items-center">
-                    <p className="animated-text text-9xl">PG</p>
+            <div className="flex mt-12 justify-around lg:flex-row flex-col lg:items-start items-center">
+                <div className="flex flex-col items-center sm:mb-0 mb-12">
+                    <p className="animated-text text-5xl sm:text-9xl">PG</p>
                 </div>
-                <div className="flex flex-col">
-                    <div className="flex items-center gap-3">
-                        <button className={`${cryptoPayActive ? serverStatusState == null || false ? "opacity-50" : "bg-amber-500" : ""} hover:bg-amber-600 text-white transition-all duration-300 px-4 py-2 rounded-lg outline-0 inter-500`} onClick={() => setCryptoPayActive(true)}>Kripto ödemesi</button>
-                        <button className={`${!cryptoPayActive ? "bg-amber-500" : ""} hover:bg-amber-600 text-white transition-all duration-300 px-4 py-2 rounded-lg outline-0 inter-500`} onClick={() => setCryptoPayActive(false)}>Kredi Kartı ile ödeme</button>
+                <div className="flex flex-col sm:px-0 px-4">
+                    <div className="flex items-center gap-3 sm:flex-row flex-col sm:border-0 border-b pb-4 border-amber-500">
+                        <button className={`${cryptoPayActive ? serverStatusState == null || false ? "opacity-50" : "bg-amber-500" : ""} hover:bg-amber-600 text-white transition-all duration-300 px-4 py-2 rounded-lg outline-0 inter-500 sm:w-auto w-[320px]`} onClick={() => setCryptoPayActive(true)}>Kripto ödemesi</button>
+                        <button className={`${!cryptoPayActive ? "bg-amber-500" : ""} hover:bg-amber-600 text-white transition-all duration-300 px-4 py-2 rounded-lg outline-0 inter-500 sm:w-auto w-[320px]`} onClick={() => setCryptoPayActive(false)}>Kredi Kartı ile ödeme</button>
                     </div>
                     <div>
                         {cryptoPayActive ? cryptoPay ? processLoading ? 
@@ -193,8 +193,8 @@ const CheckOut = () => {
                         purchaseAlreadyHave ?
                         <>
                             {paymentQuery == "1" ? "PDF Paketi kripto ödemesi" : ""}
-                            <p className="text-white inter-500 text-lg select-none">Ödenecek olan BTC tutarı: {payAmount} BTC</p>
-                            <p className="text-white inter-500 text-lg">Göndermeniz gereken adres: {SendAddress}</p>
+                            <p className="text-white inter-500 text-lg select-none ">Ödenecek olan BTC tutarı:  <br className="sm:hidden blcok"/>{payAmount} BTC</p>
+                            <p className="text-white inter-500 text-lg flex sm:flex-row flex-col my-4 sm:items-center">Göndermeniz gereken adres: <span className="sm:text-base text-sm">{SendAddress}</span></p>
                             <p className="text-white inter-500 text-lg flex items-center select-none">Ödeme durumu: {paymentStatus == "waiting" ? 
                                 <>
                                     {paymentStatus == "waiting" ? 
@@ -242,14 +242,14 @@ const CheckOut = () => {
                                     <p>Bilinmiyor</p>
                                 </>}
                             </p>
-                            <p className="text-white inter-500 text-lg">Payment ID: {paymentIDState}</p>
+                            <p className="text-white inter-500 text-lg flex sm:flex-row flex-col">Payment ID: {paymentIDState}</p>
                         </>
                         :
                         <>
                             {paymentQuery == "1" ? "PDF Paketi kripto ödemesi" : ""}
-                            <p className="text-white inter-500 text-lg select-none">Ödenecek olan BTC tutarı: {payAmount} BTC</p>
-                            <p className="text-white inter-500 text-lg">Göndermeniz gereken adres: {SendAddress}</p>
-                            <p className="text-white inter-500 text-lg flex items-center select-none">Ödeme durumu: {paymentStatus == "waiting" ? 
+                            <p className="text-white inter-500 text-lg select-none flex sm:flex-row flex-col">Ödenecek olan BTC tutarı: {payAmount} BTC</p>
+                            <p className="text-white inter-500 text-lgflex sm:flex-row flex-col">Göndermeniz gereken adres: {SendAddress}</p>
+                            <p className="text-white inter-500 text-lg flex items-center select-none flex sm:flex-row flex-col">Ödeme durumu: {paymentStatus == "waiting" ? 
                                 <>
                                     {paymentStatus == "waiting" ? 
                                     <div className="flex items-center ms-2">
@@ -296,7 +296,7 @@ const CheckOut = () => {
                                 <p>Bilinmiyor</p>
                                 </>}
                             </p>
-                            <p className="text-white inter-500 text-lg">Payment ID: {paymentIDState}</p>
+                            <p className="text-white inter-500 text-lg flex sm:flex-row flex-col">Payment ID: {paymentIDState}</p>
 
                         </> 
                             :  
