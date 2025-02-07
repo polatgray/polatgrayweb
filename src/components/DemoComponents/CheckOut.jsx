@@ -98,7 +98,7 @@ const CheckOut = () => {
                         'x-api-key': process.env.REACT_APP_NOWPAYMENTSKEY
                     },
                     body: JSON.stringify({
-                        price_amount: paymentQuery == 1 ? "40" : "100",          
+                        price_amount: paymentQuery == 1 ? "5" : "100",          
                         price_currency: 'USD',       
                         pay_currency: 'BTC',     
                         is_fee_paid_by_user: true,         
