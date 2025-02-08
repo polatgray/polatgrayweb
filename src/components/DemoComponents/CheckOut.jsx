@@ -6,6 +6,8 @@ import { Cookies, useCookies } from "react-cookie";
 import loadingLoop from "../../images/loading-loop.svg"
 import loadingLoopWhite from "../../images/loadingLoopWhite.svg"
 import { PaymentContext } from "../../Context/PaymentContext";
+import { db } from "../Firebase/Firebase"; 
+import { collection, addDoc } from "firebase/firestore";
 
 const CheckOut = () => {
 
@@ -56,6 +58,20 @@ const CheckOut = () => {
         }
     }
 
+    const savePayments = async () => {
+        try {
+          const docRef = await addDoc(collection(db, "paymentsOk"), {
+            payment: paymentQuery == 1 ? "saved_1" : "not_Saved",
+            createdAt: new Date()
+          });
+      
+          console.log("Belge eklendi, ID:", docRef.id);
+        } catch (error) {
+          console.error("Hata oluştu:", error);
+        }
+      };
+      
+
     useEffect(() => {
         checkServerStatus();
     }, [])
@@ -82,6 +98,7 @@ const CheckOut = () => {
     useEffect(() => {
         if(paymentStatus == "finished"){
             setPayOk(true)
+            savePayments();
             navigate("/SuccessPayment")
         }
     }, [paymentStatus])
@@ -98,13 +115,13 @@ const CheckOut = () => {
                         'x-api-key': process.env.REACT_APP_NOWPAYMENTSKEY
                     },
                     body: JSON.stringify({
-                        price_amount: paymentQuery == 1 ? "4999" : "100",          
-                        price_currency: 'TRY',       
-                        pay_currency: 'BTC',     
-                        is_fee_paid_by_user: true,         
+                        price_amount: paymentQuery == 1 ? "20" : "100",          
+                        price_currency: 'USD',       
+                        pay_currency: 'USDTARB',     
+                        is_fee_paid_by_user: false,         
                         order_id: orderId, 
-                        success_url: 'https://yourwebsite.com/success', // Ödeme başarılı olursa yönlendirme URL'si
-                        cancel_url: 'https://yourwebsite.com/cancel'   // İptal edilirse yönlendirme URL'si
+                        success_url: 'https://yourwebsite.com/success', 
+                        cancel_url: 'https://yourwebsite.com/cancel'   
                       })
               
                 })
@@ -137,6 +154,7 @@ const CheckOut = () => {
 
     const checkPayment = async () => {
         console.log(paymentIDState)
+        setPurchaseAlreadyHave(true)
         if(purchaseAlreadyHave){
             try{
                 console.log("Sending check...")
@@ -242,10 +260,12 @@ const CheckOut = () => {
                                     <p>Bilinmiyor</p>
                                 </>}
                             </p>
+                            <button className="bg-amber-500 hover:bg-amber-600 transition-all rounded-lg px-4 py-2 text-white my-3" onClick={() => checkPayment()}>Kontrol et</button>
                             <p className="text-white inter-500 text-lg flex sm:flex-row flex-col">Payment ID: {paymentIDState}</p>
                         </>
                         :
                         <>
+                            <button className="bg-amber-500 hover:bg-amber-600 transition-all rounded-lg px-4 py-2 text-white" onClick={() => checkPayment()}>Kontrol et</button>
                             {paymentQuery == "1" ? "PDF Paketi kripto ödemesi" : ""}
                             <p className="text-white inter-500 text-lg select-none flex sm:flex-row flex-col">Ödenecek olan BTC tutarı: {payAmount} BTC</p>
                             <p className="text-white inter-500 text-lgflex sm:flex-row flex-col">Göndermeniz gereken adres: {SendAddress}</p>
@@ -293,11 +313,10 @@ const CheckOut = () => {
                                 </> 
                                 :
                                 <>
-                                <p>Bilinmiyor</p>
+                                <p className="flex inter-500 items-center"><img src={loadingLoopWhite}  className="me-1" alt="" />İşleniyor...</p>
                                 </>}
                             </p>
                             <p className="text-white inter-500 text-lg flex sm:flex-row flex-col">Payment ID: {paymentIDState}</p>
-
                         </> 
                             :  
                         <>

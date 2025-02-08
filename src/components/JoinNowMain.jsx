@@ -62,6 +62,7 @@ const JoinNow = () => {
   ];
 
   const options = [
+    { value: 'noSelect', label: `${language == "en" ? "How much money you have to invest?" : "Ne kadar ayırabilirsin?"}` },
     { value: '1-5', label: '1K-5K' },
     { value: '5-30', label: '5K - 30K' },
     { value: '30-100', label: '30K - 100K' },
@@ -115,7 +116,10 @@ const JoinNow = () => {
       return;
     }
 
-  
+    if(selectedOption.value == "noSelect"){
+      toast.error(language == "en" ? "You must choose how much money you will set aside for your future" : "Geleceğin için ne kadar para ayıracağını seçmelisin")
+      return;
+    }
 
     try {
       toast.loading(language === "en" ? "Loading..." : "Yükleniyor...");
@@ -133,7 +137,7 @@ const JoinNow = () => {
 
       setCookie("email", email, { path: "/", expires: new Date(9999, 12, 31) });
       toast.dismiss();
-      toast.success(language === "en" ? "You've joined early access!" : "Erken erişime katıldınız!");
+      toast.success(language === "en" ? "You've joined early access!" : "Erken erişime katıldın!");
 
       setName("");
       setEmail("");
@@ -161,7 +165,7 @@ const JoinNow = () => {
           </div>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">{language === "en" ? "First Name" : "Adınız"}</p>
+              <p className="text-white inter-500">{language === "en" ? "First Name" : "Adın"}</p>
               <input
                 type="text"
                 className="p-2 rounded-lg outline-none border bg-black border-amber-400 text-white"
@@ -175,13 +179,13 @@ const JoinNow = () => {
               <input
                 type="email"
                 className="p-2 rounded-lg outline-none border bg-black border-amber-400 text-white"
-                placeholder="E-Mail Address"
+                placeholder={language === "en" ? "E-Mail Address" : "E-Posta adresi"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">{language === "en" ? "Phone Number" : "Telefon Numaranız"}</p>
+              <p className="text-white inter-500">{language === "en" ? "Phone Number" : "Telefon Numaran"}</p>
               <div className="flex  flex-col gap-2">
                 <select
                   value={selectedCountry}
@@ -197,18 +201,18 @@ const JoinNow = () => {
                 <input
                   type="text"
                   className="p-2 rounded-lg outline-none border bg-black border-amber-400 text-white flex-1"
-                  placeholder={language === "en" ? "Phone Number" : "Telefon Numaranız"}
+                  placeholder={language === "en" ? "Phone Number" : "Telefon Numaran"}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">{language === "en" ? "Instagram Username" : "Instagram Kullanıcı Adınız"}</p>
+              <p className="text-white inter-500">{language === "en" ? "Instagram Username" : "Instagram Kullanıcı Adın"}</p>
               <input
                 type="text"
                 className="p-2 rounded-lg outline-none border bg-black border-amber-400 text-white"
-                placeholder="Instagram Username"
+                placeholder={language === "en" ? "Instagram Username" : "Instagram Kullanıcı Adın"}
                 value={instagram}
                 onChange={(e) => setInstagram(e.target.value)}
               />
@@ -216,7 +220,7 @@ const JoinNow = () => {
             <div className="flex flex-col gap-3">
               <p className="text-white inter-500">{language === "en" ? "How much money you have to invest in your future right now?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
               <select
-              value={selectedOption.value}  // value'yu label değil, value'yu kullan
+              value={selectedOption.value}  
               onChange={handleSelectChange}
               className="p-2 rounded-lg outline-none border bg-black border-amber-400 text-white"
             >
