@@ -99,6 +99,7 @@ const CheckOut = () => {
         if(paymentStatus == "finished"){
             setPayOk(true)
             savePayments();
+            removeCookie("paymentID", {path: "/"})
             navigate("/SuccessPayment")
         }
     }, [paymentStatus])
