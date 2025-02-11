@@ -5,6 +5,7 @@
   "dependencies": {
     "@vercel/analytics": "^1.4.1",
     "cra-template": "1.2.0",
+    "crypto-js": "^4.2.0",
     "embla-carousel-react": "^8.5.1",
     "firebase": "^11.1.0",
     "flag-icon-css": "^4.1.7",
