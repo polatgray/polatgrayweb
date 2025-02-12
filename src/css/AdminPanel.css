@@ -1,3 +1,45 @@
 .h-spec-admin{
     height: calc(100vh - 100px);
 }
+
+.bg-black-special-admin{
+    background-color: rgba(0, 0, 0, 0.391);
+    transition: all .3s ease;
+    animation-name: bgBlack;
+    animation-duration: 0.4s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+}
+
+.offcanvasAni{
+    animation-name: offcanvasAni;
+    animation-duration: 0.4s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+}
+
+@keyframes offcanvasAni {
+    from{
+        opacity: 0;
+        right: -50%;
+    }
+
+    to{
+        opacity: 1;
+        right: 0;
+    }
+}
+
+@keyframes bgBlack {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+

@@ -83,7 +83,7 @@ const CheckOut = () => {
           const docRef = await addDoc(collection(db, "paymentsOk"), {
             email,
             password,
-            payment: paymentQuery == 1 ? "package1" : "not_Saved",
+            package: paymentQuery == 1 ? "package1" : "not_Saved",
             createdAt: new Date()
           });
       
@@ -92,28 +92,12 @@ const CheckOut = () => {
           console.error("Hata oluştu:", error);
         }
       };
-      
-
-    const saveUsers = async () => {
-        try {
-          const docRef = await addDoc(collection(db, "purchaseUsers"), {
-            email,
-            password,
-            payment: paymentQuery == 1 ? "saved_1" : "not_Saved",
-            createdAt: new Date()
-          });
-      
-          console.log("Belge eklendi, ID:", docRef.id);
-        } catch (error) {
-          console.error("Hata oluştu:", error);
-        }
-    }
 
     const detectUsers = async () => {
         setLoginLoading(true);
         try {
             const q = query(
-              collection(db, "purchaseUsers"),
+              collection(db, "paymentsOk"),
               where("email", "==", email),
               where("password", "==", password)
             );
@@ -212,8 +196,8 @@ const CheckOut = () => {
                         'x-api-key': process.env.REACT_APP_NOWPAYMENTSKEY
                     },
                     body: JSON.stringify({
-                        price_amount: paymentQuery == 1 ? "159" : "100",          
-                        price_currency: 'USD',       
+                        price_amount: paymentQuery == 1 ? language == "en" ? "599" : "5999" : "",          
+                        price_currency: language == "en" ? "USD" : "TRY",       
                         pay_currency: cryptoType == "usdt" ? "USDTTRC20" : "BTC",     
                         is_fee_paid_by_user: true,         
                         order_id: orderId, 
@@ -321,7 +305,9 @@ const CheckOut = () => {
 
     useEffect(() => {
         if(purchaseAlreadyHave){
-            checkPayment(alreadyCookie.paymentID);
+            if(alreadyCookie){
+                checkPayment(alreadyCookie.paymentID);
+            }
         }
     }, [purchaseAlreadyHave])
 
@@ -360,7 +346,7 @@ const CheckOut = () => {
                                             :
                                             <>
                                             {paymentQuery == "1" ? "PDF Paketi kripto ödemesi" : ""}
-                                            <p className="text-white inter-500 text-lg select-none ">{language == "en" ? "Amount to be paid:" : "Ödenecek olan tutar: "}<br className="sm:hidden block"/>{payAmount} {cryptoType == "usdt" ? "USDT" : "BTC"}</p>
+                                            <p className="text-white inter-500 text-lg select-none ">{language == "en" ? "Amount to be paid:" : "Ödenecek olan tutar: "}<br className="sm:hidden block"/>{payAmount} {cryptoType == "usdt" ? "USDT TRC20" : "BTC"}</p>
                                             <p className="text-white inter-500 text-lg flex sm:flex-row flex-col my-4 sm:items-center">{language == "en" ? "The address you need to send to is:" : "Göndermeniz gereken adres:"} <span className="sm:text-base text-sm">{SendAddress}</span></p>
                                             <p className="text-white inter-500 text-lg flex items-center select-none">{language == "en" ? "Payment Status" : "Ödeme durumu:"} {paymentStatus == "waiting" ? 
                                                 <>

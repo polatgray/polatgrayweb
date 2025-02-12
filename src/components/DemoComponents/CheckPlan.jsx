@@ -25,8 +25,8 @@ const CheckPlan = () => {
                         <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Professional management techniques" : "Profesyonel menajerlik teknikleri"}</p>
                         <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Bonus materials and tutorial videos" : "Bonus materyaller ve özel ders videoları"}</p>
                         <div className="price-tag">
-                            <p className="line-1 text-white old-price">{language == "en" ? "449$" : "14999TL"}</p>
-                            <p className="text-white text-3xl sm:text-5xl inter-600">{language == "en" ? "159$" : "5999TL"}</p>
+                            <p className="line-1 text-white old-price">{language == "en" ? "1500$" : "14999TL"}</p>
+                            <p className="text-white text-3xl sm:text-5xl inter-600">{language == "en" ? "599$" : "5999TL"}</p>
                         </div>
                         <button className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 inter-500 text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => navigate("/CheckOut?package=1")}>{language == "en" ? "Buy Now" : "Satın Al"}</button>
                     </div>

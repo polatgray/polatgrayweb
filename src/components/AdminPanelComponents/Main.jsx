@@ -7,8 +7,13 @@ import Close from "../../images/closeWhite.svg";
 import "../../css/Loading.css";
 import "../../css/AdminPanel.css";
 import Menu from "../../images/menu.svg"
+import HomeMain from "./HomeMain";
+import Right from "../../images/rightAdmin.svg"
+import PurchaseMain from "./PurchaseMain";
+import SupportMain from "./SupportMain";
+import HostingServices from "./HostingServices";
 
-const Main = () => {
+const Main = ({loggedUser}) => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
@@ -20,6 +25,19 @@ const Main = () => {
     const [userJoinedAt, setUserJoinedAt] = useState("");
     const [userConvertedDate, setConvertedDate] = useState("");
     const [keepMoney, setKeepMoney] = useState("");
+    const [menuBar,setMenuBar] = useState(false);
+    const [purchaseTriggerState,setPurchaseTriggerState] = useState(0);
+    const [supportTriggerState,setSupportTriggerState] = useState(0);
+
+
+    //ARTICLE
+
+    const [homeMain,setHomeMain] = useState(true);
+    const [earlyAccess,setEarlyAccess] = useState(false);
+    const [purchaseMainState,setPurchaseMainState] = useState(false);
+    const [supportMainState,setSupportMainState] = useState(false);
+    const [hostingMainState,setHostingMainState] = useState(false);
+
 
     useEffect(() => {
         fetchEarlyAccessUsers();
@@ -77,8 +95,41 @@ const Main = () => {
         }
     };
 
+    
+
     return (
         <>
+            <div className={`h-screen w-full transition-all duration-300   fixed ${menuBar ? "block bg-black-special-admin" : "hidden bg-transparent"}`}>
+                <div className="bg-neutral-900 w-full sm:w-1/2 lg:w-1/3 h-screen fixed end-0 offcanvasAni">
+                    <div className="flex flex-col ps-5">
+                        <div className="flex justify-end">
+                            <img src={Close} className="w-[55px] pe-3 pt-3" onClick={() => setMenuBar(!menuBar)} alt="Close" />
+                        </div>
+                        <div className="flex flex-col mt-5 gap-8">
+                            <div className="flex items-center cursor-pointer" onClick={() => {setHomeMain(true); setEarlyAccess(false); setSupportMainState(false); setPurchaseMainState(false); setMenuBar(false); setHostingMainState(false)}}>
+                                <img src={Right} className="w-[40px]" alt="Right" />
+                                <p className="text-white inter-500 text-2xl">Anasayfa</p>
+                            </div>
+                            <div className="flex items-center cursor-pointer" onClick={() => {setHomeMain(false); setEarlyAccess(true); setSupportMainState(false); setPurchaseMainState(false); setMenuBar(false); setHostingMainState(false)}}>
+                                <img src={Right} className="w-[40px]" alt="Right" />
+                                <p className="text-white inter-500 text-2xl">Erken Erişim Üyeleri</p>
+                            </div>
+                            <div className="flex items-center cursor-pointer" onClick={() => {setPurchaseTriggerState(purchaseTriggerState + 1); setHomeMain(false); setEarlyAccess(false); setPurchaseMainState(true); setMenuBar(false); setHostingMainState(false)}}>
+                                <img src={Right} className="w-[40px]" alt="Right" />
+                                <p className="text-white inter-500 text-2xl">Satın Alım Üyeleri</p>
+                            </div>
+                            <div className="flex items-center cursor-pointer" onClick={() => {setHomeMain(false); setEarlyAccess(false); setSupportTriggerState(supportTriggerState + 1); setPurchaseMainState(false); setMenuBar(false); setSupportMainState(true); setHostingMainState(false)}}>
+                                <img src={Right} className="w-[40px]" alt="Right" />
+                                <p className="text-white inter-500 text-2xl">Destek Biletleri</p>
+                            </div>
+                            <div className="flex items-center cursor-pointer" onClick={() => {setHomeMain(false); setEarlyAccess(false); setSupportMainState(false); setPurchaseMainState(false); setMenuBar(false); setHostingMainState(true)}}>
+                                <img src={Right} className="w-[40px]" alt="Right"/>
+                                <p className="text-white inter-500 text-2xl">Sunucu işlemleri</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <Modal style={customStyles} isOpen={modalOpen}>
                 <div className="flex flex-col">
                     <div className="flex justify-end">
@@ -99,11 +150,16 @@ const Main = () => {
                     </div>
                 </div>
             </Modal>
-            <div className="flex justify-between px-4 mt-3">
+            <div className="flex justify-between px-4 pt-3">
                 <p className="animated-text text-3xl sm:text-7xl">PG</p>
-                <img src={Menu} className="w-[40px] sm:w-[60px]" alt="Menu" />
+                <img src={Menu} className="w-[40px] sm:w-[60px]" onClick={() => setMenuBar(!menuBar)} alt="Menu" />
             </div>
-            <div className="flex flex-col p-5 w-full items-center">
+            
+            {homeMain ? 
+            <>
+                <HomeMain loggedUserInner={loggedUser}/>
+            </> : ""}
+            {earlyAccess ? <div className="flex flex-col p-5 w-full items-center">
                 <p className="inter-600 text-white text-4xl text-2xl sm:text-start text-center">Erken erişim üyeleri</p>
                 <div className="flex flex-col gap-4 mt-5 items-center sm:w-[600px] w-[330px] h-spec-admin overflow-auto">
                     {loading ? (
@@ -112,10 +168,7 @@ const Main = () => {
                         users
                             .sort((a, b) => (b.subscribedAt || 0) - (a.subscribedAt || 0))
                             .map((user) => (
-                                <div
-                                    className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none"
-                                    key={user.id}
-                                >
+                                <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={user.id}>
                                     <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
                                     <div className="flex items-center">
                                         <input
@@ -145,7 +198,10 @@ const Main = () => {
                         <p className="text-white">Henüz kullanıcı bulunamadı.</p>
                     )}
                 </div>
-            </div>
+            </div> : ""}
+            {purchaseMainState ? <PurchaseMain purchaseTrigger={purchaseTriggerState}/> : ""}
+            {supportMainState ? <SupportMain supportTriggerInner={supportTriggerState}/> : ""}
+            {hostingMainState ? <HostingServices /> : ""} 
         </>
     );
 };

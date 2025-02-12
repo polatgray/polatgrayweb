@@ -1,7 +1,7 @@
 import Main from "./Main"
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { app } from "../Firebase/Firebase";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const AdminPanelMain = () => {
@@ -33,10 +33,14 @@ const AdminPanelMain = () => {
         }
       };
 
+    useEffect(() => {
+        console.log(loggedUser)
+    }, [loggedUser])
+
     return(
         <>
             <div className="h-screen">
-                {loggedUser ? <Main /> :
+                {loggedUser ? <Main loggedUser={loggedUser.email}/> :
                     <div className="flex justify-center items-center h-full">
                         <div className="flex flex-col p-8 py-12 rounded-lg border border-amber-500">
                             <div className="flex flex-col mb-8">
@@ -50,7 +54,7 @@ const AdminPanelMain = () => {
                             <button className="bg-amber-500 text-white inter-600 text-lg py-2 rounded-lg mt-12 cursor-pointer transition-all duration-300 hover:bg-amber-600 outline-0" onClick={() => login()}>Giriş yap</button>
                         </div>
                     </div>
-                }1
+                }
             </div> 
         </>
     )
