@@ -12,6 +12,7 @@ import CryptoJS from "crypto-js";
 import {  getDocs, query, where } from "firebase/firestore";
 import USDT from "../../images/usdt.png"
 import BTC from "../../images/btc.svg"
+import {LanguageContext} from "../../Context/LanguageContext"
 
 const CheckOut = () => {
 
@@ -33,6 +34,7 @@ const CheckOut = () => {
     const [cryptoStart,setCryptoStart] = useState(null);
     const [finishLoading,setFinishLoading] = useState(false)
 
+    const [alreadyCookie,setAlreadyCookie] = useState(null);
 
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("");
@@ -43,13 +45,14 @@ const CheckOut = () => {
 
     const [cookies, setCookie, removeCookie] = useCookies(["paymentData"]);
 
+
     const location = useLocation();
 
     const queryParams = new URLSearchParams(location.search);
     
     const paymentQuery = queryParams.get('package');
 
-
+    const {language} = useContext(LanguageContext)
   
     if (!paymentQuery) {
         navigate("/CheckPlan")
@@ -79,7 +82,8 @@ const CheckOut = () => {
         try {
           const docRef = await addDoc(collection(db, "paymentsOk"), {
             email,
-            payment: paymentQuery == 1 ? "saved_1" : "not_Saved",
+            password,
+            payment: paymentQuery == 1 ? "package1" : "not_Saved",
             createdAt: new Date()
           });
       
@@ -136,7 +140,6 @@ const CheckOut = () => {
         }
         else{
             detectUsers();
-            saveUsers();
             setLoginStatus(true);
             setCryptoPay(true);
         }
@@ -147,19 +150,38 @@ const CheckOut = () => {
         checkServerStatus();
     }, [])
 
+    const decryptData = (ciphertext) => {
+        const secretKey = process.env.REACT_APP_SECRETKEY; 
+        const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
+        console.log(JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
+        setAlreadyCookie(JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
+        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    };
+
     useEffect(() => {
-        if(cookies.paymentID){
-            setPurchaseAlreadyHave(true);
-            setPaymentIDState(cookies.paymentID)
-            console.log(cookies.paymentID)
+        if(cookies.paymentData){
+            decryptData(cookies.paymentData)
         }
     }, [])
 
+    useEffect(() => {   
+        console.log("crypto type consoled,", cryptoType)
+        if(alreadyCookie && alreadyCookie.paymentMethod == cryptoType){
+            console.log("if ok", cryptoType)
+            setPurchaseAlreadyHave(true);
+            setPaymentIDState(cookies.paymentID)
+        }
+    }, [cryptoType])
+ 
     useEffect(() => {
         console.log(cryptoPay)
         if(serverStatusState){
-            if(purchaseAlreadyHave){
-                checkPayment();
+            console.warn("cryptoPay cryptoStart", purchaseAlreadyHave)
+            if(alreadyCookie && alreadyCookie.paymentMethod == cryptoType){
+                console.log("if ok", cryptoType)
+                setPurchaseAlreadyHave(true);
+                setPaymentIDState(alreadyCookie.paymentID)
+                checkPayment(alreadyCookie.paymentID);
             }
             else{
                 createPayment();
@@ -171,7 +193,7 @@ const CheckOut = () => {
         if(paymentStatus == "finished"){
             setPayOk(true)
             savePayments();
-            removeCookie("paymentID", {path: "/"})
+            removeCookie("paymentData", {path: "/"})
             navigate("/SuccessPayment")
         }
     }, [paymentStatus])
@@ -190,10 +212,10 @@ const CheckOut = () => {
                         'x-api-key': process.env.REACT_APP_NOWPAYMENTSKEY
                     },
                     body: JSON.stringify({
-                        price_amount: paymentQuery == 1 ? "20" : "100",          
+                        price_amount: paymentQuery == 1 ? "159" : "100",          
                         price_currency: 'USD',       
                         pay_currency: cryptoType == "usdt" ? "USDTTRC20" : "BTC",     
-                        is_fee_paid_by_user: false,         
+                        is_fee_paid_by_user: true,         
                         order_id: orderId, 
                         success_url: 'https://yourwebsite.com/success', 
                         cancel_url: 'https://yourwebsite.com/cancel'   
@@ -215,7 +237,7 @@ const CheckOut = () => {
                     setPayAmount(data.pay_amount);
                     setFinishLoading(false);
                     console.log("check 3")
-                    const paymentData = { paymentID: data.payment_id, packageID:paymentQuery };
+                    const paymentData = { paymentID: data.payment_id, packageID:paymentQuery, paymentMethod: cryptoType };
                     console.log("3.5")
                     const secretKey = process.env.REACT_APP_SECRETKEY; 
                     const encryptedData = CryptoJS.AES.encrypt(
@@ -248,35 +270,23 @@ const CheckOut = () => {
         console.log(processLoading,"proccess")
     }, [processLoading])
 
-    const checkPayment = async () => {
+    const handleKeyDownSaveAndLogin = (e) => {
+        if (e.key === "Enter") {
+          
+        }
+      };
+
+
+    const checkPayment = async (paymentIDParam) => {
         console.log("check 6")
         console.log(paymentIDState)
         setPurchaseAlreadyHave(true)
-        const cookieSecretData = cookies.paymentData
         console.log("check 7")
-        if(cookieSecretData){
-            try {
-                const secretKey = process.env.REACT_APP_SECRETKEY; 
-                const bytes = CryptoJS.AES.decrypt(cookieSecretData, secretKey);
-                const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-          
-                console.log("Çözülen ödeme verisi:", decryptedData);
-          
-                if (decryptedData.packageID !== paymentQuery) {
-                  alert("HATA! Ödeme bilgileri uyuşmuyor.");
-                  return false;
-                }
-          
-                return true; 
-              } catch (error) {
-                console.error("Şifre çözme hatası!", error);
-                return false;
-              }
-        }
+        console.log("Kanka buraya kadar gelip çalışmıosan ananı sikiyim", purchaseAlreadyHave)
         if(purchaseAlreadyHave){
             try{
                 console.log("Sending check...")
-                const response = await fetch(`https://api.nowpayments.io/v1/payment/${paymentIDState}` ,{
+                const response = await fetch(`https://api.nowpayments.io/v1/payment/${paymentIDParam}` ,{
                     headers: {
                         'Content-Type': 'application/json',
                         'x-api-key': process.env.REACT_APP_NOWPAYMENTSKEY
@@ -292,9 +302,10 @@ const CheckOut = () => {
                     setPaymentStatus(data.payment_status);
                     setPaymentIDState(data.payment_id);
                     setPayAmount(data.pay_amount);
+                    setFinishLoading(false);
                     if(data.payment_status == "waiting" || data.payment_status == "confirming" || data.payment_status == "confirmed" || data.payment_status == "sending" || data.payment_status == "partially_paid" ){
                         setTimeout(() => {
-                            checkPayment();
+                            checkPayment(alreadyCookie.paymentID);
                         }, 7500)
                     } 
                 })
@@ -305,7 +316,14 @@ const CheckOut = () => {
                 console.error(error);
             }
         }
+
     }
+
+    useEffect(() => {
+        if(purchaseAlreadyHave){
+            checkPayment(alreadyCookie.paymentID);
+        }
+    }, [purchaseAlreadyHave])
 
 
     return(
@@ -317,8 +335,8 @@ const CheckOut = () => {
                 <div className="flex flex-col sm:px-0 px-4">
                     
                     <div className="flex items-center gap-3 sm:flex-row flex-col sm:border-0 border-b pb-4 border-amber-500">
-                        <button className={`${cryptoPayActive ? serverStatusState == null || false ? "opacity-50" : "bg-amber-500" : ""} hover:bg-amber-600 text-white transition-all duration-300 px-4 py-2 rounded-lg outline-0 inter-500 sm:w-auto w-[320px]`} onClick={() => setCryptoPayActive(true)}>Kripto ödemesi</button>
-                        <button className={`${!cryptoPayActive ? "bg-amber-500" : ""} hover:bg-amber-600 text-white transition-all duration-300 px-4 py-2 rounded-lg outline-0 inter-500 sm:w-auto w-[320px]`} onClick={() => setCryptoPayActive(false)}>Kredi Kartı ile ödeme</button>
+                        <button className={`${cryptoPayActive ? serverStatusState == null || false ? "opacity-50" : "bg-amber-500" : ""} hover:bg-amber-600 text-white transition-all duration-300 px-4 py-2 rounded-lg outline-0 inter-500 sm:w-auto w-[320px]`} onClick={() => setCryptoPayActive(true)}>{language == "en" ? "Crypto payment" : "Kripto ödemesi"}</button>
+                        <button className={`${!cryptoPayActive ? "bg-amber-500" : ""} hover:bg-amber-600 text-white transition-all duration-300 px-4 py-2 rounded-lg outline-0 inter-500 sm:w-auto w-[320px]`} onClick={() => setCryptoPayActive(false)}>{language == "en" ? "Credit Card Payment" : "Kredi Kartı ile ödeme"}</button>
                     </div>
                     <div>
                         {cryptoPayActive ?
@@ -342,56 +360,56 @@ const CheckOut = () => {
                                             :
                                             <>
                                             {paymentQuery == "1" ? "PDF Paketi kripto ödemesi" : ""}
-                                            <p className="text-white inter-500 text-lg select-none ">Ödenecek olan BTC tutarı:  <br className="sm:hidden blcok"/>{payAmount} BTC</p>
-                                            <p className="text-white inter-500 text-lg flex sm:flex-row flex-col my-4 sm:items-center">Göndermeniz gereken adres: <span className="sm:text-base text-sm">{SendAddress}</span></p>
-                                            <p className="text-white inter-500 text-lg flex items-center select-none">Ödeme durumu: {paymentStatus == "waiting" ? 
+                                            <p className="text-white inter-500 text-lg select-none ">{language == "en" ? "Amount to be paid:" : "Ödenecek olan tutar: "}<br className="sm:hidden block"/>{payAmount} {cryptoType == "usdt" ? "USDT" : "BTC"}</p>
+                                            <p className="text-white inter-500 text-lg flex sm:flex-row flex-col my-4 sm:items-center">{language == "en" ? "The address you need to send to is:" : "Göndermeniz gereken adres:"} <span className="sm:text-base text-sm">{SendAddress}</span></p>
+                                            <p className="text-white inter-500 text-lg flex items-center select-none">{language == "en" ? "Payment Status" : "Ödeme durumu:"} {paymentStatus == "waiting" ? 
                                                 <>
-                                                    {paymentStatus == "waiting" ? 
-                                                    <div className="flex items-center ms-2">
-                                                        <img src={loadingLoop} alt="Loading" className="w-[25p]"/>
-                                                        <p className="text-amber-500 inter-500 text-lg">Bekleniyor</p>
-                                                    </div> :   
+                                                {paymentStatus == "waiting" ? 
+                                                <div className="flex items-center ms-2">
+                                                    <img src={loadingLoop} alt="Loading" className="w-[25p]"/>
+                                                    <p className="text-amber-500 inter-500 text-lg">{language == "en" ? "Waiting" : "Bekleniyor"}</p>
+                                                </div> :   
                                                 paymentStatus == "confirming" ? 
                                                 <div className="flex items-center ms-2">
                                                     <img src={loadingLoopWhite} alt="Loading" className="w-[25p]"/>
-                                                    <p className="text-green-600 inter-500 text-lg">Onaylanıyor</p>
+                                                    <p className="text-green-600 inter-500 text-lg">{language == "en" ? "Confirming" : "Onaylanıyor"}</p>
                                                 </div> :
                                                 paymentStatus == "confirmed" ?
                                                 <div className="flex items-center ms-2">
                                                     <img src={loadingLoopWhite} alt="Loading" className="w-[25p]"/>
-                                                    <p className="text-green-500 inter-500 text-lg">Onaylandı, cüzdana gönderiliyor...</p>
+                                                    <p className="text-green-500 inter-500 text-lg">{language == "en" ? "Approved, sending to wallet..." : "Onaylandı, cüzdana gönderiliyor..."}</p>
                                                 </div> :
                                                 paymentStatus == "sending" ? 
                                                 <div className="flex items-center ms-2">
                                                     <img src={loadingLoopWhite} alt="Loading" className="w-[25p]"/>
-                                                    <p className="text-green-600 inter-500 text-lg">Gönderiliyor</p>
+                                                    <p className="text-green-600 inter-500 text-lg">{language == "en" ? "Sending" : "Gönderiliyor"}</p>
                                                 </div>:
                                                 paymentStatus == "partially_paid" ? 
                                                 <div className="flex items-center ms-2">
                                                     <img src={loadingLoop} alt="Loading" className="w-[25p]"/>
-                                                    <p className="text-amber-500 inter-500 text-lg">Eksik miktar ödendi, devamı bekleniyor...</p>
+                                                    <p className="text-amber-500 inter-500 text-lg">{language == "en" ? "The missing amount has been paid, the rest is awaited..." : "Eksik miktar ödendi, devamı bekleniyor..."}</p>
                                                 </div>:
                                                 paymentStatus == "finished" ?
                                                 <div className="flex items-center ms-2">
-                                                    <p className="text-green-400 inter-500 text-lg">Ödeme tamamlandı!</p>
+                                                    <p className="text-green-400 inter-500 text-lg">{language == "en" ? "Payment completed!" : "Ödeme tamamlandı!"}</p>
                                                 </div>:
                                                 paymentStatus == "failed" ? 
                                                 <div className="flex items-center ms-2">
-                                                    <p className="text-red-400 inter-500 text-lg">İşlem başarısız</p>
+                                                    <p className="text-red-400 inter-500 text-lg">{language == "en" ? "Payment Failed" : "İşlem başarısız"}</p>
                                                 </div>:
                                                 paymentStatus == "refunded" ?
                                                 <div className="flex items-center ms-2">
-                                                    <p className="text-red-400 inter-500 text-lg">Ücret iade edildi</p>
+                                                    <p className="text-red-400 inter-500 text-lg">{language == "en" ? "Payment Refunded" : "Ücret iade edildi"}</p>
                                                 </div>:
                                                 ""
                                                 }
                                                 </> 
                                                 :
                                                 <>
-                                                    <p>Bilinmiyor</p>
+                                                    <p>{language == "en" ? "Processing" : "Bilinmiyor"}</p>
                                                 </>}
                                             </p>
-                                            <button className="bg-amber-500 hover:bg-amber-600 transition-all rounded-lg px-4 py-2 text-white my-3" onClick={() => checkPayment()}>Kontrol et</button>
+                                            {/* <button className="bg-amber-500 hover:bg-amber-600 transition-all rounded-lg px-4 py-2 text-white my-3" onClick={() => checkPayment()}>Kontrol et</button> */}
                                             <p className="text-white inter-500 text-lg flex sm:flex-row flex-col">Payment ID: {paymentIDState}</p> 
                                             </>
                                         : 
@@ -400,11 +418,11 @@ const CheckOut = () => {
                                                 <div className="flex flex-col justify-center">
                                                     <div className="flex items-center justify-center gap-4 mt-3 bg-amber-500 rounded-lg py-2 cursor-pointer" onClick={() => {setCryptoType("usdt"); setCryptoStart(true)}}>
                                                         <img src={USDT} alt="USDT" className="w-[35px]" />
-                                                        <p className="inter-500 text-white text-lg">USDT olarak öde</p>
+                                                        <p className="inter-500 text-white text-lg">{language == "en" ? "Pay in USDT" : "USDT olarak öde"}</p>
                                                     </div>
                                                     <div className="flex items-center justify-center gap-4 mt-3 bg-amber-500 rounded-lg py-2 cursor-pointer" onClick={() => {setCryptoType("btc"); setCryptoStart(true)}}>
                                                         <img src={BTC} alt="USDT" className="w-[35px]" />
-                                                        <p className="inter-500 text-white text-lg">BTC olarak öde</p>
+                                                        <p className="inter-500 text-white text-lg">{language == "en" ? "Pay in BTC" : "BTC olarak öde"}</p>
                                                     </div>
                                                 </div>} 
                                             </>
@@ -421,14 +439,14 @@ const CheckOut = () => {
                             </div> : 
                             <div className="flex flex-col border border-amber-500 p-6 rounded-lg mt-8 gap-5">
                                 <div className="flex flex-col">
-                                    <p className="text-white inter-500 mb-2">E-Posta</p>
-                                    <input type="text" onChange={(e) => setEmail(e.target.value)} className="bg-black p-2 border-amber-500 focus:border-amber-300 transition-all outline-0 duration-2000 rounded-lg text-white border" placeholder="E-Posta"/>
+                                    <p className="text-white inter-500 mb-2">{language == "en" ? "E-Mail Address" : "E-Posta"}</p>
+                                    <input type="text" onKeyDown={handleKeyDownSaveAndLogin} onChange={(e) => setEmail(e.target.value)} className="bg-black p-2 border-amber-500 focus:border-amber-300 transition-all outline-0 duration-2000 rounded-lg text-white border" placeholder={`${language == "en" ? "E-Mail Address" : "E-Posta"}`}/>
                                 </div>
                                 <div className="flex flex-col">
-                                    <p className="text-white inter-500 mb-2">Şifre</p>
-                                    <input type="password" onChange={(e) => setPassword(e.target.value)} className="bg-black p-2 border-amber-500 focus:border-amber-300 outline-0 transition-all duration-300 rounded-lg text-white border" placeholder="Şifre"/>
+                                    <p className="text-white inter-500 mb-2">{language == "en" ? "Password" : "Şifre"}</p>
+                                    <input type="password" onKeyDown={handleKeyDownSaveAndLogin} onChange={(e) => setPassword(e.target.value)} className="bg-black p-2 border-amber-500 focus:border-amber-300 outline-0 transition-all duration-300 rounded-lg text-white border" placeholder={`${language == "en" ? "Password" : "Şifre"}`}/>
                                 </div>
-                                <button className="bg-amber-500 hover:bg-amber-600  transition-all duration-300 px-4 py-2 rounded-lg text-white inter-500" onClick={() => {saveAndLogin();}}>Kaydet</button>
+                                <button className="bg-amber-500 hover:bg-amber-600  transition-all duration-300 px-4 py-2 rounded-lg text-white inter-500" onClick={() => {saveAndLogin();}}>{language == "en" ? "Save" : "Kaydet"}</button>
                             </div>}
                             {/* <div className="flex flex-col items-center">
                                 <button className="bg-amber-500 hover:bg-amber-600 text-white inter-500 rounded-lg text-xl px-4 py-2 mt-4 outline-0" onClick={() => setCryptoPay(true)}>Ödeme linki oluştur</button>
@@ -436,7 +454,7 @@ const CheckOut = () => {
                         </>  :
                         <>
                             <div className="flex flex-col items-center">
-                                <p className="text-white inter-500 text-xl w-[300px] text-center mt-6">Kredi kartı ödemeleri şu anda desteklemiyor.</p>
+                                <p className="text-white inter-500 text-xl w-[300px] text-center mt-6">{language == "en" ? "Credit card payments will be active after the first purchase." : "Kredi kartı ödemeleri ilk alımdan sonra aktif olacaktır."}</p>
                             </div>
                         </>}
                     </div>

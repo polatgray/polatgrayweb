@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import Close from "../../images/closeWhite.svg";
 import "../../css/Loading.css";
 import "../../css/AdminPanel.css";
+import Menu from "../../images/menu.svg"
 
 const Main = () => {
     const [users, setUsers] = useState([]);
@@ -98,6 +99,10 @@ const Main = () => {
                     </div>
                 </div>
             </Modal>
+            <div className="flex justify-between px-4 mt-3">
+                <p className="animated-text text-3xl sm:text-7xl">PG</p>
+                <img src={Menu} className="w-[40px] sm:w-[60px]" alt="Menu" />
+            </div>
             <div className="flex flex-col p-5 w-full items-center">
                 <p className="inter-600 text-white text-4xl text-2xl sm:text-start text-center">Erken erişim üyeleri</p>
                 <div className="flex flex-col gap-4 mt-5 items-center sm:w-[600px] w-[330px] h-spec-admin overflow-auto">
