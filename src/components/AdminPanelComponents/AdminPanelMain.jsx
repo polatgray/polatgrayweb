@@ -3,12 +3,15 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { app } from "../Firebase/Firebase";
 import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useCookies } from "react-cookie";
 
 const AdminPanelMain = () => {
 
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [loggedUser,setLoggedUser] = useState(null);
+    const [cookies, setCookie, removeCookie] = useCookies(["logged"]);
+
 
     const login = async () => {
         toast.loading("Giriş yapılıyor...")
@@ -17,6 +20,7 @@ const AdminPanelMain = () => {
             const loggedInUser = await signInWithEmailAndPassword(auth, email, password); 
             setLoggedUser(loggedInUser.user); 
             toast.dismiss();
+            setCookie("logged",loggedInUser.user.email, {path: "/", expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)});
             toast.success("Başarıyla giriş yapıldı!"); 
         } catch (error) {
             setPassword("")
@@ -26,7 +30,13 @@ const AdminPanelMain = () => {
             toast.error("E-Posta veya şifreniz yanlış!");
         }
     };
-    
+
+    useEffect(() => {
+        if(cookies.logged){
+            setLoggedUser({email: "polatgraybillionaire@gmail.com"});
+        }
+    }, [])
+     
     const handleKeyPress = (event) => {
         if (event.key === "Enter") { 
             login();

@@ -28,6 +28,7 @@ const Main = ({loggedUser}) => {
     const [menuBar,setMenuBar] = useState(false);
     const [purchaseTriggerState,setPurchaseTriggerState] = useState(0);
     const [supportTriggerState,setSupportTriggerState] = useState(0);
+    const [clickedValueInner,setClickedValueInner] = useState("");
 
 
     //ARTICLE
@@ -95,7 +96,17 @@ const Main = ({loggedUser}) => {
         }
     };
 
-    
+    useEffect(() => {
+        if(clickedValueInner == "earlyAccess"){
+            setHomeMain(false); setEarlyAccess(true); setSupportMainState(false); setPurchaseMainState(false); setMenuBar(false); setHostingMainState(false)
+        }
+        else if(clickedValueInner == "support"){
+            setHomeMain(false); setEarlyAccess(false); setSupportTriggerState(supportTriggerState + 1); setPurchaseMainState(false); setMenuBar(false); setSupportMainState(true); setHostingMainState(false)
+        }
+        else if(clickedValueInner == "purchase"){
+            setPurchaseTriggerState(purchaseTriggerState + 1); setHomeMain(false); setEarlyAccess(false); setPurchaseMainState(true); setMenuBar(false); setHostingMainState(false)
+        }
+    }, [clickedValueInner])
 
     return (
         <>
@@ -157,7 +168,7 @@ const Main = ({loggedUser}) => {
             
             {homeMain ? 
             <>
-                <HomeMain loggedUserInner={loggedUser}/>
+                <HomeMain loggedUserInner={loggedUser} clickedValueOuter={setClickedValueInner}/>
             </> : ""}
             {earlyAccess ? <div className="flex flex-col p-5 w-full items-center">
                 <p className="inter-600 text-white text-4xl text-2xl sm:text-start text-center">Erken erişim üyeleri</p>

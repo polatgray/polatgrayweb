@@ -1,6 +1,6 @@
 import { useEffect, useState,useContext } from "react"
 import toast from "react-hot-toast"
-import { useLocation, useNavigate } from "react-router-dom"
+import { data, useLocation, useNavigate } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
 import { Cookies, useCookies } from "react-cookie";
 import loadingLoop from "../../images/loading-loop.svg"
@@ -35,6 +35,7 @@ const CheckOut = () => {
     const [finishLoading,setFinishLoading] = useState(false)
 
     const [alreadyCookie,setAlreadyCookie] = useState(null);
+    const [jwtkeyapi,setJwtkeyapi] = useState("");
 
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("");
@@ -177,10 +178,165 @@ const CheckOut = () => {
         if(paymentStatus == "finished"){
             setPayOk(true)
             savePayments();
+            transferWEB();
             removeCookie("paymentData", {path: "/"})
             navigate("/SuccessPayment")
         }
     }, [paymentStatus])
+
+    const runAfterAuth = async (dataToken) => {
+        try{
+            const response = await fetch('https://api.nowpayments.io/v1/sub-partner/transfer', {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json",
+                    "Authorization": `Bearer ${dataToken}`
+                },
+                body: JSON.stringify({
+                    // currency: cryptoType == "usdt" ? "USDT" : "BTC",
+                    // amount: language == "en" ? "60" : "600",
+                    // from_id: "4132087042",
+                    // to_id: "4132087042",
+                    currency: "USDTARB",
+                    amount: "0.50",
+                    from_id: "6097719148",
+                    to_id: "1721050575"
+                })
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
+
+    const getTransferUsers = async (dataToken) => {
+        try{
+            const response = await fetch('https://api.nowpayments.io/v1/sub-partner', {
+                headers:{
+                    "Authorization": `Bearer ${dataToken}`
+                } 
+            })
+            .then((response) => {
+                return response.JSON();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
+
+    const getUserBalance = async (dataId) => {
+        try{
+            const response = await fetch(`https://api.nowpayments.io/v1/sub-partner/balance/1721050575`, {
+                headers:{
+                    "x-api-key" : process.env.REACT_APP_NOWPAYMENTSKEY
+                }
+            })
+            .then((response) => {
+                return response.JSON();
+            })
+            .then((data) => {
+                console.log(data)
+            })
+        }
+        catch(error){
+            console.error(error)
+        }
+    }
+
+    const createUsers = async (dataToken) => {
+        try{
+            const response = await fetch('https://api.nowpayments.io/v1/sub-partner/balance', {
+                method: "POST",
+                headers:{
+                    "Content-Type" : "application/json",
+                    "Authorization": `Bearer ${dataToken}`
+                },
+                body: JSON.stringify({
+                    "name": "sekullarx"
+                })
+            })
+            .then((response) => {
+                return response.JSON();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
+
+
+    const transferSubpartner = async (dataToken) => {
+       try{
+            const response = await fetch(`https://api.nowpayments.io/v1/sub-partner/payment`, {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json",
+                    "x-api-key" : process.env.REACT_APP_NOWPAYMENTSKEY,
+                    "Authorization" : `Bearer  ${dataToken}`
+                },
+                body: JSON.stringify({
+                    currency: cryptoType == "usdt" ? "USDT" : "BTC",
+                    amount: paymentQuery == 1 ? cryptoType == "usdt" ? language == "en" ? 60 : 20 : language == "en" ? 0.00061 : 0.00017 : "",
+                    currency: "USDTARB",
+                    amount: 0.77,
+                    sub_partner_id: "1721050575",
+                    "is_fixed_rate": false,
+                    "is_fee_paid_by_user":false,
+                })
+            })
+            .then((response) => {
+                return response.JSON();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+       }    
+       catch(error){
+            console.error(error);
+       }
+    }
+
+    const transferWEB = async () => {
+        try{
+            const response = await fetch('https://api.nowpayments.io/v1/auth', {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body: JSON.stringify({
+                    "email": process.env.REACT_APP_MAILADDRESS,
+                    "password": process.env.REACT_APP_PASSWORD
+                })
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                // runAfterAuth(data.token);
+                // getTransferUsers(data.token);
+                // createUsers(data.token);
+                // getUserBalance();
+                transferSubpartner();
+
+            })
+        }
+        catch(error){
+            console.error(error)
+        }
+    }
 
     const createPayment = async () => {
         setProcessLoading(true);
@@ -189,6 +345,7 @@ const CheckOut = () => {
         if(cryptoPay && serverStatusState != null && serverStatusState != false && cryptoStart){
             try{
                 console.log("Sending...")
+                console.log(jwtkeyapi)
                 const response = await fetch('https://api.nowpayments.io/v1/payment', {
                     method: "POST",
                     headers: {

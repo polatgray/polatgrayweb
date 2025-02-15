@@ -10,7 +10,7 @@ import Wallet from "../../images/wallet.svg"
 const now = new Date();
 const hours = now.getHours();
 
-const HomeMain = ({ loggedUserInner }) => {
+const HomeMain = ({ loggedUserInner, clickedValueOuter }) => {
   const [homeName, setHomeName] = useState("");
   const [loading,setLoading] = useState(true); 
 
@@ -19,7 +19,7 @@ const HomeMain = ({ loggedUserInner }) => {
   const [supportCount,setSupportCount] = useState(null);
   const [usersPurchasedCount,setUserPurchasedCount] = useState(null);
   const [proccessLoading,setProccessLoading] = useState("0,0,0");
-  const [responseTimeState,setResponseTimeState] = useState("0");
+  const [clickedValue,setClickedValue] = useState("");
 
   useEffect(() => {
     console.log(loggedUserInner);
@@ -85,6 +85,10 @@ const HomeMain = ({ loggedUserInner }) => {
     allInOneStart();
   }, [])
 
+  useEffect(() => {
+    clickedValueOuter(clickedValue)
+  }, [clickedValue])
+
   return (
     <>
       {loading ? 
@@ -100,7 +104,7 @@ const HomeMain = ({ loggedUserInner }) => {
                 <p className="animated-text text-2xl sm:text-5xl py-3">{getGreeting()}{homeName && `, ${homeName == "polatgraybillionaire@gmail.com" ? "Polat Bey" : homeName == "asdkralxasd@gmail.com" ? "Ahmet" : "Kullanıcı"}`}</p>
             </div>
             <div className="flex items-center gap-4 px-4 mt-3 overflow-auto py-5 lg:flex-row flex-col">
-                <div className="advanced-card">
+                <div className="advanced-card" onClick={() => setClickedValue("earlyAccess")}>
                     <div className="card-icon">
                         <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" />
                     </div>
@@ -109,7 +113,7 @@ const HomeMain = ({ loggedUserInner }) => {
                         <p>{earlyAccessCount}</p>
                     </div>
                 </div>
-                <div className="advanced-card">
+                <div className="advanced-card" onClick={() => setClickedValue("support")}>
                     <div className="card-icon">
                         <img src={Ticket} className="w-[35px]" alt="Early Access Icon" />
                     </div>
@@ -118,7 +122,7 @@ const HomeMain = ({ loggedUserInner }) => {
                         <p>{supportCount}</p>
                     </div>
                 </div>
-                <div className="advanced-card">
+                <div className="advanced-card" onClick={() => setClickedValue("purchase")}>
                     <div className="card-icon">
                         <img src={Wallet} className="w-[35px]" alt="Early Access Icon" />
                     </div>

@@ -4,7 +4,7 @@ const PaymentContext = createContext();
 
 const PaymentProvider = ({ children }) => {
 
-    const [payOk,setPayOk] = useState(false)
+    const [payOk,setPayOk] = useState(null)
 
     return(
         <PaymentContext.Provider value={{payOk,setPayOk}}>
