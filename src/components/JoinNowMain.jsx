@@ -218,7 +218,7 @@ const JoinNow = () => {
               />
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-white inter-500">{language === "en" ? "How much money you have to invest in your future right now?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
+              <p className="text-white inter-500">{language === "en" ? "How much money you have to invest in yourself?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
               <select
               value={selectedOption.value}  
               onChange={handleSelectChange}
