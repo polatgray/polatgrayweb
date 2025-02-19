@@ -214,20 +214,16 @@ const CheckPlan = () => {
                     <p className="inter-600 text-3xl sm:text-5xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">OFM PDF</p>
                     <div className="flex flex-col mt-5 gap-3">
                         <p className="inter-500 text-white px-5 text-xl text-center">{language == "en" ? "Polat Gray PDF Package" : "Polat Gray PDF paketi"}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "One-on-one for starters" : "Başlangıç için bire bir"}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Rich and in-depth content" : "Zengin ve derinlemesine içerik"}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Comprehensive guidance and tips" : "Kapsamlı rehberlik ve ipuçları"}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Key strategies for OnlyFans management success" : "OnlyFans yönetiminde başarı için temel stratejiler"}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Fan engagement and content optimization" : "Fan etkileşimi ve içerik optimizasyonu"}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Revenue boosting methods and marketing tactics" : "Gelir artırma yöntemleri ve pazarlama taktikleri"}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Professional management techniques" : "Profesyonel menajerlik teknikleri"}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Bonus materials and tutorial videos" : "Bonus materyaller ve özel ders videoları"}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn how to find your first model" : "İlk modelini nasıl bulacağını öğreneceksin."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn how to find top 1 percent models and get a deal with them" : "En iyi yüzde 1'lik modelleri nasıl bulacağınızı ve onlarla nasıl anlaşma yapacağınızı öğreneceksin."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn how to find chatters and make them work for you and your model" : "Sohbet edenleri nasıl bulacağınızı ve onların sizin ve modeliniz için çalışmasını nasıl sağlayacağınızı öğreneceksin."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn all the secret marketing techniques that polatgray uses" : "Polatgray'in kullandığı tüm gizli pazarlama tekniklerini öğreneceksin."}</p>
                         <div className="price-tag">
                             <p className="line-1 text-white old-price">{language == "en" ? "1500$" : "14999TL"}</p>
                             <p className="text-white text-3xl sm:text-5xl inter-600">{language == "en" ? "599$" : "5999TL"}</p>
                         </div>
-                        <button className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 inter-500 text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => navigate("/CheckOut?package=1")}>{language == "en" ? "Buy Now" : "Satın Al"}</button>
                     </div>
+                    <button className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 w-full inter-500 text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => navigate("/CheckOut?package=1")}>{language == "en" ? "Buy Now" : "Satın Al"}</button>
                 </div>
                 <div className="flex flex-col border border-amber-400 items-center rounded-lg w-[300px] sm:w-[350px] h-[780px] p-4 justify-between">
                     <p className="inter-600 text-3xl sm:text-3xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">One on One <br />With Polat Gray</p>
