@@ -289,9 +289,9 @@ const CheckOut = () => {
                 },
                 body: JSON.stringify({
                     currency: cryptoType == "usdt" ? "USDT" : "BTC",
-                    amount: paymentQuery == 1 ? cryptoType == "usdt" ? language == "en" ? 60 : 20 : language == "en" ? 0.00061 : 0.00017 : "",
-                    currency: "USDTARB",
-                    amount: 0.77,
+                    amount: paymentQuery == 1 ? cryptoType == "usdt" ? language == "en" ? 60 : 20 : language == "en" ? 0.00061 : 0.00017 : paymentQuery == 2 ? cryptoType == "usdt" ? language == "en" ? 800 : 440 : language == "en" ? 0.0084 : 0.0046 : "",
+                    // currency: "USDTARB",
+                    // amount: 0.77,
                     sub_partner_id: "1721050575",
                     "is_fixed_rate": false,
                     "is_fee_paid_by_user":false,
@@ -353,7 +353,7 @@ const CheckOut = () => {
                         'x-api-key': process.env.REACT_APP_NOWPAYMENTSKEY
                     },
                     body: JSON.stringify({
-                        price_amount: paymentQuery == 1 ? language == "en" ? "599" : "5999" : "",          
+                        price_amount: paymentQuery == 1 ? language == "en" ? "599" : "5999" : paymentQuery == 2 ? language == "en" ? "7999" : "159999" : "",          
                         price_currency: language == "en" ? "USD" : "TRY",       
                         pay_currency: cryptoType == "usdt" ? "USDTTRC20" : "BTC",     
                         is_fee_paid_by_user: true,         

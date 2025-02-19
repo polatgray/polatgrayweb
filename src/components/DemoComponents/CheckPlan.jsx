@@ -206,8 +206,8 @@ const CheckPlan = () => {
             </Modal>
             <div className="flex flex-wrap items-center justify-center h-screen gap-12 py-12">
                 <div className="flex flex-col border border-amber-400 items-center rounded-lg justify-between w-[300px] sm:w-[350px] sm:h-[780px] h-auto p-4 gap-4">
-                    <p className="inter-600 text-3xl sm:text-4xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">OFM <br /> Deneme Paketi</p>
-                    <p className="inter-500 text-xl text-white p-3 text-center">Polat Gray'in efsane deneme paketi, şu anda mevcut ve ücretsiz. OFM'in ne olduğunu en iyi şekilde öğren!</p>
+                    <p className="inter-600 text-3xl sm:text-4xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">OFM <br /> {language == "en" ? "Demo Package" : "Deneme Paketi"}</p>
+                    <p className="inter-500 text-xl text-white p-3 text-center">{language == "en" ? "Polat Gray's legendary trial package is now available and free. Learn what OFM is in the best way possible!" : "Polat Gray'in efsane deneme paketi, şu anda mevcut ve ücretsiz. OFM'in ne olduğunu en iyi şekilde öğren!"}</p>
                     <button className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 inter-500 w-full text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => setModalOpen(!modalOpen)}>{language == "en" ? "Get Package" : "Al"}</button>
                 </div>
                 <div className="flex flex-col border border-amber-400 items-center rounded-lg w-[300px] sm:w-[350px] h-[780px] p-4 justify-between">
@@ -228,6 +228,22 @@ const CheckPlan = () => {
                         </div>
                         <button className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 inter-500 text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => navigate("/CheckOut?package=1")}>{language == "en" ? "Buy Now" : "Satın Al"}</button>
                     </div>
+                </div>
+                <div className="flex flex-col border border-amber-400 items-center rounded-lg w-[300px] sm:w-[350px] h-[780px] p-4 justify-between">
+                    <p className="inter-600 text-3xl sm:text-3xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">One on One <br />With Polat Gray</p>
+                    <div className="flex flex-col mt-5 gap-3">
+                        <p className="inter-500 text-white px-5 text-xl text-center">{language == "en" ? "You will start make money in your first week." : "İlk haftanda para kazanmaya başlayacaksın."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Your first model will arrange it for you" : "  İlk modeliniz bunu sizin için ayarlayacak."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Your 3 chatters for your first model arrange for you" : "İlk modeliniz için 3 sohbetiniz sizin için ayarlanacak"}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn everything with details" : "Her şeyi en detayıyla öğreneceksin."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will get a chance to partner with Polat Gray." : "Polat Gray ile ortak olma şansına sahip olacaksınız."}</p>
+                        
+                    </div>
+                    <div className="price-tag">
+                            <p className="line-1 text-white old-price">{language == "en" ? "29999$" : "299999TL"}</p>
+                            <p className="text-white text-3xl sm:text-5xl inter-600">{language == "en" ? "7999$" : "159999TL"}</p>
+                    </div>
+                    <button className="bg-amber-400 hover:bg-amber-500 w-full transition-all duration-300 inter-500 text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => navigate("/CheckOut?package=2")}>{language == "en" ? "Buy Now" : "Satın Al"}</button>
                 </div>
             </div>
         </>
