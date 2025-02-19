@@ -206,7 +206,7 @@ const CheckPlan = () => {
             </Modal>
             <div className="flex flex-wrap items-center justify-center h-screen gap-12 py-12">
                 <div className="flex flex-col border border-amber-400 items-center rounded-lg justify-between w-[300px] sm:w-[350px] sm:h-[780px] h-auto p-4 gap-4">
-                    <p className="inter-600 text-3xl sm:text-4xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">OFM <br /> {language == "en" ? "Demo Package" : "Deneme Paketi"}</p>
+                    <p className="inter-600 text-3xl sm:text-4xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">OFM <br /> {language == "en" ? "Free Package" : "Ücretsiz Paket"}</p>
                     <p className="inter-500 text-xl text-white p-3 text-center">{language == "en" ? "Polat Gray's legendary trial package is now available and free. Learn what OFM is in the best way possible!" : "Polat Gray'in efsane deneme paketi, şu anda mevcut ve ücretsiz. OFM'in ne olduğunu en iyi şekilde öğren!"}</p>
                     <button className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 inter-500 w-full text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => setModalOpen(!modalOpen)}>{language == "en" ? "Get Package" : "Al"}</button>
                 </div>
