@@ -226,7 +226,7 @@ const CheckPlan = () => {
                     <button className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 w-full inter-500 text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => navigate("/CheckOut?package=1")}>{language == "en" ? "Buy Now" : "Satın Al"}</button>
                 </div>
                 <div className="flex flex-col border border-amber-400 items-center rounded-lg w-[300px] sm:w-[350px] h-[780px] p-4 justify-between">
-                    <p className="inter-600 text-3xl sm:text-3xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">One on One <br />With Polat Gray</p>
+                    <p className="inter-600 text-3xl sm:text-3xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">{language == "en" ? <>One on One <br />With Polat Gray</> : <>Polat Gray ile <br />bire bir</>}</p>
                     <div className="flex flex-col mt-5 gap-3">
                         <p className="inter-500 text-white px-5 text-xl text-center">{language == "en" ? "You will start make money in your first week." : "İlk haftanda para kazanmaya başlayacaksın."}</p>
                         <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Your first model will arrange it for you" : "  İlk modeliniz bunu sizin için ayarlayacak."}</p>
