@@ -137,7 +137,7 @@ const Footer = () => {
                             </a>
                     </div>
                     <div className="flex flex-col mb-5">
-                            <a href="/joinNow" className="flex items-center gap-2 cursor-pointer" target="_blank">
+                            <a href="/CheckPlan" className="flex items-center gap-2 cursor-pointer" target="_blank">
                                 <img src={Add} className="w-[35px]" alt="Instagram Logo" />
                                 <p className="text-amber-500 inter-500 text-xl">{language == "en" ? "Join Club" : "Club'a katıl"}</p>
                             </a>

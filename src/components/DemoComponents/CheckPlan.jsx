@@ -215,8 +215,8 @@ const CheckPlan = () => {
                     <div className="flex flex-col mt-5 gap-3">
                         <p className="inter-500 text-white px-5 text-xl text-center">{language == "en" ? "Polat Gray PDF Package" : "Polat Gray PDF paketi"}</p>
                         <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn how to find your first model" : "İlk modelini nasıl bulacağını öğreneceksin."}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn how to find top 1 percent models and get a deal with them" : "En iyi yüzde 1'lik modelleri nasıl bulacağınızı ve onlarla nasıl anlaşma yapacağınızı öğreneceksin."}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn how to find chatters and make them work for you and your model" : "Sohbet edenleri nasıl bulacağınızı ve onların sizin ve modeliniz için çalışmasını nasıl sağlayacağınızı öğreneceksin."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn how to find top 1 percent models and get a deal with them" : "En iyi yüzde 1'lik modelleri nasıl bulacağını ve onlarla nasıl anlaşma yapacağını öğreneceksin."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn how to find chatters and make them work for you and your model" : "Sohbet edenleri nasıl bulacağını ve onların senin ve modelinin için çalışmasını nasıl sağlayacağını öğreneceksin."}</p>
                         <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn all the secret marketing techniques that polatgray uses" : "Polatgray'in kullandığı tüm gizli pazarlama tekniklerini öğreneceksin."}</p>
                         <div className="price-tag">
                             <p className="line-1 text-white old-price">{language == "en" ? "1500$" : "14999TL"}</p>
@@ -229,8 +229,8 @@ const CheckPlan = () => {
                     <p className="inter-600 text-3xl sm:text-3xl text-white bg-amber-400 w-full text-center rounded-lg p-4 py-2">{language == "en" ? <>One on One <br />With Polat Gray</> : <>Polat Gray ile <br />bire bir</>}</p>
                     <div className="flex flex-col mt-5 gap-3">
                         <p className="inter-500 text-white px-5 text-xl text-center">{language == "en" ? "You will start make money in your first week." : "İlk haftanda para kazanmaya başlayacaksın."}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Your first model will arrange it for you" : "  İlk modeliniz bunu sizin için ayarlayacak."}</p>
-                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Your 3 chatters for your first model arrange for you" : "İlk modeliniz için 3 sohbetiniz sizin için ayarlanacak"}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Your first model will arrange it for you" : "  İlk modelin bunu senin için ayarlayacak."}</p>
+                        <p className="inter-500 text-white px-5  text-center">{language == "en" ? "Your 3 chatters for your first model arrange for you" : "İlk modelin için 3 sohbetin senin için ayarlanacak"}</p>
                         <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn everything with details" : "Her şeyi en detayıyla öğreneceksin."}</p>
                         <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will get a chance to partner with Polat Gray." : "Polat Gray ile ortak olma şansına sahip olacaksınız."}</p>
                         
