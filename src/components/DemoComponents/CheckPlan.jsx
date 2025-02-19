@@ -96,8 +96,8 @@ const CheckPlan = () => {
           return;
         }
     
-        if (cookies.email) {
-          toast.error(language === "en" ? "You've already joined early access." : "Zaten erken erişime katıldınız.");
+        if (cookies.email2) {
+          toast.error(language === "en" ? "You've already have demo package!" : "Zaten deneme paketi alındı!");
           return;
         }
     
@@ -115,9 +115,9 @@ const CheckPlan = () => {
             subscribedAt: new Date().getTime(),
           });
     
-          setCookie("email", email, { path: "/", expires: new Date(9999, 12, 31) });
+          setCookie("email2", email, { path: "/", expires: new Date(9999, 12, 31) });
           toast.dismiss();
-          toast.success(language === "en" ? "You've joined early access!" : "Erken erişime katıldın!");
+          toast.success(language === "en" ? "The trial package has been received, it will be sent to your e-mail address within a few days." : "Deneme paketi alındı, bir kaç gün içinde mail adresinize atılacak.");
     
           setName("");
           setEmail("");
