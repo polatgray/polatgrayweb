@@ -24,11 +24,15 @@ const Main = ({loggedUser}) => {
     const [userPhone, setUserPhone] = useState("");
     const [userJoinedAt, setUserJoinedAt] = useState("");
     const [userConvertedDate, setConvertedDate] = useState("");
+    const [userMail,setUserMail] = useState("");
     const [keepMoney, setKeepMoney] = useState("");
     const [menuBar,setMenuBar] = useState(false);
     const [purchaseTriggerState,setPurchaseTriggerState] = useState(0);
     const [supportTriggerState,setSupportTriggerState] = useState(0);
     const [clickedValueInner,setClickedValueInner] = useState("");
+    const [percentageState,setPercentageState] = useState("NO-DATA");
+    const [filterState,setFilterState] = useState("no-select");
+    const [filterData,setFilterData] = useState(true);
 
 
     //ARTICLE
@@ -77,12 +81,37 @@ const Main = ({loggedUser}) => {
                 ...doc.data(),
             }));
             setUsers(usersList);
+            console.log(usersList);
             setLoading(false);
         } catch (error) {
             console.error(error);
             toast.error("Veriler çekilirken bir sorun oluştu, lütfen geliştirici ile iletişime geçin");
         }
     };
+
+    const calculatePercentageDistribution = (usersList) => {
+        const totalUsers = usersList.length;
+      
+        const distribution = usersList.reduce((acc, user) => {
+          const value = user.moneyKeep?.value; // moneyKeep varsa value'yu al
+          if (value) {
+            acc[value] = (acc[value] || 0) + 1;
+          }
+          return acc;
+        }, {});
+      
+          const percentages = Object.keys(distribution).map((key) => ({
+          range: key,
+          percentage: ((distribution[key] / totalUsers) * 100).toFixed(2) + '%',
+        }));
+      
+        return percentages;
+      };
+
+    useEffect(() => {
+        const percentageSend = calculatePercentageDistribution(users);
+        setPercentageState(percentageSend);
+    }, [users])
 
     const handleCheckboxChange = async (userId, isChecked) => {
         try {
@@ -95,6 +124,27 @@ const Main = ({loggedUser}) => {
             console.error("Checkbox durumu güncellenirken hata oluştu: ", error);
         }
     };
+
+    useEffect(() => {
+        if (!users || users.length === 0) return;
+        
+        const filteredUsers = users.filter(user => {
+            const moneyValue = user.moneyKeep?.value || ""; // Eğer moneyKeep yoksa boş string döndür
+            switch (filterState) {
+                case "1-5": return moneyValue === "1-5";
+                case "5-30": return moneyValue === "5-30";
+                case "30-100": return moneyValue === "30-100";
+                case "100-1m": return moneyValue === "100-1m";
+                case "over1m": return moneyValue === "over1m";
+                default: return true; // Tüm kullanıcıları göster
+            }
+        });
+        
+        console.log(filterState,"filter state");
+        console.log("Filtrelenmiş kullanıcılar:", filteredUsers);
+        setFilterData(filteredUsers);
+    }, [users, filterState]);
+    
 
     useEffect(() => {
         if(clickedValueInner == "earlyAccess"){
@@ -150,6 +200,7 @@ const Main = ({loggedUser}) => {
                         <p className="inter-400 text-white">ID: <span className="inter-700"> {userId}</span></p>
                         <p className="inter-400 text-white">Kullanıcı Adı: <span className="inter-700"> {username}</span></p>
                         <p className="inter-400 text-white">Instagram: <span className="inter-700"> {userInstagram}</span></p>
+                        <p className="inter-400 text-white">E-Posta: <span className="inter-700"> {userMail}</span></p>
                         <p className="inter-400 text-white">Telefon Numarası: <span className="inter-700"> {userPhone}</span></p>
                         <p className="inter-400 text-white">
                             Şu kadar parasını ayırabilir:{" "}
@@ -171,44 +222,166 @@ const Main = ({loggedUser}) => {
                 <HomeMain loggedUserInner={loggedUser} clickedValueOuter={setClickedValueInner}/>
             </> : ""}
             {earlyAccess ? <div className="flex flex-col p-5 w-full items-center">
-                <p className="inter-600 text-white text-4xl text-2xl sm:text-start text-center">Erken erişim üyeleri</p>
-                <div className="flex flex-col gap-4 mt-5 items-center sm:w-[600px] w-[330px] h-spec-admin overflow-auto">
-                    {loading ? (
-                        <div className="loader"></div>
-                    ) : users && users.length > 0 ? (
-                        users
-                            .sort((a, b) => (b.subscribedAt || 0) - (a.subscribedAt || 0))
-                            .map((user) => (
-                                <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={user.id}>
-                                    <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
-                                    <div className="flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            checked={user.isChecked || false}
-                                            onChange={() => handleCheckboxChange(user.id, user.isChecked)}
-                                            className="mr-2 w-[25px] h-[25px] rounded-2xl outline-0"
-                                        />
-                                        <button
-                                            className="bg-amber-500 py-1 rounded-lg text-white px-3 inter-500 outline-0"
-                                            onClick={() => {
-                                                setModalOpen(!modalOpen);
-                                                setUsername(user.name);
-                                                setUserId(user.id);
-                                                setUserInstagram(user.instagram);
-                                                setUserPhone(user.phone);
-                                                setUserJoinedAt(user.subscribedAt);
-                                                setKeepMoney(user.moneyKeep || "");
-                                            }}
-                                        >
-                                            ...
-                                        </button>
-                                    </div>
-                                </div>
-                            ))
-                    ) : (
-                        <p className="text-white">Henüz kullanıcı bulunamadı.</p>
-                    )}
+                <p className="inter-600 text-white text-4xl text-2xl sm:text-start text-center mb-5">Erken erişim üyeleri</p>
+                <div className="flex items-center gap-4 sm:w-[600px] w-[330px] overflow-auto py-5 yellowScroll">
+                    <div className="advanced-card" onClick={() => setFilterState("1-5")}>
+                        <div>
+                            {percentageState != "NO-DATA" ? 
+                            <>
+                                <p className="text-amber-500 inter-600">{percentageState[0].percentage}</p>
+                            </> : <></>}
+                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">1-5K</p>
+                            {/* <p>{earlyAccessCount}</p> */}
+                        </div>
+                    </div>
+                    <div className="advanced-card" onClick={() => setFilterState("5-30")}>
+                        <div>
+                            {percentageState != "NO-DATA" ? 
+                            <>
+                                <p className="text-amber-500 inter-600">{percentageState[1].percentage}</p>
+                            </> : <></>}
+                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">5K-30K</p>
+                            {/* <p>{earlyAccessCount}</p> */}
+                        </div>
+                    </div>
+                    <div className="advanced-card" onClick={() => setFilterState("30-100")}>
+                        <div>
+                            {percentageState != "NO-DATA" ? 
+                            <>
+                                <p className="text-amber-500 inter-600">{percentageState[2].percentage}</p>
+                            </> : <></>}
+                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">30K-100K</p>
+                            {/* <p>{earlyAccessCount}</p> */}
+                        </div>
+                    </div>
+                    <div className="advanced-card" onClick={() => setFilterState("100-1m")}>
+                        <div>
+                            {percentageState != "NO-DATA" ? 
+                            <>
+                                <p className="text-amber-500 inter-600">{percentageState[3].percentage}</p>
+                            </> : <></>}
+                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">100K-1M</p>
+                            {/* <p>{earlyAccessCount}</p> */}
+                        </div>
+                    </div>
+                    <div className="advanced-card" onClick={() => setFilterState("over1m")}>
+                        <div>
+                            {percentageState != "NO-DATA" ? 
+                            <>
+                                <p className="text-amber-500 inter-600">{percentageState[4].percentage}</p>
+                            </> : <></>}
+                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">Over 1M</p>
+                            {/* <p>{earlyAccessCount}</p> */}
+                        </div>
+                    </div>
+                    <div className="advanced-card" onClick={() => setFilterState("no-select")}>
+                        <div>
+                            {percentageState != "NO-DATA" ? 
+                            <>
+                                <p className="text-amber-500 inter-600">{percentageState[4].percentage}</p>
+                            </> : <></>}
+                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">Over 1M</p>
+                            {/* <p>{earlyAccessCount}</p> */}
+                        </div>
+                    </div>
                 </div>
+                <div className="flex justify-center gap-6">
+                    <div>
+
+                    </div>
+                    <div className="flex flex-col gap-4 mt-5 items-center sm:w-[600px] w-[330px] h-spec-admin yellowScroll overflow-auto">
+                        {loading ? (
+                            <div className="loader"></div>
+                        ) : filterState === "no-select" ? (
+                            users && users.length > 0 ? (
+                                users
+                                    .sort((a, b) => (b.subscribedAt || 0) - (a.subscribedAt || 0))
+                                    .map((user) => (
+                                        <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={user.id}>
+                                            <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
+                                            <div className="flex items-center gap-4">
+                                            <input
+                                                    type="checkbox"
+                                                    checked={user.isChecked || false}
+                                                    onChange={() => handleCheckboxChange(user.id, user.isChecked)}
+                                                    className="mr-2 w-[25px] h-[25px] rounded-2xl outline-0"
+                                                />
+                                            <button
+                                                    className="bg-amber-500 py-1 rounded-lg text-white px-3 inter-500 outline-0"
+                                                    onClick={() => {
+                                                        setModalOpen(!modalOpen);
+                                                        setUsername(user.name);
+                                                        setUserId(user.id);
+                                                        setUserInstagram(user.instagram);
+                                                        setUserPhone(user.phone);
+                                                        setUserJoinedAt(user.subscribedAt);
+                                                        setKeepMoney(user.moneyKeep || "");
+                                                        setUserMail(user.email)
+                                                    }}
+                                                >
+                                                    ...
+                                            </button>
+                                        </div>
+                                        </div>
+                                    ))
+                            ) : (
+                                <p className="text-white">Henüz kullanıcı bulunamadı.</p>
+                            )
+                        ) : (
+                            filterData.length > 0 ? (
+                                filterData.map((user) => (
+                                    <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={user.id}>
+                                        <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
+                                        <div className="flex items-center gap-4">
+                                            <input
+                                                    type="checkbox"
+                                                    checked={user.isChecked || false}
+                                                    onChange={() => handleCheckboxChange(user.id, user.isChecked)}
+                                                    className="mr-2 w-[25px] h-[25px] rounded-2xl outline-0"
+                                                />
+                                            <button
+                                                    className="bg-amber-500 py-1 rounded-lg text-white px-3 inter-500 outline-0"
+                                                    onClick={() => {
+                                                        setModalOpen(!modalOpen);
+                                                        setUsername(user.name);
+                                                        setUserId(user.id);
+                                                        setUserInstagram(user.instagram);
+                                                        setUserPhone(user.phone);
+                                                        setUserJoinedAt(user.subscribedAt);
+                                                        setKeepMoney(user.moneyKeep || "");
+                                                        setUserMail(user.email)
+                                                    }}
+                                                >
+                                                    ...
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <p className="text-white">Filtreye uyan kullanıcı yok.</p>
+                            )
+                        )}
+                    </div>
+                </div>
+                
             </div> : ""}
             {purchaseMainState ? <PurchaseMain purchaseTrigger={purchaseTriggerState}/> : ""}
             {supportMainState ? <SupportMain supportTriggerInner={supportTriggerState}/> : ""}

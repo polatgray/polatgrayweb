@@ -155,3 +155,33 @@ body{
     font-weight: 400;
     font-style: italic;
   }
+
+  .yellowScroll::-webkit-scrollbar {
+    height: 5px;
+    width: 8px;
+  }
+  .yellowScroll::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #000000;
+  }
+  
+  .yellowScroll::-webkit-scrollbar-track:hover {
+    background-color: #000000;
+  }
+  
+  .yellowScroll::-webkit-scrollbar-track:active {
+    background-color: #000000;
+  }
+  
+  .yellowScroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #d4aa00;
+  }
+  
+  .yellowScroll::-webkit-scrollbar-thumb:hover {
+    background-color: #FFCE0C;
+  }
+  
+  .yellowScroll::-webkit-scrollbar-thumb:active {
+    background-color: #FFCE0C;
+  }
