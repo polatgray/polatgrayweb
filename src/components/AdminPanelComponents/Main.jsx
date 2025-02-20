@@ -293,12 +293,12 @@ const Main = ({loggedUser}) => {
                         <div>
                             {percentageState != "NO-DATA" ? 
                             <>
-                                <p className="text-amber-500 inter-600">{percentageState[4].percentage}</p>
+                            
                             </> : <></>}
                             {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
                         </div>
                         <div className="card-content">
-                            <p className="text-white inter-600 text-xs">Over 1M</p>
+                            <p className="text-white inter-600 text-xs">Temizle</p>
                             {/* <p>{earlyAccessCount}</p> */}
                         </div>
                     </div>
