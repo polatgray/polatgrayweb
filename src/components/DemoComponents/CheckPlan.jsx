@@ -71,6 +71,7 @@ const CheckPlan = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [instagram, setInstagram] = useState("");
+    const [selectedOption, setSelectedOption] = useState(options[0]);
     const [selectedCountry, setSelectedCountry] = useState(countries[0].code);
 
     const customStyles = {
@@ -88,7 +89,20 @@ const CheckPlan = () => {
         setSelectedCountry(e.target.value);
     };
 
-   
+    const options = [
+      { value: 'noSelect', label: `${language == "en" ? "How much money you have to invest?" : "Ne kadar ayırabilirsin?"}` },
+      { value: '1-5', label: '1K-5K' },
+      { value: '5-30', label: '5K - 30K' },
+      { value: '30-100', label: '30K - 100K' },
+      { value: '100-1m', label: '100K - 1 Million' },
+      { value: 'over1m', label: "Over 1 Million" }
+    ];
+
+    const handleSelectChange = (e) => {
+      const selected = options.find(option => option.value === e.target.value);
+      setSelectedOption(selected);
+    };
+  
       
       const sendEarlyAccess = async () => {
         if (!name || !email || !phone || !instagram) {
@@ -195,6 +209,20 @@ const CheckPlan = () => {
                 value={instagram}
                 onChange={(e) => setInstagram(e.target.value)}
               />
+            </div>
+            <div className="flex flex-col gap-3">
+              <p className="text-white inter-500">{language === "en" ? "How much money you have to invest in yourself?" : "Geleceğin için ne kadar para ayırabilirsin?"}</p>
+              <select
+              value={selectedOption.value}  
+              onChange={handleSelectChange}
+              className="p-2 rounded-lg outline-none border bg-black border-amber-400 text-white"
+            >
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
             </div>
             <button
               className="bg-amber-500 hover:bg-amber-600 transition-all duration-300 cursor-pointer px-8 py-3 text-white inter-500 rounded-lg"
