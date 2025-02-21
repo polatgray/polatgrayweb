@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from "react";
 import { collection, doc, setDoc, getFirestore } from "firebase/firestore";
-import { db } from "./Firebase/Firebase";
 import Modal from 'react-modal';
 import Close from "../images/closeWhite.svg";
 import toast from 'react-hot-toast';
@@ -12,6 +11,16 @@ const JoinNow = () => {
   const [cookies, setCookie] = useCookies(['email']);
   const { language } = useContext(LanguageContext);
   const db = getFirestore();
+
+  const options = [
+    { value: 'noSelect', label: `${language == "en" ? "How much money you have to invest?" : "Ne kadar ayırabilirsin?"}` },
+    { value: '1-5', label: '1K-5K' },
+    { value: '5-30', label: '5K - 30K' },
+    { value: '30-100', label: '30K - 100K' },
+    { value: '100-1m', label: '100K - 1 Million' },
+    { value: 'over1m', label: "Over 1 Million" }
+  ];
+
 
   const countries = [
     { code: "+90", name: "Turkey", flag: "🇹🇷" },
@@ -61,14 +70,6 @@ const JoinNow = () => {
     { code: "+216", name: "Tunisia", flag: "🇹🇳" },
   ];
 
-  const options = [
-    { value: 'noSelect', label: `${language == "en" ? "How much money you have to invest?" : "Ne kadar ayırabilirsin?"}` },
-    { value: '1-5', label: '1K-5K' },
-    { value: '5-30', label: '5K - 30K' },
-    { value: '30-100', label: '30K - 100K' },
-    { value: '100-1m', label: '100K - 1 Million' },
-    { value: 'over1m', label: "Over 1 Million" }
-  ];
 
   const [modalOpen, setModalOpen] = useState(false);
   const [name, setName] = useState("");
@@ -77,6 +78,8 @@ const JoinNow = () => {
   const [instagram, setInstagram] = useState("");
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [selectedCountry, setSelectedCountry] = useState(countries[0].code);
+
+ 
 
   const handleCountryChange = (e) => {
     setSelectedCountry(e.target.value);
@@ -131,7 +134,7 @@ const JoinNow = () => {
         email,
         phone: `${selectedCountry} ${phone}`,
         instagram,
-        moneyKeep: selectedOption == null ? { value: '1-5', label: '1K-5k' } : selectedOption,
+        moneyKeep: selectedOption.value === "noSelect" ? { value: '1-5', label: '1K-5k' } : selectedOption,
         subscribedAt: new Date().getTime(),
       });
 
@@ -150,6 +153,7 @@ const JoinNow = () => {
       toast.error(language === "en" ? "Unexpected error!" : "Beklenmedik bir hata oluştu!");
     }
   };
+  
 
   return (
     <>

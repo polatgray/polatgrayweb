@@ -12,6 +12,17 @@ import { useCookies } from "react-cookie";
 
 const CheckPlan = () => {
 
+  const {language} = useContext(LanguageContext);
+
+  const options = [
+    { value: 'noSelect', label: `${language == "en" ? "How much money you have to invest?" : "Ne kadar ayırabilirsin?"}` },
+    { value: '1-5', label: '1K-5K' },
+    { value: '5-30', label: '5K - 30K' },
+    { value: '30-100', label: '30K - 100K' },
+    { value: '100-1m', label: '100K - 1 Million' },
+    { value: 'over1m', label: "Over 1 Million" }
+  ];
+
     const countries = [
         { code: "+90", name: "Turkey", flag: "🇹🇷" },
         { code: "+1", name: "United States", flag: "🇺🇸" },
@@ -62,7 +73,6 @@ const CheckPlan = () => {
 
     const navigate = useNavigate();
 
-    const {language} = useContext(LanguageContext);
 
     const [cookies, setCookie] = useCookies(['email']);
 
@@ -89,14 +99,7 @@ const CheckPlan = () => {
         setSelectedCountry(e.target.value);
     };
 
-    const options = [
-      { value: 'noSelect', label: `${language == "en" ? "How much money you have to invest?" : "Ne kadar ayırabilirsin?"}` },
-      { value: '1-5', label: '1K-5K' },
-      { value: '5-30', label: '5K - 30K' },
-      { value: '30-100', label: '30K - 100K' },
-      { value: '100-1m', label: '100K - 1 Million' },
-      { value: 'over1m', label: "Over 1 Million" }
-    ];
+  
 
     const handleSelectChange = (e) => {
       const selected = options.find(option => option.value === e.target.value);
