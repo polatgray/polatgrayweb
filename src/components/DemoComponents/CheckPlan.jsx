@@ -128,6 +128,7 @@ const CheckPlan = () => {
             name,
             email,
             phone: `${selectedCountry} ${phone}`,
+            moneyKeep: selectedOption.value === "noSelect" ? { value: '1-5', label: '1K-5k' } : selectedOption,
             instagram,
             subscribedAt: new Date().getTime(),
           });
