@@ -9,10 +9,39 @@ import { LanguageContext } from "../Context/LanguageContext"
 import CheckPlan from "./DemoComponents/CheckPlan"
 import CheckOut from "./DemoComponents/CheckOut"
 import SuccessPayment from "./DemoComponents/SuccessPayment"
+import SiteBlocked from "./AdminPanelComponents/SiteBlocked"
+import { createClient } from "@supabase/supabase-js"
+import { useNavigate } from "react-router-dom"
 
 const Main = () => {
 
-    const {language,setLanguage} = useContext(LanguageContext)
+    const {language,setLanguage} = useContext(LanguageContext);
+
+    const navigate = useNavigate();
+
+      const supabaseUrl = process.env.REACT_APP_SBURL;
+      const supabaseKey = process.env.REACT_APP_SBAPIKEY;
+      const supabase = createClient(supabaseUrl, supabaseKey);
+
+      const checkSiteOnline = async () => {
+            const { data, error } = await supabase
+                .from('site_access')
+                .select('site_online')
+                .eq('id', 1)
+                .single(); // Tek bir satır almak için
+
+            if (error) {
+                console.error("Supabase Hatası:", error);
+                return;
+            }
+            else{
+              if(!data.site_online){
+                console.log("Service Unavailable")
+                navigate("/ServiceUnavailable")
+              }
+              console.log(data);
+            }
+      }
 
     useEffect(() => {
         const getLocation = async () => {
@@ -31,7 +60,9 @@ const Main = () => {
         };
     
         getLocation();
+        checkSiteOnline();
       }, []); 
+      
 
     return(
         <>
@@ -44,6 +75,7 @@ const Main = () => {
                 <Route path="/CheckPlan" element={<CheckPlan />} />
                 <Route path="/CheckOut" element={<CheckOut />} />
                 <Route path="/SuccessPayment" element={<SuccessPayment />} />
+                <Route path="/ServiceUnavailable" element={<SiteBlocked />} />
             </Routes>
         </>
     )
