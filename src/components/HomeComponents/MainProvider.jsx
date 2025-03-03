@@ -8,25 +8,20 @@ import Footer from "./Footer";
 import "../../css/Opening.css";
 import HomeV3 from "../DemoComponents/HomeV3"
 
-const MainProvider = ({timeTrigger}) => {
+const MainProvider = ({}) => {
 
     const [aniEnd,setAniEnd] = useState(false)
     const [opacityState,setOpacityState] = useState(false);
 
 
     useEffect(() => {
-        if(timeTrigger != 1){
             setTimeout(() => (
                 setOpacityState(true),
                 setTimeout(() => (
                     setAniEnd(true)
                 ), 300)
             ), 3000);
-        }
-        else{
-            setAniEnd("no-val");
-        }
-    }, [timeTrigger]);
+    }, []);
 
     return (
         <>
