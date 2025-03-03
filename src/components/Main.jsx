@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom"
 const Main = () => {
 
     const {language,setLanguage} = useContext(LanguageContext);
+    const [triggetVal,setTriggerVal] = useState(1);
 
     const navigate = useNavigate();
 
@@ -38,6 +39,9 @@ const Main = () => {
               if(!data.site_online){
                 console.log("Service Unavailable")
                 navigate("/ServiceUnavailable")
+              }
+              else{
+                setTriggerVal(2);
               }
               console.log(data);
             }
@@ -67,7 +71,7 @@ const Main = () => {
     return(
         <>
             <Routes>
-                <Route path="/" element={<MainProvider />} />
+                <Route path="/" element={<MainProvider timeTrigger={triggetVal}/>} />
                 <Route path="/learnAboutOFM" element={<LearnAboutOFM />} />
                 <Route path="/joinNow" element={<JoinNow />} />
                 <Route path="/DemoComponents" element={<MainDemo />} />
