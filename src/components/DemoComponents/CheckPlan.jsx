@@ -105,9 +105,81 @@ const CheckPlan = () => {
       const selected = options.find(option => option.value === e.target.value);
       setSelectedOption(selected);
     };
+    
+      const sendEnMail = async () => {
+        const formData = {
+          service_id: process.env.REACT_APP_MAILSERVICEID,
+          template_id: process.env.REACT_APP_MAILTEMPLATEIDEN,
+          user_id: "qAE_Wfu-u0HWDL8Cy", // Bu, kişisel user ID'niz
+          template_params: {
+              to_name: name,
+              to_mail: email,
+              message: "Merhaba, bu bir test mesajıdır."
+          }
+      };
   
+        try {
+            const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                console.log('SUCCESS!', data);
+            } else {
+                console.error('Error:', data);
+            }
+        } catch (error) {
+            console.error('Error sending email:', error);
+        }
+      } 
+
+      const sendTrMail = async () => {
+        const formData = {
+            service_id: process.env.REACT_APP_MAILSERVICEID,
+            template_id: process.env.REACT_APP_MAILTEMPLATEIDTR,
+            user_id: "qAE_Wfu-u0HWDL8Cy", // Bu, kişisel user ID'niz
+            template_params: {
+                to_name: name,
+                to_mail: email,
+                message: "Merhaba, bu bir test mesajıdır."
+            }
+        };
+    
+        try {
+            const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                console.log('SUCCESS!', data);
+            } else {
+                console.error('Error:', data);
+            }
+        } catch (error) {
+            console.error('Error sending email:', error);
+        }
+    };
+    
       
       const sendEarlyAccess = async () => {
+        if(language == "en"){
+          sendEnMail();
+        }
+        else{
+          sendTrMail();
+        }
         if (!name || !email || !phone || !instagram) {
           toast.error(language === "en" ? "Please fill in all information" : "Lütfen tüm bilgileri doldurun");
           return;
