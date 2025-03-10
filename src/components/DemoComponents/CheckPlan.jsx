@@ -16,10 +16,10 @@ const CheckPlan = () => {
 
   const options = [
     { value: 'noSelect', label: `${language == "en" ? "How much money you have to invest?" : "Ne kadar ayırabilirsin?"}` },
-    { value: '1-5', label: '1K-5K' },
-    { value: '5-30', label: '5K - 30K' },
-    { value: '30-100', label: '30K - 100K' },
-    { value: '100-1m', label: '100K - 1 Million' },
+    { value: '5-10', label: '5K - 10K' },
+    { value: '10-30', label: '10K-30K' },
+    { value: '100-500', label: '100K-500K' },
+    { value: '500-1m', label: '500K - 1M' },
     { value: 'over1m', label: "Over 1 Million" }
   ];
 

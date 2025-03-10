@@ -90,24 +90,32 @@ const Main = ({loggedUser}) => {
     };
 
     const calculatePercentageDistribution = (usersList) => {
+        if (!usersList || usersList.length === 0) {
+            return [{ range: "Veri Yok", percentage: "0%" }];
+        }
+    
         const totalUsers = usersList.length;
-      
+    
         const distribution = usersList.reduce((acc, user) => {
-          const value = user.moneyKeep?.value; // moneyKeep varsa value'yu al
-          if (value) {
-            acc[value] = (acc[value] || 0) + 1;
-          }
-          return acc;
+            const value = user.moneyKeep?.value;
+            if (value) {
+                acc[value] = (acc[value] || 0) + 1;
+            }
+            return acc;
         }, {});
-      
-          const percentages = Object.keys(distribution).map((key) => ({
-          range: key,
-          percentage: ((distribution[key] / totalUsers) * 100).toFixed(2) + '%',
+    
+        const percentages = Object.keys(distribution).map((key) => ({
+            range: key,
+            percentage: ((distribution[key] / totalUsers) * 100).toFixed(2) + '%',
         }));
-      
-        return percentages;
-      };
-
+    
+        // Eğer hiç oran hesaplanmamışsa %0 ekle
+        return percentages.length > 0 
+            ? percentages 
+            : [{ range: "Veri Yok", percentage: "0%" }];
+    };
+    
+    
     useEffect(() => {
         const percentageSend = calculatePercentageDistribution(users);
         setPercentageState(percentageSend);
@@ -132,9 +140,13 @@ const Main = ({loggedUser}) => {
             const moneyValue = user.moneyKeep?.value || ""; // Eğer moneyKeep yoksa boş string döndür
             switch (filterState) {
                 case "1-5": return moneyValue === "1-5";
+                case "5-10": return moneyValue === "5-10"; //new
                 case "5-30": return moneyValue === "5-30";
+                case "10-30": return moneyValue === "10-30"; //NEW
                 case "30-100": return moneyValue === "30-100";
+                case "100-500": return moneyValue === "100-500"; //NEW
                 case "100-1m": return moneyValue === "100-1m";
+                case "500-1m": return moneyValue === "500-1m"; //NEW
                 case "over1m": return moneyValue === "over1m";
                 default: return true; // Tüm kullanıcıları göster
             }
@@ -226,10 +238,7 @@ const Main = ({loggedUser}) => {
                 <div className="flex items-center gap-4 sm:w-[600px] w-[330px] overflow-auto py-5 yellowScroll">
                     <div className="advanced-card" onClick={() => setFilterState("1-5")}>
                         <div>
-                            {percentageState != "NO-DATA" ? 
-                            <>
-                                <p className="text-amber-500 inter-600">{percentageState[0].percentage}</p>
-                            </> : <></>}
+                            
                             {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
                         </div>
                         <div className="card-content">
@@ -237,12 +246,19 @@ const Main = ({loggedUser}) => {
                             {/* <p>{earlyAccessCount}</p> */}
                         </div>
                     </div>
+                    <div className="advanced-card" onClick={() => setFilterState("5-10")}>
+                        <div>
+                            
+                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">5K-10K</p>
+                            {/* <p>{earlyAccessCount}</p> */}
+                        </div>
+                    </div>
                     <div className="advanced-card" onClick={() => setFilterState("5-30")}>
                         <div>
-                            {percentageState != "NO-DATA" ? 
-                            <>
-                                <p className="text-amber-500 inter-600">{percentageState[1].percentage}</p>
-                            </> : <></>}
+                            
                             {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
                         </div>
                         <div className="card-content">
@@ -250,12 +266,19 @@ const Main = ({loggedUser}) => {
                             {/* <p>{earlyAccessCount}</p> */}
                         </div>
                     </div>
+                    <div className="advanced-card" onClick={() => setFilterState("10-30")}>
+                        <div>
+                            
+                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">10K-30K</p>
+                            {/* <p>{earlyAccessCount}</p> */}
+                        </div>
+                    </div>
                     <div className="advanced-card" onClick={() => setFilterState("30-100")}>
                         <div>
-                            {percentageState != "NO-DATA" ? 
-                            <>
-                                <p className="text-amber-500 inter-600">{percentageState[2].percentage}</p>
-                            </> : <></>}
+                           
                             {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
                         </div>
                         <div className="card-content">
@@ -263,30 +286,43 @@ const Main = ({loggedUser}) => {
                             {/* <p>{earlyAccessCount}</p> */}
                         </div>
                     </div>
+                    <div className="advanced-card" onClick={() => setFilterState("100-500")}>
+                        <div>
+                            
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">100K-500K</p>
+                        </div>
+                    </div>
                     <div className="advanced-card" onClick={() => setFilterState("100-1m")}>
                         <div>
-                            {percentageState != "NO-DATA" ? 
-                            <>
-                                <p className="text-amber-500 inter-600">{percentageState[3].percentage}</p>
-                            </> : <></>}
-                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                            
                         </div>
                         <div className="card-content">
                             <p className="text-white inter-600 text-xs">100K-1M</p>
-                            {/* <p>{earlyAccessCount}</p> */}
                         </div>
                     </div>
+                    <div className="advanced-card" onClick={() => setFilterState("500-1m")}>
+                        <div>
+                            
+                        </div>
+                        <div className="card-content">
+                            <p className="text-white inter-600 text-xs">500K-1M</p>
+                        </div>
+                    </div>
+                  
                     <div className="advanced-card" onClick={() => setFilterState("over1m")}>
                         <div>
-                            {percentageState != "NO-DATA" ? 
-                            <>
-                                <p className="text-amber-500 inter-600">{percentageState[4].percentage}</p>
-                            </> : <></>}
-                            {/* <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" /> */}
+                            {/* {percentageState && percentageState[5] ? 
+                                <p className="text-amber-500 inter-600">
+                                    {percentageState[8].percentage}
+                                </p>
+                             : 
+                                <p className="text-amber-500 inter-600">0%</p>  
+                            } */}
                         </div>
                         <div className="card-content">
                             <p className="text-white inter-600 text-xs">Over 1M</p>
-                            {/* <p>{earlyAccessCount}</p> */}
                         </div>
                     </div>
                     <div className="advanced-card" onClick={() => setFilterState("no-select")}>
