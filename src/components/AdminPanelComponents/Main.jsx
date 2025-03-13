@@ -1,4 +1,4 @@
-import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../Firebase/Firebase";
 import toast from "react-hot-toast";
@@ -12,6 +12,8 @@ import Right from "../../images/rightAdmin.svg"
 import PurchaseMain from "./PurchaseMain";
 import SupportMain from "./SupportMain";
 import HostingServices from "./HostingServices";
+import Delete from "../../images/delete.svg"
+import { deleteUser } from "firebase/auth";
 
 const Main = ({loggedUser}) => {
     const [users, setUsers] = useState([]);
@@ -103,6 +105,8 @@ const Main = ({loggedUser}) => {
             }
             return acc;
         }, {});
+
+
     
         const percentages = Object.keys(distribution).map((key) => ({
             range: key,
@@ -114,6 +118,20 @@ const Main = ({loggedUser}) => {
             ? percentages 
             : [{ range: "Veri Yok", percentage: "0%" }];
     };
+
+    const deleteUser = async (userId) => {
+        toast.loading("Yükleniyor...")
+        try {
+            await deleteDoc(doc(db, "earlyAccessUsers", userId));
+            toast.dismiss();
+            toast.success("Kullanıcı başarıyla silindi.");
+            fetchEarlyAccessUsers();
+        } catch (error) {
+            console.error("Kullanıcı silinirken hata oluştu: ", error);
+            toast.dismiss();
+            toast.error("Kullanıcı silinirken bir sorun oluştu, lütfen geliştirici ile iletişime geçin.");
+        }
+    }
     
     
     useEffect(() => {
@@ -354,6 +372,7 @@ const Main = ({loggedUser}) => {
                                         <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={user.id}>
                                             <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
                                             <div className="flex items-center gap-4">
+                                                <img src={Delete} onClick={() => deleteUser(user.id)} className="bg-red-500 hover:bg-red-600 p-2 rounded-lg transition-all duration-300 w-[40px]" alt="Delete" />
                                             <input
                                                     type="checkbox"
                                                     checked={user.isChecked || false}
