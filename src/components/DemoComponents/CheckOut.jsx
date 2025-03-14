@@ -1,4 +1,4 @@
-import { useEffect, useState,useContext } from "react"
+import { useEffect, useState,useContext, use } from "react"
 import toast from "react-hot-toast"
 import { data, useLocation, useNavigate } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
@@ -32,7 +32,125 @@ const CheckOut = () => {
     const [loginLoading,setLoginLoading] = useState(false);
     const [cryptoType,setCryptoType] = useState("noValue")
     const [cryptoStart,setCryptoStart] = useState(null);
-    const [finishLoading,setFinishLoading] = useState(false)
+    const [finishLoading,setFinishLoading] = useState(false);
+
+//     // TEST AREA
+//     const domains = ["yahoo.com", "gmail.com", "hotmail.com", "outlook.com"];
+// const packages = ["package1", "package2", "package3"];
+
+// const turkNames = [
+//     "Ahmet", "Mehmet", "Ayşe", "Fatma", "Burak", "Deniz", "Emre", "Can", "Ali", "Kemal", "Mustafa", "Murat", "Okan", "Serkan", "Hakan", "Berk", "Uğur", "Yasin", "Cem", "Gökhan",
+//     "Sibel", "Zeynep", "Ece", "Gizem", "Nazan", "Merve", "Elif", "Derya", "Aslı", "Hale", "Pelin", "İrem", "Tuğba", "Gül", "Yasemin", "Ayhan", "Hüseyin", "Osman", "Ferhat", "Volkan",
+//     "Şahin", "Tolga", "Ebru", "Aylin", "Arda", "Barış", "Denizhan", "Melis", "Şule", "Onur", "Kaan", "İlker", "Necla", "Furkan", "Rıdvan", "Burcu", "Büşra", "Özlem", "Cansu", "Berna",
+//     "Meltem", "Betül", "Ezgi", "Fırat", "Berkay", "Emir", "Umut", "Alper", "Sinan", "Alp", "Ozan", "Cenk", "Kıvanç", "Tunahan", "Mert", "Yiğit", "Hasan", "Fatih", "Selim", "Engin",
+//     "Erkan", "İsmail", "Erdem", "Metin", "Samet", "Halil", "Mahmut", "Vedat", "Orhan", "Tarık", "Ramazan", "Yakup", "Arif", "Bayram", "Kadir", "Ömer", "Bekir", "Salih", "İsa", "Ercan",
+//     "Şener", "Zafer", "Şükrü", "Nuri", "İbrahim", "Yavuz", "Serdar", "Efe", "Giray", "Ergin", "Koray", "Serhat", "Mecnun", "Zeki", "Uğurcan", "Nihat", "Tuncay", "Ferdi", "Recep", "Kemalettin"
+// ];
+
+// const germanNames = [
+//     "Hans", "Peter", "Johann", "Lukas", "Stefan", "Klaus", "Karl", "Fritz", "Heinz", "Gustav", "Rudolf", "Ernst", "Wilhelm", "Gerhard", "Dieter", "Werner", "Wolfgang", "Manfred", "Horst", "Helmut",
+//     "Ulrich", "Andreas", "Thomas", "Jürgen", "Michael", "Matthias", "Markus", "Frank", "Stephan", "Rainer", "Reinhard", "Lothar", "Bernd", "Uwe", "Kurt", "Christian", "Dominik", "Tobias", "Max", "Oliver",
+//     "Ralf", "Sven", "Ingo", "Jens", "Dirk", "Florian", "Leon", "Nico", "Marcel", "Kevin", "Felix", "Tim", "Jan", "Fabian", "Patrick", "Daniel", "Simon", "Erik", "Moritz", "Nils",
+//     "Benjamin", "Sebastian", "Jonas", "Philipp", "Alex", "Bastian", "Konrad", "Gregor", "Fabio", "Dennis", "Kilian", "Martin", "Marius", "Nikolai", "Lennart", "Till", "Elias", "Leander", "Valentin", "Timo",
+//     "Falk", "Julius", "Anton", "Adrian", "Jannik", "Henrik", "Christoph", "Carsten", "Lars", "Marvin", "Richard", "Frederik", "Raphael", "Pascal", "Robin", "Emil", "Finn", "Joshua", "Marco", "Cedric"
+// ];
+
+// const americanNames = [
+//     "John", "Mike", "Chris", "Steve", "Robert", "James", "Brian", "Kevin", "Jason", "Eric", "Andrew", "Adam", "Daniel", "Paul", "Ryan", "Justin", "Brandon", "Matthew", "Joshua", "Tyler",
+//     "Alex", "Ben", "Nick", "Sean", "Derek", "Kyle", "Logan", "Aaron", "Evan", "Brad", "Gary", "Greg", "Mark", "David", "Anthony", "Jeff", "Tom", "Pat", "Scott", "Jerry",
+//     "Jordan", "Lucas", "Blake", "Cameron", "Hunter", "Jared", "Zach", "Shawn", "Troy", "Danny", "Jack", "Dean", "Colin", "Ray", "Clint", "Leo", "Harry", "Victor", "Walter", "Joe",
+//     "Ethan", "Noah", "Jacob", "Mason", "Liam", "Aiden", "Oscar", "Felix", "Elliot", "Austin", "Bryce", "Milo", "Tristan", "Gavin", "Chase", "Cooper", "Connor", "Caleb", "Brody", "Wyatt",
+//     "Xavier", "Brady", "Oliver", "Jonah", "Maxwell", "Elijah", "Carter", "Dylan", "Nathan", "Grayson", "Finn", "Henry", "Landon", "Parker", "Easton", "Jace", "Nash", "Ryder", "Holden", "Bennett"
+// ]
+
+// const surnames = [
+//     // Türk soyisimleri
+//     "Yılmaz", "Mehmet", "Kral", "Çelik", "Demir", "Kaya", "Öztürk", "Çalışkan", 
+//     "Başar", "Kaplan", "Arslan", "Özdemir", "Şimşek", "Gürbüz", "Yavuz", "Eroğlu", 
+//     "Koç", "Polat", "Aksoy", "Yıldız", "Aslan", "Doğan", "Çetin", "Ersoy", "Kurt", 
+//     "Can", "Bilgin", "Aydın", "Turan", "Özkan", "Tekin", "Sezer", "Erkan", "Yüksel", 
+//     "Tan", "Emre", "İlhan", "Bayraktar", "Soylu", "Taş", "Duman", "Güneş", 
+//     "Karaca", "Ulusoy", "Karagöz", "Yalçın", "Kurtuluş", "Selim", "Şahin", "Avcı", 
+//     "Eren", "Çakır", "Bozkurt", "Toprak", "Albayrak", "Gök", "Bulut", "Arı", "Ceylan",
+
+//     // Alman soyisimleri
+//     "Schmidt", "Müller", "Wolfgang", "Gutenberg", "Hoffman", "Stein", "Bach", 
+//     "Merkel", "Schneider", "Bauer", "Fischer", "Kaiser", "Lehmann", "Scholz", 
+//     "Weber", "Zimmermann", "Becker", "Richter", "Huber", "Lang", "Vogel", 
+//     "Schuster", "Keller", "Mayer", "Brunner", "Hartmann", "Wagner", "Baumann", 
+//     "Krüger", "Schäfer", "Walter", "Kuhn", "Arnold", "Peters", "Reichert", "Heinrich",
+//     "Lindner", "Hess", "Dreyer", "Meier", "Friedrich", "Kirchner", "Roth", "Bergmann", 
+//     "Schultz", "Steiner", "Braun", "Fuchs", "Schubert", "Heinz", "Schröder", "Lorenz",
+
+//     // Amerikan/İngiliz soyisimleri
+//     "Smith", "Johnson", "Williams", "Jones", "Taylor", "Davis", "Miller", "Wilson", 
+//     "Anderson", "Clark", "Adams", "Evans", "Parker", "Brooks", "Gray", "Long", 
+//     "Foster", "Morris", "Walker", "Robinson", "Hall", "Allen", "Young", "King", 
+//     "Wright", "Green", "Baker", "Hill", "Scott", "Lewis", "Harris", "Mitchell", 
+//     "Carter", "Phillips", "Cooper", "Morgan", "Howard", "Ward", "Reed", "Cook", 
+//     "Bell", "Murphy", "Bailey", "Russell", "Hayes", "Bryant", "Burns", "Stone", 
+//     "Henderson", "Cole", "Webb", "Hunter", "Ellis", "Riley", "Stewart", "Wells", 
+//     "Griffin", "Jordan", "Oliver", "Cruz", "Patterson", "Hicks", "Pierce", "Warren"
+// ];
+
+
+// const allNames = [...turkNames, ...germanNames, ...americanNames];
+
+// const generateEmails = (names) => {
+//     return names.map(name => {
+//         const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+//         const randomNumber = Math.floor(1000 + Math.random() * 9000); // 4 basamaklı rastgele sayı
+//         const surname = surnames[Math.floor(Math.random() * surnames.length)];
+//         const useMultipleNames = Math.random() > 0.5;
+//         const finalName = useMultipleNames ? `${name}.${surname}` : name;
+//         return `${finalName.toLowerCase()}${randomNumber}@${randomDomain}`;
+//     });
+// };
+
+// const generateRandomPassword = () => {
+//     const randomName = allNames[Math.floor(Math.random() * allNames.length)];
+//     const randomSurname = surnames[Math.floor(Math.random() * surnames.length)];
+//     const randomSpecialChar = "!@#$%^&*"[Math.floor(Math.random() * 8)];
+//     const randomDigits = Math.floor(1000 + Math.random() * 9000);
+//     return `${randomName}${randomSurname}${randomSpecialChar}${randomDigits}`;
+// };
+
+// const generateRandomPackage = () => {
+//     return packages[Math.floor(Math.random() * packages.length)];
+// };
+
+// const spamPayments = async () => {
+//     let count = 0;
+//     const interval = setInterval(async () => {
+//         const randomName = allNames[Math.floor(Math.random() * allNames.length)];
+//         const surname = surnames[Math.floor(Math.random() * surnames.length)];
+//         const email = generateEmails([randomName])[0];
+//         const password = generateRandomPassword();
+//         const packageType = generateRandomPackage();
+
+//         try {
+//             const docRef = await addDoc(collection(db, "paymentsOk"), {
+//                 name: `${randomName} ${surname}`,
+//                 email,
+//                 password,
+//                 package: packageType,
+//                 createdAt: new Date()
+//             });
+
+//             console.log(`Belge eklendi, ID: ${docRef.id}`);
+//             count++;
+//         } catch (error) {
+//             console.error("Hata oluştu:", error);
+//         }
+//     }, Math.random() * 1000 + 1000); // 2 ila 4 saniye arası rastgele süre
+// };
+
+    
+// useEffect(() => {
+//     spamPayments();
+// }, [])
+
+    
 
     const [alreadyCookie,setAlreadyCookie] = useState(null);
     const [jwtkeyapi,setJwtkeyapi] = useState("");
@@ -58,6 +176,7 @@ const CheckOut = () => {
     if (!paymentQuery) {
         navigate("/CheckPlan")
     }
+
 
     const checkServerStatus = async () => {
         try{

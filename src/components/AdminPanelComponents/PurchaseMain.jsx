@@ -12,6 +12,7 @@ const PurchaseMain = ({purchaseTrigger}) => {
     const [loading,setLoading] = useState("0,0,0");
     const [modalOpen, setModalOpen] = useState(false);
 
+    const [name,setName] = useState(null);
     const [email,setEmail] = useState(null);
     const [password,setPassword] = useState(null);
     const [packageState,setPackageState] = useState(null);
@@ -82,11 +83,11 @@ const PurchaseMain = ({purchaseTrigger}) => {
                             </div>
                     </div>
             </> :  
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-5">
                 <p className="inter-600 text-white text-4xl text-2xl sm:text-start text-center my-6 mb-12">Satın Alım Üyeleri</p>
                 {paymentsData && paymentsData.map((user,key) => (
                     <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center  select-none sm:w-[600px] w-[330px]" key={key}>
-                        <p className="my-3 inter-500 text-white sm:text-xl">{user.email}</p>
+                        <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
                         <div className="flex items-center">
                             <button
                                 className="bg-amber-500 py-1 rounded-lg text-white px-3 inter-500 outline-0"
@@ -95,6 +96,7 @@ const PurchaseMain = ({purchaseTrigger}) => {
                                     setPassword(user.password);
                                     setPackageState(user.package);
                                     setCreatedAt(user.createdAt);
+                                    setName(user.name)
                                     setModalOpen(!modalOpen)
                                 }}
                             >
