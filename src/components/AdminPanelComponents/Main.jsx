@@ -406,6 +406,7 @@ const Main = ({loggedUser}) => {
                                     <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={user.id}>
                                         <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
                                         <div className="flex items-center gap-4">
+                                            <img src={Delete} onClick={() => deleteUser(user.id)} className="bg-red-500 hover:bg-red-600 p-2 rounded-lg transition-all duration-300 w-[40px]" alt="Delete" />
                                             <input
                                                     type="checkbox"
                                                     checked={user.isChecked || false}
