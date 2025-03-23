@@ -143,7 +143,7 @@ const CheckPlan = () => {
         const formData = {
             service_id: process.env.REACT_APP_MAILSERVICEID,
             template_id: process.env.REACT_APP_MAILTEMPLATEIDTR,
-            user_id: "qAE_Wfu-u0HWDL8Cy", // Bu, kişisel user ID'niz
+            user_id: "qAE_Wfu-u0HWDL8Cy", 
             template_params: {
                 to_name: name,
                 to_mail: email,
@@ -174,13 +174,14 @@ const CheckPlan = () => {
     
       
       const sendEarlyAccess = async () => {
+        
         if(language == "en"){
           sendEnMail();
         }
         else{
           sendTrMail();
         }
-        if (!name || !email || !phone || !instagram) {
+        if (!name || !email || !phone || !instagram || selectedOption.value == "noSelect") {
           toast.error(language === "en" ? "Please fill in all information" : "Lütfen tüm bilgileri doldurun");
           return;
         }
