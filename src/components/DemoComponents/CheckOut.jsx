@@ -185,7 +185,6 @@ const CheckOut = () => {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 setServerStatusState(true);
                 if(data.message != "OK"){
                     toast.error("Our crypto payment processing is currently not working. Please try again later.")
@@ -194,7 +193,6 @@ const CheckOut = () => {
             })
         }
         catch(error){
-            console.log(error)
         }
     }
 
@@ -207,9 +205,7 @@ const CheckOut = () => {
             createdAt: new Date()
           });
       
-          console.log("Belge eklendi, ID:", docRef.id);
         } catch (error) {
-          console.error("Hata oluştu:", error);
         }
       };
 
@@ -233,7 +229,6 @@ const CheckOut = () => {
             setBeforeBuy(true)
             setLoginLoading(false);
           } catch (err) {
-            console.error(err.message); 
             setLoginLoading(false);
           }
     }
@@ -257,7 +252,6 @@ const CheckOut = () => {
     const decryptData = (ciphertext) => {
         const secretKey = process.env.REACT_APP_SECRETKEY; 
         const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
-        console.log(JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
         setAlreadyCookie(JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
         return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     };
@@ -269,20 +263,16 @@ const CheckOut = () => {
     }, [])
 
     useEffect(() => {   
-        console.log("crypto type consoled,", cryptoType)
         if(alreadyCookie && alreadyCookie.paymentMethod == cryptoType){
-            console.log("if ok", cryptoType)
             setPurchaseAlreadyHave(true);
             setPaymentIDState(cookies.paymentID)
         }
     }, [cryptoType])
  
     useEffect(() => {
-        console.log(cryptoPay)
         if(serverStatusState){
             console.warn("cryptoPay cryptoStart", purchaseAlreadyHave)
             if(alreadyCookie && alreadyCookie.paymentMethod == cryptoType){
-                console.log("if ok", cryptoType)
                 setPurchaseAlreadyHave(true);
                 setPaymentIDState(alreadyCookie.paymentID)
                 checkPayment(alreadyCookie.paymentID);
@@ -326,7 +316,6 @@ const CheckOut = () => {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
             })
         }
         catch(error){
@@ -345,7 +334,6 @@ const CheckOut = () => {
                 return response.JSON();
             })
             .then((data) => {
-                console.log(data);
             })
         }
         catch(error){
@@ -364,7 +352,6 @@ const CheckOut = () => {
                 return response.JSON();
             })
             .then((data) => {
-                console.log(data)
             })
         }
         catch(error){
@@ -388,7 +375,6 @@ const CheckOut = () => {
                 return response.JSON();
             })
             .then((data) => {
-                console.log(data);
             })
         }
         catch(error){
@@ -420,7 +406,6 @@ const CheckOut = () => {
                 return response.JSON();
             })
             .then((data) => {
-                console.log(data);
             })
        }    
        catch(error){
@@ -463,8 +448,6 @@ const CheckOut = () => {
         const orderId = `order_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
         if(cryptoPay && serverStatusState != null && serverStatusState != false && cryptoStart){
             try{
-                console.log("Sending...")
-                console.log(jwtkeyapi)
                 const response = await fetch('https://api.nowpayments.io/v1/payment', {
                     method: "POST",
                     headers: {
@@ -472,7 +455,7 @@ const CheckOut = () => {
                         'x-api-key': process.env.REACT_APP_NOWPAYMENTSKEY
                     },
                     body: JSON.stringify({
-                        price_amount: paymentQuery == 1 ? language == "en" ? "599" : "5999" : paymentQuery == 2 ? language == "en" ? "7999" : "159999" : "",          
+                        price_amount: paymentQuery == 1 ? language == "en" ? "799" : "8999" : paymentQuery == 2 ? language == "en" ? "7999" : "159999" : "",          
                         price_currency: language == "en" ? "USD" : "TRY",       
                         pay_currency: cryptoType == "usdt" ? "USDTTRC20" : "BTC",     
                         is_fee_paid_by_user: true,         
@@ -483,33 +466,26 @@ const CheckOut = () => {
               
                 })
                 .then((response) => {
-                    console.log("check 1")
                     setProcessLoading(true);
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data);
-                    console.log("check 2")
                     setPurchaseAlreadyHave(true);
                     setSendAddress(data.pay_address);
                     setPaymentStatus(data.payment_status);
                     setPaymentIDState(data.payment_id);
                     setPayAmount(data.pay_amount);
                     setFinishLoading(false);
-                    console.log("check 3")
                     const paymentData = { paymentID: data.payment_id, packageID:paymentQuery, paymentMethod: cryptoType };
-                    console.log("3.5")
                     const secretKey = process.env.REACT_APP_SECRETKEY; 
                     const encryptedData = CryptoJS.AES.encrypt(
                         JSON.stringify(paymentData),
                         secretKey
                     ).toString();
-                    console.log("check 4")
                     setProcessLoading(true);
                     setCookie("paymentData",encryptedData,{path: "/"})
                     setFinishLoading(false);
                     setCryptoPay(true);
-                    console.log("check 5")
                     // if(data.payment_status == "waiting" || data.payment_status == "confirming" || data.payment_status == "confirmed" || data.payment_status == "sending" || data.payment_status == "partially_paid" || data.payment_status == "finished"){
                     //     setTimeout(() => {
                     //         checkPayment();
@@ -524,11 +500,7 @@ const CheckOut = () => {
             }
         }   
        
-    }
-
-    useEffect(() => {
-        console.log(processLoading,"proccess")
-    }, [processLoading])
+    }    
 
     const handleKeyDownSaveAndLogin = (e) => {
         if (e.key === "Enter") {
@@ -538,14 +510,9 @@ const CheckOut = () => {
 
 
     const checkPayment = async (paymentIDParam) => {
-        console.log("check 6")
-        console.log(paymentIDState)
         setPurchaseAlreadyHave(true)
-        console.log("check 7")
-        console.log("Kanka buraya kadar gelip çalışmıosan ananı sikiyim", purchaseAlreadyHave)
         if(purchaseAlreadyHave){
             try{
-                console.log("Sending check...")
                 const response = await fetch(`https://api.nowpayments.io/v1/payment/${paymentIDParam}` ,{
                     headers: {
                         'Content-Type': 'application/json',
@@ -556,7 +523,6 @@ const CheckOut = () => {
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data);
                     setPurchaseAlreadyHave(true);
                     setSendAddress(data.pay_address);
                     setPaymentStatus(data.payment_status);

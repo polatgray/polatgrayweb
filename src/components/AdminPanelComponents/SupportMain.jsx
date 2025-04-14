@@ -20,7 +20,6 @@ const SupportMain = ({supportTriggerInner}) => {
 
     const getTickets = async () => {
         setLoading(true)
-        console.log("run")
         try {
             const querySnapshot = await getDocs(collection(db, "support"));
             const supportData = querySnapshot.docs.map(doc => ({
@@ -28,7 +27,6 @@ const SupportMain = ({supportTriggerInner}) => {
             ...doc.data(),
             }));
             setSupportDataState(supportData);
-            console.log(supportData)
             setLoading(false);
         } catch (error) {
             console.error("Error fetching payments: ", error);

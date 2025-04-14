@@ -57,13 +57,11 @@ const Home = () => {
   const { loadingFinally, setLoadingFinally } = useContext(LoadingContext);
 
   const handleImageLoad = () => {
-    console.log("sended true");
     setLoadingFinally(true);
   };
 
   useEffect(() => {
     if (loadingFinally) {
-      console.log("All images loaded!");
     }
   }, [loadingFinally]);
 

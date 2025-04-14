@@ -29,7 +29,6 @@ const PurchaseMain = ({purchaseTrigger}) => {
 
     const getPayments = async () => {
         setLoading("0,0,1")
-        console.log("run")
         try {
             const querySnapshot = await getDocs(collection(db, "paymentsOk"));
             setLoading("0,1,1")
@@ -39,7 +38,6 @@ const PurchaseMain = ({purchaseTrigger}) => {
             }));
             setLoading("1,1,1")
             setPaymentsData(paymentsData);
-            console.log(paymentsData)
             setLoading(false);
         } catch (error) {
             console.error("Error fetching payments: ", error);

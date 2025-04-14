@@ -43,9 +43,7 @@ const AdminPanelMain = () => {
         }
       };
 
-    useEffect(() => {
-        console.log(loggedUser)
-    }, [loggedUser])
+    
 
     return(
         <>

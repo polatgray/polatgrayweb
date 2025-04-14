@@ -110,7 +110,7 @@ const CheckPlan = () => {
         const formData = {
           service_id: process.env.REACT_APP_MAILSERVICEID,
           template_id: process.env.REACT_APP_MAILTEMPLATEIDEN,
-          user_id: "qAE_Wfu-u0HWDL8Cy", // Bu, kişisel user ID'niz
+          user_id: "qAE_Wfu-u0HWDL8Cy", 
           template_params: {
               to_name: name,
               to_mail: email,
@@ -130,9 +130,7 @@ const CheckPlan = () => {
             const data = await response.json();
     
             if (response.ok) {
-                console.log('SUCCESS!', data);
             } else {
-                console.error('Error:', data);
             }
         } catch (error) {
             console.error('Error sending email:', error);
@@ -163,9 +161,7 @@ const CheckPlan = () => {
             const data = await response.json();
     
             if (response.ok) {
-                console.log('SUCCESS!', data);
             } else {
-                console.error('Error:', data);
             }
         } catch (error) {
             console.error('Error sending email:', error);
@@ -325,7 +321,7 @@ const CheckPlan = () => {
                         <p className="inter-500 text-white px-5  text-center">{language == "en" ? "You will learn all the secret marketing techniques that polatgray uses" : "Polatgray'in kullandığı tüm gizli pazarlama tekniklerini öğreneceksin."}</p>
                         <div className="price-tag">
                             <p className="line-1 text-white old-price">{language == "en" ? "1500$" : "14999TL"}</p>
-                            <p className="text-white text-3xl sm:text-5xl inter-600">{language == "en" ? "599$" : "5999TL"}</p>
+                            <p className="text-white text-3xl sm:text-5xl inter-600">{language == "en" ? "799$" : "8999TL"}</p>
                         </div>
                     </div>
                     <button className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 w-full inter-500 text-white px-4 py-2 rounded-lg text-2xl mx-4 outline-0" onClick={() => navigate("/CheckOut?package=1")}>{language == "en" ? "Buy Now" : "Satın Al"}</button>

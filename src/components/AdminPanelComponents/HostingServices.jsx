@@ -14,7 +14,6 @@ const HostingServices = () => {
           console.log(`API yanıt süresi: ${duration.toFixed(2)} ms`);
           setResponseTime(duration.toFixed(2))  
           const data = await response.json();
-          console.log(data);
         } catch (error) {
           console.error('Hata oluştu:', error);
         }

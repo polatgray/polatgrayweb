@@ -22,7 +22,6 @@ const HomeMain = ({ loggedUserInner, clickedValueOuter }) => {
   const [clickedValue,setClickedValue] = useState("");
 
   useEffect(() => {
-    console.log(loggedUserInner);
     if (loggedUserInner) {
       setHomeName(loggedUserInner);
     }

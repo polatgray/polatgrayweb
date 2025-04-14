@@ -37,13 +37,11 @@ const Main = () => {
             }
             else{
               if(!data.site_online){
-                console.log("Service Unavailable")
                 navigate("/ServiceUnavailable")
               }
               else{
                 setTriggerVal(2);
               }
-              console.log(data);
             }
       }
 
@@ -52,7 +50,6 @@ const Main = () => {
           try {
             const response = await fetch("https://ipapi.co/json/"); 
             const data = await response.json();
-            console.log(data);
             if (data.country_code === "TR") {
               setLanguage("tr"); 
             } else {

@@ -83,7 +83,6 @@ const Main = ({loggedUser}) => {
                 ...doc.data(),
             }));
             setUsers(usersList);
-            console.log(usersList);
             setLoading(false);
         } catch (error) {
             console.error(error);
@@ -170,8 +169,6 @@ const Main = ({loggedUser}) => {
             }
         });
         
-        console.log(filterState,"filter state");
-        console.log("Filtrelenmiş kullanıcılar:", filteredUsers);
         setFilterData(filteredUsers);
     }, [users, filterState]);
     
