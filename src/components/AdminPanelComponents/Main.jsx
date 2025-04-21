@@ -35,6 +35,7 @@ const Main = ({loggedUser}) => {
     const [percentageState,setPercentageState] = useState("NO-DATA");
     const [filterState,setFilterState] = useState("no-select");
     const [filterData,setFilterData] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
 
 
     //ARTICLE
@@ -359,13 +360,18 @@ const Main = ({loggedUser}) => {
 
                     </div>
                     <div className="flex flex-col gap-4 mt-5 items-center sm:w-[600px] w-[330px] h-spec-admin yellowScroll overflow-auto">
+                        <input type="text" placeholder="İsim ara..." className="mb-4 p-2 rounded-lg border border-amber-500 bg-transparent text-white outline-none w-full" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
                         {loading ? (
                             <div className="loader"></div>
                         ) : filterState === "no-select" ? (
                             users && users.length > 0 ? (
                                 users
-                                    .sort((a, b) => (b.subscribedAt || 0) - (a.subscribedAt || 0))
-                                    .map((user) => (
+                                .sort((a, b) => (b.subscribedAt || 0) - (a.subscribedAt || 0))
+                                .filter((user) => 
+                                    user.name && 
+                                    user.name.toLowerCase().includes(searchQuery.toLowerCase())
+                                )
+                                .map((user) => (
                                         <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={user.id}>
                                             <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
                                             <div className="flex items-center gap-4">
@@ -399,7 +405,12 @@ const Main = ({loggedUser}) => {
                             )
                         ) : (
                             filterData.length > 0 ? (
-                                filterData.map((user) => (
+                                filterData
+                                    .filter((user) => 
+                                        user.name && 
+                                        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+                                    )
+                                    .map((user) => (
                                     <div className="flex border border-amber-600 rounded-lg justify-between px-5 items-center w-full select-none" key={user.id}>
                                         <p className="my-3 inter-500 text-white sm:text-xl">{user.name}</p>
                                         <div className="flex items-center gap-4">
