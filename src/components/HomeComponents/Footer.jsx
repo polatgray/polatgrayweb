@@ -116,7 +116,7 @@ const Footer = () => {
                 <div className="flex flex-col lg:w-auto w-[220px]">
                     <p className="inter-500 text-amber-400 text-2xl mb-3">{language == "en" ? "Contact" : "İletişim"}</p>
                     <div className="flex flex-col mb-5">
-                            <a href="mail:polatgraybillionaire@gmail.com" className="flex items-center gap-2 cursor-pointer" target="_blank">
+                            <a href="mailto:polatgraybillionaire@gmail.com" className="flex items-center gap-2 cursor-pointer" target="_blank">
                                 <img src={Mail} className="w-[35px]" alt="Instagram Logo" />
                                 <p className="text-amber-500 inter-500 text-xl">{language == "en" ? "E-Mail address" : "E-Mail adresi"}</p>
                             </a>
