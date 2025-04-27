@@ -116,7 +116,7 @@ const CheckPlan = () => {
           template_params: {
               to_name: name,
               to_mail: email,
-              parameter: generateCode(),
+              parameter: `<a target='_blank' href='https://polatgray.com/CheckNumber?p=${generateCode()}'>Click here to update your phone number</a>`,
               message: "Merhaba, bu bir test mesajıdır."
           }
       };
@@ -149,7 +149,7 @@ const CheckPlan = () => {
             template_params: {
                 to_name: name,
                 to_mail: email,
-                parameter: generateCode(),
+                parameter: `<a target='_blank' href='https://polatgray.com/CheckNumber?p=${generateCode}'>Telefon numaranı güncellemek için tıkla</a>`,
                 message: "Merhaba, bu bir test mesajıdır."
             }
         };
