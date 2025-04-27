@@ -25,6 +25,7 @@ const CheckPhone = () => {
       return;
     }
 
+    console.log(phoneResetKey)
     setLoading(true);
     try {
       const usersRef = collection(db, "earlyAccessUsers");
@@ -32,6 +33,7 @@ const CheckPhone = () => {
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
+        console.log(querySnapshot)
         toast.error(language == "en" ? "There is a technical problem, please try again later." : "Teknik bir sorun var, lütfen sonra tekrar deneyin.")
         setLoading(false);
         return;
@@ -41,8 +43,7 @@ const CheckPhone = () => {
       const userRef = userDoc.ref;
 
       await updateDoc(userRef, {
-        phoneNumber: newPhone,
-        phoneResetKey: phoneResetKey// istersek null’a çekebiliriz
+        phone: newPhone,
       });
 
       toast.success(language == "en" ? "Your number has been updated!" : "Numaran güncellendi!")
