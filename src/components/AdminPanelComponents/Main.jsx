@@ -230,7 +230,7 @@ const Main = ({loggedUser}) => {
                         <p className="inter-400 text-white">Kullanıcı Adı: <span className="inter-700"> {username}</span></p>
                         <p className="inter-400 text-white">Instagram: <span className="inter-700"> {userInstagram}</span></p>
                         <p className="inter-400 text-white">E-Posta: <span className="inter-700"> {userMail}</span></p>
-                        <p className="inter-400 text-white">phoneResetKey: <span className="inter-700"> {userMail}</span></p>
+                        <p className="inter-400 text-white">phoneResetKey: <span className="inter-700"> {phoneResetKeyState}</span></p>
                         <p className="inter-400 text-white">Telefon Numarası: <span className="inter-700"> {userPhone}</span></p>
                         <p className="inter-400 text-white">
                             Şu kadar parasını ayırabilir:{" "}
