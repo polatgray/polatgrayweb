@@ -27,7 +27,7 @@ const CheckPhone = () => {
 
     setLoading(true);
     try {
-      const usersRef = collection(db, "users");
+      const usersRef = collection(db, "earlyAccessUsers");
       const q = query(usersRef, where("phoneResetKey", "==", phoneResetKey));
       const querySnapshot = await getDocs(q);
 
