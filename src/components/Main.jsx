@@ -12,6 +12,7 @@ import SuccessPayment from "./DemoComponents/SuccessPayment"
 import SiteBlocked from "./AdminPanelComponents/SiteBlocked"
 import { createClient } from "@supabase/supabase-js"
 import { useNavigate } from "react-router-dom"
+import CheckPhone from "./AdminPanelComponents/CheckPhone"
 
 const Main = () => {
 
@@ -77,6 +78,7 @@ const Main = () => {
                 <Route path="/CheckOut" element={<CheckOut />} />
                 <Route path="/SuccessPayment" element={<SuccessPayment />} />
                 <Route path="/ServiceUnavailable" element={<SiteBlocked />} />
+                <Route path="/CheckPhone" element={<CheckPhone />} />
             </Routes>
         </>
     )

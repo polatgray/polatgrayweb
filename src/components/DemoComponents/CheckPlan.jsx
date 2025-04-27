@@ -14,6 +14,8 @@ const CheckPlan = () => {
 
   const {language} = useContext(LanguageContext);
 
+  const generateCode = () => Math.random().toString(36).substring(2, 8).toUpperCase();
+
   const options = [
     { value: 'noSelect', label: `${language == "en" ? "How much money you have to invest?" : "Ne kadar ayırabilirsin?"}` },
     { value: '5-10', label: '5K - 10K' },
@@ -114,6 +116,7 @@ const CheckPlan = () => {
           template_params: {
               to_name: name,
               to_mail: email,
+              parameter: generateCode(),
               message: "Merhaba, bu bir test mesajıdır."
           }
       };
@@ -138,6 +141,7 @@ const CheckPlan = () => {
       } 
 
       const sendTrMail = async () => {
+        const generateCode = () => Math.random().toString(36).substring(2, 8).toUpperCase();
         const formData = {
             service_id: process.env.REACT_APP_MAILSERVICEID,
             template_id: process.env.REACT_APP_MAILTEMPLATEIDTR,
@@ -145,6 +149,7 @@ const CheckPlan = () => {
             template_params: {
                 to_name: name,
                 to_mail: email,
+                parameter: generateCode(),
                 message: "Merhaba, bu bir test mesajıdır."
             }
         };
@@ -199,6 +204,7 @@ const CheckPlan = () => {
             phone: `${selectedCountry} ${phone}`,
             moneyKeep: selectedOption.value === "noSelect" ? { value: '5-10', label: '5K-10K' } : selectedOption,
             instagram,
+            phoneResetKey: generateCode(),
             subscribedAt: new Date().getTime(),
           });
     
