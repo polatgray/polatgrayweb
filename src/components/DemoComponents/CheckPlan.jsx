@@ -103,7 +103,8 @@ const CheckPlan = () => {
         setSelectedCountry(e.target.value);
     };
 
-  
+    const userId = crypto.randomUUID();
+
 
     const handleSelectChange = (e) => {
       const selected = options.find(option => option.value === e.target.value);
@@ -120,6 +121,7 @@ const CheckPlan = () => {
               to_name: name,
               to_mail: email,
               parameter: code,
+              idUserFotFeatured: userId,
               message: "Merhaba, bu bir test mesajıdır."
           }
       };
@@ -153,6 +155,7 @@ const CheckPlan = () => {
                 to_name: name,
                 to_mail: email,
                 parameter: code,
+                idUserFotFeatured: userId,
                 message: "Merhaba, bu bir test mesajıdır."
             }
         };
