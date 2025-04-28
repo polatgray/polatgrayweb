@@ -1,12 +1,10 @@
-import { useContext, useEffect } from "react"
-import { LanguageContext } from "../../Context/LanguageContext"
+import { useEffect } from "react"
 import { db } from "../Firebase/Firebase" 
 import { doc, setDoc } from "firebase/firestore"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 
 const AddFeautedUser = () => {
-    const { language } = useContext(LanguageContext)
 
     const navigate = useNavigate();
 
@@ -19,12 +17,10 @@ const AddFeautedUser = () => {
                 try {
                     const docRef = doc(db, "featuredUsers", pParam)
                     await setDoc(docRef, {id: pParam, createdAt: new Date() })
-                    console.log("Kardeşim başarıyla ekledik amk, p:", pParam)
-                    toast.success(language == "en" ? "Success!" : "Öne çıkarıldın!")
+                    toast.success("Success!")
                     navigate("/")
                 } catch (error) {
-                    console.error("Aq hata oldu:", error)
-                    toast.error(language == "en" ? "Error! Try again later" : "Hata oluştu! Daha sonra tekrar deneyin.")
+                    toast.error("Error! Try again later")
                     navigate("/")
                 }
             }
@@ -38,7 +34,7 @@ const AddFeautedUser = () => {
         <>
             <div className="flex items-center justify-center h-screen">
                 <p className="text-amber-500 inter-600 text-2xl">
-                    {language === "en" ? "Counting the money..." : "Paralar sayılıyor..."}
+                        Counting the money...
                 </p>
             </div>
         </>

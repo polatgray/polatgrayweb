@@ -201,7 +201,6 @@ const CheckPlan = () => {
     
         try {
           toast.loading(language === "en" ? "Loading..." : "Yükleniyor...");
-          const userId = crypto.randomUUID();
           const docRef = doc(collection(db, "earlyAccessUsers"), userId);
     
           await setDoc(docRef, {
