@@ -18,7 +18,7 @@ const AddFeautedUser = () => {
             const addUserToFeatured = async () => {
                 try {
                     const docRef = doc(db, "featuredUsers", pParam)
-                    await setDoc(docRef, { createdAt: new Date() })
+                    await setDoc(docRef, {id: pParam, createdAt: new Date() })
                     console.log("Kardeşim başarıyla ekledik amk, p:", pParam)
                     toast.success(language == "en" ? "Success!" : "Öne çıkarıldın!")
                     navigate("/")
@@ -36,8 +36,8 @@ const AddFeautedUser = () => {
 
     return(
         <>
-            <div className="flex items-center justify-center">
-                <p className="text-amber-500 inter-600">
+            <div className="flex items-center justify-center h-screen">
+                <p className="text-amber-500 inter-600 text-2xl">
                     {language === "en" ? "Counting the money..." : "Paralar sayılıyor..."}
                 </p>
             </div>
