@@ -14,6 +14,7 @@ import SupportMain from "./SupportMain";
 import HostingServices from "./HostingServices";
 import Delete from "../../images/delete.svg"
 import { deleteUser } from "firebase/auth";
+import FeaturedMain from "./FeaturedMain";
 
 const Main = ({loggedUser}) => {
     const [users, setUsers] = useState([]);
@@ -46,6 +47,7 @@ const Main = ({loggedUser}) => {
     const [purchaseMainState,setPurchaseMainState] = useState(false);
     const [supportMainState,setSupportMainState] = useState(false);
     const [hostingMainState,setHostingMainState] = useState(false);
+    const [featuredMainState,setFeaturedMainState] = useState(false);
 
 
     useEffect(() => {
@@ -184,6 +186,10 @@ const Main = ({loggedUser}) => {
         }
         else if(clickedValueInner == "purchase"){
             setPurchaseTriggerState(purchaseTriggerState + 1); setHomeMain(false); setEarlyAccess(false); setPurchaseMainState(true); setMenuBar(false); setHostingMainState(false)
+        }
+        else if(clickedValueInner == "featuredUsers"){
+            setFeaturedMainState(true);setHomeMain(false); setEarlyAccess(false); setSupportMainState(false); setPurchaseMainState(false); setMenuBar(false); setHostingMainState(false)
+
         }
     }, [clickedValueInner])
 
@@ -452,6 +458,7 @@ const Main = ({loggedUser}) => {
             </div> : ""}
             {purchaseMainState ? <PurchaseMain purchaseTrigger={purchaseTriggerState}/> : ""}
             {supportMainState ? <SupportMain supportTriggerInner={supportTriggerState}/> : ""}
+            {featuredMainState ? <FeaturedMain /> : ""}
             {hostingMainState ? <HostingServices /> : ""} 
         </>
     );

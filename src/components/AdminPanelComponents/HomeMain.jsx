@@ -5,6 +5,7 @@ import "../../css/AdminHomeMain.css"
 import EarlyAccess from "../../images/earlyAccess.svg"
 import Ticket from "../../images/ticket.svg"
 import Wallet from "../../images/wallet.svg"
+import Featured from "../../images/featured.svg"
 
 
 const now = new Date();
@@ -18,6 +19,7 @@ const HomeMain = ({ loggedUserInner, clickedValueOuter }) => {
   const [earlyAccessCount,setEarlyAccessCount] = useState(null);
   const [supportCount,setSupportCount] = useState(null);
   const [usersPurchasedCount,setUserPurchasedCount] = useState(null);
+  const [featuredUsersCount,setFeaturedUsersCount] = useState(null);
   const [proccessLoading,setProccessLoading] = useState("0,0,0");
   const [clickedValue,setClickedValue] = useState("");
 
@@ -60,6 +62,17 @@ const HomeMain = ({ loggedUserInner, clickedValueOuter }) => {
     }
   }
 
+  const getFeaturedUsersCount = async () => {
+    try{
+      const querySnapshot = await getDocs(collection(db,"featuredUsers"));
+      const docCount = querySnapshot.size;
+      setFeaturedUsersCount(docCount);
+    }
+    catch(error){
+      console.error("Öne çıkan kullanıcılar çekilirken hata:",error)
+    }
+  }
+
   const getUsersPurchased = async () => {
     try{
         const querySnapshot = await getDocs(collection(db,"paymentsOk"));
@@ -73,9 +86,12 @@ const HomeMain = ({ loggedUserInner, clickedValueOuter }) => {
     }
   }
 
+  
+
   const allInOneStart = async () => {
     await getSupportCount();
     await getUsersPurchased();
+    await getFeaturedUsersCount();
     await getEarlyAccessUsersCount();
     setLoading(false);
   }
@@ -110,6 +126,15 @@ const HomeMain = ({ loggedUserInner, clickedValueOuter }) => {
                     <div className="card-content">
                         <h3>Erken erişim </h3>
                         <p>{earlyAccessCount}</p>
+                    </div>
+                </div>
+                <div className="advanced-card" onClick={() => setClickedValue("featuredUsers")}>
+                    <div className="card-icon">
+                        <img src={Featured} className="w-[35px]" alt="Featured Icon" />
+                    </div>
+                    <div className="card-content">
+                        <h3>Öne çıkan kullanıcılar</h3>
+                        <p>{featuredUsersCount}</p>
                     </div>
                 </div>
                 <div className="advanced-card" onClick={() => setClickedValue("support")}>
