@@ -118,7 +118,7 @@ const HomeMain = ({ loggedUserInner, clickedValueOuter }) => {
             <div className="flex items-center lg:justify-start justify-center px-4 mt-16">
                 <p className="animated-text text-2xl sm:text-5xl py-3">{getGreeting()}{homeName && `, ${homeName == "polatgraybillionaire@gmail.com" ? "Polat Bey" : homeName == "asdkralxasd@gmail.com" ? "Ahmet" : "Kullanıcı"}`}</p>
             </div>
-            <div className="flex items-center gap-4 px-4 mt-3 overflow-auto py-5 lg:flex-row flex-col">
+            <div className="flex items-center gap-4 px-4 mt-3 overflow-auto py-5 lg:flex-row flex-col flex-wrap">
                 <div className="advanced-card" onClick={() => setClickedValue("earlyAccess")}>
                     <div className="card-icon">
                         <img src={EarlyAccess} className="w-[35px]" alt="Early Access Icon" />
@@ -133,7 +133,7 @@ const HomeMain = ({ loggedUserInner, clickedValueOuter }) => {
                         <img src={Featured} className="w-[35px]" alt="Featured Icon" />
                     </div>
                     <div className="card-content">
-                        <h3>Öne çıkan kullanıcılar</h3>
+                        <h3>Özel kullanıcılar</h3>
                         <p>{featuredUsersCount}</p>
                     </div>
                 </div>
